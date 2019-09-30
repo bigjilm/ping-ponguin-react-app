@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Ping Pong",
+    "residence": "Nuuk",
+    "abilityLeft": 4,
+    "abilityRight": 2
+  },
+  {
+    "name": "Ding Dong",
+    "residence": "Nuuk",
+    "abilityLeft": 1,
+    "abilityRight": 1
+  },
+  {
+    "name": "Pling Plong",
+    "residence": "Spitzbergen",
+    "abilityLeft": 2,
+    "abilityRight": 5
+  },
+  {
+    "name": "Bing Bong",
+    "residence": "Nuuk",
+    "abilityLeft": 4,
+    "abilityRight": 4
+  },
+  {
+    "name": "Ging Gong",
+    "residence": "Hawaii",
+    "abilityLeft": 3,
+    "abilityRight": 1
+  }
+]

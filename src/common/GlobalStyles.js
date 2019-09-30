@@ -10,6 +10,7 @@ export default createGlobalStyle`
     background: #eee;
     font-family: sans-serif;
     font-size: 16px;
+    overflow: hidden;
   }
 
   input, button, textarea {
