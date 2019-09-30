@@ -2,6 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
+PlayerCard.propTypes = {
+  name: PropTypes.string,
+  residence: PropTypes.string,
+  abilityLeft: PropTypes.number,
+  abilityRight: PropTypes.number,
+}
+
 export default function PlayerCard({
   name,
   residence,
