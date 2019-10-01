@@ -14,8 +14,7 @@ export default function Header() {
 const HeaderStyled = styled.header`
   display: grid;
   grid-template-columns: 48px auto 48px;
-  align-items: center;
-  justify-items: center;
+  place-items: center;
   grid-gap: 5px;
   background-color: #c2d4d8;
   padding: 5px;

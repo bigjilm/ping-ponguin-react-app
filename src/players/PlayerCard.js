@@ -14,10 +14,12 @@ export default function PlayerCard({
   residence,
   abilityLeft,
   abilityRight,
+  image,
 }) {
   return (
     <PlayerCardStyled>
       <NameStyled>{name}</NameStyled>
+      <ImageStyled src={image}></ImageStyled>
       <ResidenceStyled>Wohnort: {residence}</ResidenceStyled>
       <div>
         Spielstärke
@@ -30,22 +32,42 @@ export default function PlayerCard({
 
 const PlayerCardStyled = styled.section`
   display: grid;
-  grid-template-rows: 1fr 1fr 2fr;
-  grid-gap: 5px;
+  /* grid-auto-rows: min-content; */
+  grid-template-rows: auto auto auto;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'name image'
+    'residence image'
+    'ability image';
+  grid-gap: 10px;
   background-color: #c2d4d8;
-  border-radius: 10px;
-  padding: 10px;
+  padding: 20px;
 `
 
-const ImageStyled = styled.img``
+const ImageStyled = styled.img`
+  /* grid-column-start: 2; */
+  grid-area: image;
+  height: 100px;
+  width: 100px;
+  border-radius: 50px 50px 37px 37px;
+  object-fit: cover;
+`
 
 const NameStyled = styled.span`
+  grid-area: name;
   font-size: 1.5em;
   font-weight: bold;
+  grid-column-start: 1;
 `
 
-const ResidenceStyled = styled.span``
+const ResidenceStyled = styled.span`
+  /* grid-column-start: 1; */
+  grid-area: residence;
+`
 
 const AbilityStyled = styled.div`
+  /* grid-column-start: 1;
+  grid-row-start: 3; */
+  grid-area: ability;
   margin-left: 20px;
 `

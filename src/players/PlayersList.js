@@ -11,13 +11,7 @@ export default function PlayersList({ playerData }) {
   return (
     <PlayersListStyled>
       {playerData.map((player, index) => (
-        <PlayerCard
-          key={index}
-          name={player.name}
-          residence={player.residence}
-          abilityLeft={player.abilityLeft}
-          abilityRight={player.abilityRight}
-        ></PlayerCard>
+        <PlayerCard key={index} {...player}></PlayerCard>
       ))}
     </PlayersListStyled>
   )
