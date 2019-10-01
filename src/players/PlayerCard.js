@@ -32,7 +32,6 @@ export default function PlayerCard({
 
 const PlayerCardStyled = styled.section`
   display: grid;
-  /* grid-auto-rows: min-content; */
   grid-template-rows: auto auto auto;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
@@ -45,7 +44,6 @@ const PlayerCardStyled = styled.section`
 `
 
 const ImageStyled = styled.img`
-  /* grid-column-start: 2; */
   grid-area: image;
   height: 100px;
   width: 100px;
@@ -57,17 +55,13 @@ const NameStyled = styled.span`
   grid-area: name;
   font-size: 1.5em;
   font-weight: bold;
-  grid-column-start: 1;
 `
 
 const ResidenceStyled = styled.span`
-  /* grid-column-start: 1; */
   grid-area: residence;
 `
 
 const AbilityStyled = styled.div`
-  /* grid-column-start: 1;
-  grid-row-start: 3; */
   grid-area: ability;
   margin-left: 20px;
 `

@@ -9,7 +9,7 @@ const rootElement = document.querySelector('#root')
 ReactDOM.render(
   <>
     <GlobalStyles />
-    <App></App>
+    <App />
   </>,
   rootElement
 )
