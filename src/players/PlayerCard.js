@@ -45,6 +45,7 @@ const PlayerCardStyled = styled.section`
 
 const ImageStyled = styled.img`
   grid-area: image;
+  justify-self: center;
   height: 100px;
   width: 100px;
   border-radius: 50px 50px 37px 37px;
