@@ -4,13 +4,13 @@ import styled from 'styled-components/macro'
 
 RadioButton.propTypes = {}
 
-export default function RadioButton({ value, activeRadio, onClick }) {
+export default function RadioButton({ value, name, activeRadio, onClick }) {
   return (
     <LabelStyled value={value} activeRadio={activeRadio}>
       {value}
       <RadioButtonStyled
         type="radio"
-        name="radioLeft"
+        name={name}
         value={value}
         onClick={handleClick}
       />

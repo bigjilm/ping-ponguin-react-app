@@ -7,23 +7,27 @@ import TextInput from './TextInput'
 CreationPage.propTypes = {}
 
 export default function CreationPage({ onSubmit }) {
+  const [formData, setFormData] = useState({})
   const [playerName, setPlayerName] = useState('')
   const [residence, setResidence] = useState('')
   const [abilityLeft, setAbilityLeft] = useState(0)
   const [abilityRight, setAbilityRight] = useState(0)
-  const formData = {
-    name: playerName,
-    residence: residence,
-    abilityLeft: abilityLeft,
-    abilityRight: abilityRight,
-    image: '',
-  }
 
   return (
     <CreationPageStyled>
       <FormStyled onSubmit={handleSubmit}>
-        <TextInput name="Name" value={playerName} onChange={setPlayerName} />
-        <TextInput name="Wohnort" value={residence} onChange={setResidence} />
+        <TextInput
+          labelName="Name"
+          name="playerName"
+          value={playerName}
+          onChange={setPlayerName}
+        />
+        <TextInput
+          labelName="Wohnort"
+          name="residence"
+          value={residence}
+          onChange={setResidence}
+        />
         <LabelStyled>
           Spielstärke
           <StyledP>
@@ -32,11 +36,13 @@ export default function CreationPage({ onSubmit }) {
           </StyledP>
           <AbilityRadios
             hand="links"
+            name="abilityLeft"
             activeRadio={abilityLeft}
             onClick={setAbilityLeft}
           ></AbilityRadios>
           <AbilityRadios
             hand="rechts"
+            name="abilityRight"
             activeRadio={abilityRight}
             onClick={setAbilityRight}
           ></AbilityRadios>
@@ -48,6 +54,13 @@ export default function CreationPage({ onSubmit }) {
 
   function handleSubmit(event) {
     event.preventDefault()
+    setFormData({
+      name: playerName,
+      residence: residence,
+      abilityLeft: abilityLeft,
+      abilityRight: abilityRight,
+      image: '',
+    })
     onSubmit(formData)
   }
 }
