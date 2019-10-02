@@ -18,6 +18,7 @@ const HeaderStyled = styled.header`
   grid-gap: 5px;
   background-color: #c2d4d8;
   padding: 5px;
+  border-bottom: 2px solid #418ab3;
 `
 
 const TitleStyled = styled.h1`
