@@ -6,16 +6,23 @@ import TextInput from './TextInput'
 
 CreationPage.propTypes = {}
 
-export default function CreationPage() {
+export default function CreationPage({ onSubmit }) {
+  const [playerName, setPlayerName] = useState('')
+  const [residence, setResidence] = useState('')
   const [abilityLeft, setAbilityLeft] = useState(0)
   const [abilityRight, setAbilityRight] = useState(0)
-  const [name, setName] = useState('')
-  const [residence, setResidence] = useState('')
+  const formData = {
+    name: playerName,
+    residence: residence,
+    abilityLeft: abilityLeft,
+    abilityRight: abilityRight,
+    image: '',
+  }
 
   return (
     <CreationPageStyled>
-      <FormStyled>
-        <TextInput name="Name" value={name} onChange={setName} />
+      <FormStyled onSubmit={handleSubmit}>
+        <TextInput name="Name" value={playerName} onChange={setPlayerName} />
         <TextInput name="Wohnort" value={residence} onChange={setResidence} />
         <LabelStyled>
           Spielstärke
@@ -34,9 +41,15 @@ export default function CreationPage() {
             onClick={setAbilityRight}
           ></AbilityRadios>
         </LabelStyled>
+        <ButtonStyled>Profil Erstellen</ButtonStyled>
       </FormStyled>
     </CreationPageStyled>
   )
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    onSubmit(formData)
+  }
 }
 
 const CreationPageStyled = styled.main`
@@ -61,4 +74,12 @@ const StyledP = styled.p`
   font-size: 14px;
   font-weight: normal;
   margin: 0;
+`
+
+const ButtonStyled = styled.button`
+  justify-self: center;
+  width: 150px;
+  height: 50px;
+  background-color: #c2d4d8;
+  border-radius: 5px;
 `
