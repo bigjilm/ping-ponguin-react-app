@@ -23,6 +23,7 @@ const HeaderStyled = styled.header`
 
 const TitleStyled = styled.h1`
   margin: 0;
+  color: #418ab3;
 `
 
 const LogoStyled = styled.img`

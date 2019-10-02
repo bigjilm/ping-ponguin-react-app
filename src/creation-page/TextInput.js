@@ -2,17 +2,27 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
-export default function TextInput({ labelName, name, value, onChange }) {
+export default function TextInput({
+  labelName,
+  name,
+  placeholder,
+  type = 'text',
+  value,
+  onChange,
+  maxLength = 1000,
+}) {
   return (
     <LabelStyled>
       {labelName}
       <InputStyled
         name={name}
+        placeholder={placeholder}
+        type={type}
         value={value}
         onChange={event => onChange(event.currentTarget.value)}
-        maxLength={20}
-      ></InputStyled>
-      {value.length === 20 && <AlertStyled>max. 20 Zeichen</AlertStyled>}
+        maxLength={maxLength}
+      />
+      {value.length === maxLength && <AlertStyled>max. 20 Zeichen</AlertStyled>}
     </LabelStyled>
   )
 }
@@ -25,12 +35,12 @@ const LabelStyled = styled.label`
 `
 
 const InputStyled = styled.input`
-  width: 200px;
-  border: none;
+  width: 300px;
+  height: 30px;
+  /* border: none; */
 
   :focus {
-    outline: 2px solid;
-    outline-color: #849237;
+    border-color: #849237;
   }
 `
 

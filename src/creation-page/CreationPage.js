@@ -12,6 +12,7 @@ export default function CreationPage({ onSubmit }) {
   const [residence, setResidence] = useState('')
   const [abilityLeft, setAbilityLeft] = useState(0)
   const [abilityRight, setAbilityRight] = useState(0)
+  const [imageURL, setImageURL] = useState('')
 
   return (
     <CreationPageStyled>
@@ -19,14 +20,18 @@ export default function CreationPage({ onSubmit }) {
         <TextInput
           labelName="Name"
           name="playerName"
+          placeholder="Gib hier deinen Namen ein"
           value={playerName}
           onChange={setPlayerName}
+          maxLength={20}
         />
         <TextInput
           labelName="Wohnort"
           name="residence"
+          placeholder="Gib hier deinen Wohnort ein"
           value={residence}
           onChange={setResidence}
+          maxLength={20}
         />
         <LabelStyled>
           Spielstärke
@@ -47,6 +52,14 @@ export default function CreationPage({ onSubmit }) {
             onClick={setAbilityRight}
           ></AbilityRadios>
         </LabelStyled>
+        <TextInput
+          labelName="Bild per URL einfügen"
+          name="imageURL"
+          placeholder="Gib hier die URL deines Bildes ein"
+          value={imageURL}
+          onChange={setImageURL}
+          type="url"
+        />
         <ButtonStyled>Profil Erstellen</ButtonStyled>
       </FormStyled>
     </CreationPageStyled>
@@ -59,21 +72,29 @@ export default function CreationPage({ onSubmit }) {
       residence: residence,
       abilityLeft: abilityLeft,
       abilityRight: abilityRight,
-      image: '',
+      image: imageURL,
     })
     onSubmit(formData)
+    setPlayerName('')
+    setResidence('')
+    setAbilityLeft(0)
+    setAbilityRight(0)
+    setImageURL('')
+    event.currentTarget.playerName.focus()
   }
 }
 
 const CreationPageStyled = styled.main`
+  overflow-y: auto;
+  scroll-behavior: smooth;
   background-color: #418ab3;
-  padding: 10px;
+  padding: 20px 10px;
 `
 
 const FormStyled = styled.form`
   display: grid;
   grid-auto-rows: min-content;
-  grid-gap: 20px;
+  grid-gap: 40px;
 `
 
 const LabelStyled = styled.label`
@@ -90,7 +111,7 @@ const StyledP = styled.p`
 `
 
 const ButtonStyled = styled.button`
-  justify-self: center;
+  /* justify-self: center; */
   width: 150px;
   height: 50px;
   background-color: #c2d4d8;
