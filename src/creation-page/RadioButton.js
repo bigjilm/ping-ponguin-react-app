@@ -12,10 +12,14 @@ export default function RadioButton({ value, activeRadio, onClick }) {
         type="radio"
         name="radioLeft"
         value={value}
-        onClick={onClick}
+        onClick={handleClick}
       />
     </LabelStyled>
   )
+
+  function handleClick(event) {
+    onClick(Number(event.currentTarget.value))
+  }
 }
 
 const LabelStyled = styled.label`
@@ -25,7 +29,6 @@ const LabelStyled = styled.label`
   width: 40px;
   height: 30px;
   border-radius: 5px;
-  /* background-color: #c2d4d8; */
   background-color: ${props =>
     props.value === props.activeRadio ? '#849237' : '#c2d4d8'};
 `
