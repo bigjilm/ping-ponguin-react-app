@@ -10,7 +10,9 @@ export default function TextInput({ labelName, name, value, onChange }) {
         name={name}
         value={value}
         onChange={event => onChange(event.currentTarget.value)}
+        maxLength={20}
       ></InputStyled>
+      {value.length === 20 && <AlertStyled>max. 20 Zeichen</AlertStyled>}
     </LabelStyled>
   )
 }
@@ -30,4 +32,9 @@ const InputStyled = styled.input`
     outline: 2px solid;
     outline-color: #849237;
   }
+`
+
+const AlertStyled = styled.span`
+  font-size: 14px;
+  color: #c8232a;
 `
