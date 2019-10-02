@@ -1,9 +1,14 @@
 import React from 'react'
-import PropTypes, { func } from 'prop-types'
+import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import RadioButton from './RadioButton'
 
-AbilityRadios.propTypes = {}
+AbilityRadios.propTypes = {
+  hand: PropTypes.string,
+  name: PropTypes.string,
+  activeRadio: PropTypes.number,
+  onClick: PropTypes.func,
+}
 
 export default function AbilityRadios({ hand, name, activeRadio, onClick }) {
   const values = [1, 2, 3, 4, 5]

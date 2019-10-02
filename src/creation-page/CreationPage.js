@@ -4,7 +4,9 @@ import styled from 'styled-components/macro'
 import AbilityRadios from './AbilityRadios'
 import TextInput from './TextInput'
 
-CreationPage.propTypes = {}
+CreationPage.propTypes = {
+  onSubmit: PropTypes.func,
+}
 
 export default function CreationPage({ onSubmit }) {
   const [formData, setFormData] = useState({})
@@ -88,7 +90,7 @@ const CreationPageStyled = styled.main`
   overflow-y: auto;
   scroll-behavior: smooth;
   background-color: #418ab3;
-  padding: 20px 10px;
+  padding: 20px;
 `
 
 const FormStyled = styled.form`
@@ -100,7 +102,7 @@ const FormStyled = styled.form`
 const LabelStyled = styled.label`
   display: grid;
   grid-auto-rows: auto;
-  grid-gap: 10px;
+  grid-gap: 20px;
   font-weight: bold;
 `
 

@@ -2,6 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
+TextInput.propTypes = {
+  labelName: PropTypes.string,
+  name: PropTypes.string,
+  placeholder: PropTypes.string,
+  type: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  maxLength: PropTypes.number,
+}
+
 export default function TextInput({
   labelName,
   name,

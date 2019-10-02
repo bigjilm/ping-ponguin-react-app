@@ -1,8 +1,13 @@
 import React from 'react'
-import PropTypes, { func } from 'prop-types'
+import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
-RadioButton.propTypes = {}
+RadioButton.propTypes = {
+  value: PropTypes.number,
+  name: PropTypes.string,
+  activeRadio: PropTypes.number,
+  onClick: PropTypes.func,
+}
 
 export default function RadioButton({ value, name, activeRadio, onClick }) {
   return (
