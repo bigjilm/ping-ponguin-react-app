@@ -2,11 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
-export default function TextInput({ name }) {
+export default function TextInput({ name, value, onChange }) {
   return (
     <LabelStyled>
       {name}
-      <InputStyled></InputStyled>
+      <InputStyled
+        value={value}
+        onChange={event => onChange(event.currentTarget.value)}
+      ></InputStyled>
     </LabelStyled>
   )
 }

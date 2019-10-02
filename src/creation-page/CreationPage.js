@@ -9,12 +9,14 @@ CreationPage.propTypes = {}
 export default function CreationPage() {
   const [abilityLeft, setAbilityLeft] = useState(0)
   const [abilityRight, setAbilityRight] = useState(0)
+  const [name, setName] = useState('')
+  const [residence, setResidence] = useState('')
 
   return (
     <CreationPageStyled>
       <FormStyled>
-        <TextInput name="Name" />
-        <TextInput name="Wohnort" />
+        <TextInput name="Name" value={name} onChange={setName} />
+        <TextInput name="Wohnort" value={residence} onChange={setResidence} />
         <LabelStyled>
           Spielstärke
           <StyledP>
