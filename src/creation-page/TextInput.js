@@ -47,7 +47,6 @@ const LabelStyled = styled.label`
 const InputStyled = styled.input`
   width: 300px;
   height: 30px;
-  /* border: none; */
 
   :focus {
     border-color: #849237;

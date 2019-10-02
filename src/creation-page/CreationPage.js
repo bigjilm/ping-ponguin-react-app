@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
-import AbilityRadios from './AbilityRadios'
+import RadioButtonGroup from './RadioButtonGroup'
 import TextInput from './TextInput'
 
 CreationPage.propTypes = {
@@ -37,22 +37,22 @@ export default function CreationPage({ onSubmit }) {
         />
         <LabelStyled>
           Spielstärke
-          <StyledP>
+          <StyledParagraph>
             Schätze deine Spielstärke auf einer Skala von 1 (Blinge) bis 5
             (Profi) ein.
-          </StyledP>
-          <AbilityRadios
+          </StyledParagraph>
+          <RadioButtonGroup
             hand="links"
             name="abilityLeft"
             activeRadio={abilityLeft}
             onClick={setAbilityLeft}
-          ></AbilityRadios>
-          <AbilityRadios
+          ></RadioButtonGroup>
+          <RadioButtonGroup
             hand="rechts"
             name="abilityRight"
             activeRadio={abilityRight}
             onClick={setAbilityRight}
-          ></AbilityRadios>
+          ></RadioButtonGroup>
         </LabelStyled>
         <TextInput
           labelName="Bild per URL einfügen"
@@ -106,14 +106,13 @@ const LabelStyled = styled.label`
   font-weight: bold;
 `
 
-const StyledP = styled.p`
+const StyledParagraph = styled.p`
   font-size: 14px;
   font-weight: normal;
   margin: 0;
 `
 
 const ButtonStyled = styled.button`
-  /* justify-self: center; */
   width: 150px;
   height: 50px;
   background-color: #c2d4d8;
