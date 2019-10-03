@@ -5,8 +5,8 @@ import styled from 'styled-components/macro'
 PlayerCard.propTypes = {
   name: PropTypes.string,
   residence: PropTypes.string,
-  abilityLeft: PropTypes.number,
-  abilityRight: PropTypes.number,
+  abilityLeft: PropTypes.string,
+  abilityRight: PropTypes.string,
 }
 
 export default function PlayerCard({

@@ -10,4 +10,4 @@ function Wrapper(storyFn) {
   return <div style={{ width: '375px', background: '#eee' }}>{storyFn()}</div>
 }
 
-export const footer = () => <Navigation />
+export const navigation = () => <Navigation />

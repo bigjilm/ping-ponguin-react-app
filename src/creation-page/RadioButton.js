@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
 RadioButton.propTypes = {
-  value: PropTypes.number,
+  value: PropTypes.string,
   name: PropTypes.string,
-  activeRadio: PropTypes.number,
+  activeRadio: PropTypes.string,
   onClick: PropTypes.func,
 }
 
@@ -23,7 +23,7 @@ export default function RadioButton({ value, name, activeRadio, onClick }) {
   )
 
   function handleClick(event) {
-    onClick(Number(event.currentTarget.value))
+    onClick(event.currentTarget.value)
   }
 }
 

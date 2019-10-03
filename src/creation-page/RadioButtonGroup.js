@@ -9,7 +9,7 @@ RadioButtonGroup.propTypes = {
 
 export default function RadioButtonGroup({ name }) {
   const [activeRadio, setActiveRadio] = useState()
-  const values = [1, 2, 3, 4, 5]
+  const values = ['1', '2', '3', '4', '5']
 
   return (
     <RadioButtonGroupStyled>
