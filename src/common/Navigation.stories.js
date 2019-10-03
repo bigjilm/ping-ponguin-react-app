@@ -1,9 +1,10 @@
 import React from 'react'
-import Header from './Header'
+import StoryRouter from 'storybook-react-router'
+import Navigation from './Navigation'
 
 export default {
-  title: 'Header',
-  decorators: [Wrapper],
+  title: 'Navigation',
+  decorators: [StoryRouter(), Wrapper],
 }
 
 function Wrapper(storyFn) {
@@ -21,4 +22,4 @@ function Wrapper(storyFn) {
   )
 }
 
-export const header = () => <Header />
+export const navigation = () => <Navigation />

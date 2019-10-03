@@ -2,36 +2,36 @@
   {
     "name": "Ping Pong",
     "residence": "Nuuk",
-    "abilityLeft": 4,
-    "abilityRight": 2,
-    "image": "https://images.unsplash.com/photo-1551415923-a2297c7fda79?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
+    "abilityLeft": "4",
+    "abilityRight": "2",
+    "imageURL": "https://images.unsplash.com/photo-1551415923-a2297c7fda79?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
   },
   {
     "name": "Ding Dong",
     "residence": "Nuuk",
-    "abilityLeft": 1,
-    "abilityRight": 1,
-    "image": "https://images.unsplash.com/photo-1551415923-a2297c7fda79?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
+    "abilityLeft": "1",
+    "abilityRight": "1",
+    "imageURL": "https://images.unsplash.com/photo-1551415923-a2297c7fda79?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
   },
   {
     "name": "Pling Plong",
     "residence": "Spitzbergen",
-    "abilityLeft": 2,
-    "abilityRight": 5,
-    "image": "https://images.unsplash.com/photo-1551415923-a2297c7fda79?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
+    "abilityLeft": "2",
+    "abilityRight": "5",
+    "imageURL": "https://images.unsplash.com/photo-1551415923-a2297c7fda79?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
   },
   {
     "name": "Bing Bong",
     "residence": "Nuuk",
-    "abilityLeft": 4,
-    "abilityRight": 4,
-    "image": "https://images.unsplash.com/photo-1551415923-a2297c7fda79?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
+    "abilityLeft": "4",
+    "abilityRight": "4",
+    "imageURL": "https://images.unsplash.com/photo-1551415923-a2297c7fda79?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
   },
   {
     "name": "Ging Gong",
     "residence": "Hawaii",
-    "abilityLeft": 3,
-    "abilityRight": 1,
-    "image": "https://images.unsplash.com/photo-1551415923-a2297c7fda79?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
+    "abilityLeft": "3",
+    "abilityRight": "1",
+    "imageURL": "https://images.unsplash.com/photo-1551415923-a2297c7fda79?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
   }
 ]

@@ -5,8 +5,8 @@ import styled from 'styled-components/macro'
 PlayerCard.propTypes = {
   name: PropTypes.string,
   residence: PropTypes.string,
-  abilityLeft: PropTypes.number,
-  abilityRight: PropTypes.number,
+  abilityLeft: PropTypes.string,
+  abilityRight: PropTypes.string,
 }
 
 export default function PlayerCard({
@@ -14,12 +14,12 @@ export default function PlayerCard({
   residence,
   abilityLeft,
   abilityRight,
-  image,
+  imageURL,
 }) {
   return (
     <PlayerCardStyled>
       <NameStyled>{name}</NameStyled>
-      <ImageStyled src={image}></ImageStyled>
+      <ImageStyled src={imageURL}></ImageStyled>
       <ResidenceStyled>Wohnort: {residence}</ResidenceStyled>
       <div>
         Spielstärke
