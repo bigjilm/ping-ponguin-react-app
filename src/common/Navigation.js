@@ -21,7 +21,7 @@ export default function Navigation() {
 const NavigationStyled = styled.nav`
   display: grid;
   /* place-items: center; */
-  grid-template-columns: 1fr 1fr;
+  grid-auto-flow: column;
   border-top: 2px solid #418ab3;
 `
 
