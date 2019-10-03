@@ -18,8 +18,8 @@ export const playerCard = () => (
   <PlayerCard
     name="Ping Pong"
     residence="Nuuk"
-    abilityLeft={4}
-    abilityRight={2}
-    image="https://images.unsplash.com/photo-1551415923-a2297c7fda79?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
+    abilityLeft={'4'}
+    abilityRight={'2'}
+    imageURL="https://images.unsplash.com/photo-1551415923-a2297c7fda79?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
   ></PlayerCard>
 )

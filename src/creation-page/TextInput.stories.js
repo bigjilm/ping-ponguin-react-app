@@ -4,7 +4,7 @@ import TextInput from './TextInput'
 
 export default {
   title: 'Text Input',
-  decorators: [withKnobs, Wrapper],
+  decorators: [Wrapper],
 }
 
 function Wrapper(storyFn) {
@@ -15,10 +15,8 @@ function Wrapper(storyFn) {
   )
 }
 
-export const textInput = () => (
-  <TextInput value={text('Text', 'Enter test text')} />
-)
+export const textInput = () => <TextInput placeholder="Enter text here" />
 
 export const textInputWithMaxLength = () => (
-  <TextInput value={text('Text', 'Enter test text')} maxLength={20} />
+  <TextInput placeholder="Enter text here" maxLength={20} />
 )

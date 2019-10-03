@@ -15,7 +15,3 @@ function Wrapper(storyFn) {
 }
 
 export const radioButtonGroup = () => <RadioButtonGroup hand="Hand" />
-
-export const radioButtonGroupSelected = () => (
-  <RadioButtonGroup hand="Hand" activeRadio={3} />
-)
