@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import RadioButtonGroup from './RadioButtonGroup'
@@ -21,6 +22,12 @@ export default function CreationPage({ onSubmit }) {
     abilityRight: abilityRight,
     image: imageURL,
   }
+
+  let history = useHistory()
+
+  useEffect(() => {
+    document.querySelector('input').focus()
+  }, [])
 
   return (
     <CreationPageStyled>
@@ -81,7 +88,7 @@ export default function CreationPage({ onSubmit }) {
     setAbilityLeft(0)
     setAbilityRight(0)
     setImageURL('')
-    event.currentTarget.playerName.focus()
+    history.push('/')
   }
 }
 
