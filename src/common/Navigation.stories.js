@@ -1,8 +1,8 @@
 import React from 'react'
-import Footer from './Footer'
+import Navigation from './Navigation'
 
 export default {
-  title: 'Footer',
+  title: 'Navigation',
   decorators: [Wrapper],
 }
 
@@ -10,4 +10,4 @@ function Wrapper(storyFn) {
   return <div style={{ width: '375px', background: '#eee' }}>{storyFn()}</div>
 }
 
-export const footer = () => <Footer />
+export const footer = () => <Navigation />
