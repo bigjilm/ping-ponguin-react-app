@@ -29,6 +29,7 @@ export default function App() {
 
   function handleSubmit(newPlayer) {
     setPlayers([...players, newPlayer])
+    console.log(players)
   }
 }
 

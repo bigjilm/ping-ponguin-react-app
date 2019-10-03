@@ -9,12 +9,18 @@ CreationPage.propTypes = {
 }
 
 export default function CreationPage({ onSubmit }) {
-  const [formData, setFormData] = useState({})
   const [playerName, setPlayerName] = useState('')
   const [residence, setResidence] = useState('')
   const [abilityLeft, setAbilityLeft] = useState(0)
   const [abilityRight, setAbilityRight] = useState(0)
   const [imageURL, setImageURL] = useState('')
+  const formData = {
+    name: playerName,
+    residence: residence,
+    abilityLeft: abilityLeft,
+    abilityRight: abilityRight,
+    image: imageURL,
+  }
 
   return (
     <CreationPageStyled>
@@ -69,13 +75,6 @@ export default function CreationPage({ onSubmit }) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    setFormData({
-      name: playerName,
-      residence: residence,
-      abilityLeft: abilityLeft,
-      abilityRight: abilityRight,
-      image: imageURL,
-    })
     onSubmit(formData)
     setPlayerName('')
     setResidence('')
