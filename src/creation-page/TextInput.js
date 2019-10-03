@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
@@ -7,8 +7,6 @@ TextInput.propTypes = {
   name: PropTypes.string,
   placeholder: PropTypes.string,
   type: PropTypes.string,
-  value: PropTypes.string,
-  onChange: PropTypes.func,
   maxLength: PropTypes.number,
 }
 
@@ -17,10 +15,10 @@ export default function TextInput({
   name,
   placeholder,
   type = 'text',
-  value,
-  onChange,
   maxLength = 1000,
 }) {
+  const [inputValue, setInputValue] = useState('')
+
   return (
     <LabelStyled>
       {labelName}
@@ -28,11 +26,13 @@ export default function TextInput({
         name={name}
         placeholder={placeholder}
         type={type}
-        value={value}
-        onChange={event => onChange(event.currentTarget.value)}
+        value={inputValue}
+        onChange={event => setInputValue(event.currentTarget.value)}
         maxLength={maxLength}
       />
-      {value.length === maxLength && <AlertStyled>max. 20 Zeichen</AlertStyled>}
+      {inputValue.length === maxLength && (
+        <AlertStyled>max. 20 Zeichen</AlertStyled>
+      )}
     </LabelStyled>
   )
 }

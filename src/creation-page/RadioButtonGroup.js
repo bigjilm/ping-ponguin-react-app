@@ -1,35 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import RadioButton from './RadioButton'
 
-AbilityRadios.propTypes = {
-  hand: PropTypes.string,
+RadioButtonGroup.propTypes = {
   name: PropTypes.string,
-  activeRadio: PropTypes.number,
-  onClick: PropTypes.func,
 }
 
-export default function AbilityRadios({ hand, name, activeRadio, onClick }) {
+export default function RadioButtonGroup({ name }) {
+  const [activeRadio, setActiveRadio] = useState()
   const values = [1, 2, 3, 4, 5]
 
   return (
-    <AbilityRadiosStyled>
-      <HeadlineStyled>{hand}</HeadlineStyled>
+    <RadioButtonGroupStyled>
+      <HeadlineStyled>
+        {name === 'abilityLeft' ? 'links' : 'rechts'}
+      </HeadlineStyled>
       {values.map(value => (
         <RadioButton
           key={value}
           value={value}
           name={name}
           activeRadio={activeRadio}
-          onClick={onClick}
+          onClick={setActiveRadio}
         />
       ))}
-    </AbilityRadiosStyled>
+    </RadioButtonGroupStyled>
   )
 }
 
-const AbilityRadiosStyled = styled.div`
+const RadioButtonGroupStyled = styled.div`
   display: grid;
   grid-auto-flow: column;
   grid-gap: 10px;

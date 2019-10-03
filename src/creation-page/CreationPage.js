@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useHistory } from 'react-router'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
@@ -10,19 +10,6 @@ CreationPage.propTypes = {
 }
 
 export default function CreationPage({ onSubmit }) {
-  const [playerName, setPlayerName] = useState('')
-  const [residence, setResidence] = useState('')
-  const [abilityLeft, setAbilityLeft] = useState(0)
-  const [abilityRight, setAbilityRight] = useState(0)
-  const [imageURL, setImageURL] = useState('')
-  const formData = {
-    name: playerName,
-    residence: residence,
-    abilityLeft: abilityLeft,
-    abilityRight: abilityRight,
-    image: imageURL,
-  }
-
   let history = useHistory()
 
   useEffect(() => {
@@ -34,18 +21,14 @@ export default function CreationPage({ onSubmit }) {
       <FormStyled onSubmit={handleSubmit}>
         <TextInput
           labelName="Name"
-          name="playerName"
+          name="name"
           placeholder="Gib hier deinen Namen ein"
-          value={playerName}
-          onChange={setPlayerName}
           maxLength={20}
         />
         <TextInput
           labelName="Wohnort"
           name="residence"
           placeholder="Gib hier deinen Wohnort ein"
-          value={residence}
-          onChange={setResidence}
           maxLength={20}
         />
         <LabelStyled>
@@ -54,25 +37,13 @@ export default function CreationPage({ onSubmit }) {
             Schätze deine Spielstärke auf einer Skala von 1 (Blinge) bis 5
             (Profi) ein.
           </StyledParagraph>
-          <RadioButtonGroup
-            hand="links"
-            name="abilityLeft"
-            activeRadio={abilityLeft}
-            onClick={setAbilityLeft}
-          ></RadioButtonGroup>
-          <RadioButtonGroup
-            hand="rechts"
-            name="abilityRight"
-            activeRadio={abilityRight}
-            onClick={setAbilityRight}
-          ></RadioButtonGroup>
+          <RadioButtonGroup name="abilityLeft"></RadioButtonGroup>
+          <RadioButtonGroup name="abilityRight"></RadioButtonGroup>
         </LabelStyled>
         <TextInput
           labelName="Bild per URL einfügen"
           name="imageURL"
           placeholder="Gib hier die URL deines Bildes ein"
-          value={imageURL}
-          onChange={setImageURL}
           type="url"
         />
         <ButtonStyled>Profil Erstellen</ButtonStyled>
@@ -82,12 +53,12 @@ export default function CreationPage({ onSubmit }) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    onSubmit(formData)
-    setPlayerName('')
-    setResidence('')
-    setAbilityLeft(0)
-    setAbilityRight(0)
-    setImageURL('')
+    const form = event.currentTarget
+    const formData = new FormData(form)
+    const data = Object.fromEntries(formData)
+    onSubmit(data)
+    console.log(data)
+    form.reset()
     history.push('/')
   }
 }

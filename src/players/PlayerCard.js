@@ -14,12 +14,12 @@ export default function PlayerCard({
   residence,
   abilityLeft,
   abilityRight,
-  image,
+  imageURL,
 }) {
   return (
     <PlayerCardStyled>
       <NameStyled>{name}</NameStyled>
-      <ImageStyled src={image}></ImageStyled>
+      <ImageStyled src={imageURL}></ImageStyled>
       <ResidenceStyled>Wohnort: {residence}</ResidenceStyled>
       <div>
         Spielstärke
