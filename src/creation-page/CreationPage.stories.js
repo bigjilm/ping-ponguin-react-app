@@ -1,9 +1,10 @@
 import React from 'react'
+import StoryRouter from 'storybook-react-router'
 import CreationPage from './CreationPage'
 
 export default {
   title: 'Creation Page',
-  decorators: [Wrapper],
+  decorators: [StoryRouter(), Wrapper],
 }
 
 function Wrapper(storyFn) {

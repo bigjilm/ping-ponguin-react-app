@@ -7,7 +7,18 @@ export default {
 }
 
 function Wrapper(storyFn) {
-  return <div style={{ width: '375px', background: '#eee' }}>{storyFn()}</div>
+  return (
+    <div
+      style={{
+        display: 'grid',
+        height: '48px',
+        width: '375px',
+        background: '#eee',
+      }}
+    >
+      {storyFn()}
+    </div>
+  )
 }
 
 export const header = () => <Header />
