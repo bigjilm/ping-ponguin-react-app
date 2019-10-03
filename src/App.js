@@ -18,7 +18,7 @@ export default function App() {
           <Route exact path="/">
             <PlayersList playerData={players}></PlayersList>
           </Route>
-          <Route exact path="/profile">
+          <Route path="/profile">
             <CreationPage onSubmit={handleSubmit}></CreationPage>
           </Route>
         </Switch>
