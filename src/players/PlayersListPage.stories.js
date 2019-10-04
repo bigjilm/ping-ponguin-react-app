@@ -1,5 +1,5 @@
 import React from 'react'
-import PlayersList from './PlayersList'
+import PlayersListPage from './PlayersListPage'
 import playerData from '../playerData.json'
 
 export default {
@@ -12,5 +12,5 @@ function Wrapper(storyFn) {
 }
 
 export const playersList = () => (
-  <PlayersList playerData={playerData}></PlayersList>
+  <PlayersListPage playerData={playerData}></PlayersListPage>
 )

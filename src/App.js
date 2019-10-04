@@ -4,7 +4,7 @@ import styled from 'styled-components/macro'
 import playerData from './playerData.json'
 import Header from './common/Header'
 import Filter from './players/Filter'
-import PlayersList from './players/PlayersList'
+import PlayersListPage from './players/PlayersListPage'
 import CreationPage from './creation-page/CreationPage'
 import Navigation from './common/Navigation'
 
@@ -28,7 +28,8 @@ export default function App() {
         )}
         <Switch>
           <Route exact path="/">
-            <PlayersList playerData={players}></PlayersList>
+            {withPlayersListPage(players)}
+            {/* <PlayersListPage players={players}></PlayersListPage> */}
           </Route>
           <Route path="/profile">
             <CreationPage onSubmit={handleSubmit}></CreationPage>
@@ -45,6 +46,15 @@ export default function App() {
 
   function handleSubmit(newPlayer) {
     setPlayers([newPlayer, ...players])
+  }
+
+  function withPlayersListPage() {
+    const playersFiltered = players.filter(
+      player =>
+        player.residence === residenceFilterValue ||
+        residenceFilterValue.length === 0
+    )
+    return <PlayersListPage players={playersFiltered} />
   }
 }
 

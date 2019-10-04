@@ -1,16 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components/macro'
 
 export default function Filter({
   residenceFilterValue,
   onChangeResidenceFilterValue,
 }) {
+  useEffect(() => {
+    document.querySelector('[name=residenceFilterInput]').focus()
+  }, [])
+
   return (
     <FilterStyled>
       <h3>Filtern nach:</h3>
       <LabelStyled>
         Wohnort
         <InputStyled
+          name="residenceFilterInput"
           value={residenceFilterValue}
           onChange={event =>
             onChangeResidenceFilterValue(event.currentTarget.value)
@@ -38,4 +43,11 @@ const LabelStyled = styled.label`
   grid-gap: 10px;
 `
 
-const InputStyled = styled.input``
+const InputStyled = styled.input`
+  width: 200px;
+  height: 30px;
+
+  :focus {
+    border-color: #849237;
+  }
+`
