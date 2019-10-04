@@ -1,12 +1,14 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import logo from '../assets/logo.png'
+import ppLogo from '../assets/pp-logo.png'
+import coffeeFilterIcon from '../assets/coffee-filter-icon.svg'
 
 export default function Header() {
   return (
     <HeaderStyled>
-      <LogoStyled src={logo} alt=""></LogoStyled>
+      <LogoStyled src={ppLogo} alt="" />
       <TitleStyled>ping ponguin</TitleStyled>
+      <IconStyled src={coffeeFilterIcon}></IconStyled>
     </HeaderStyled>
   )
 }
@@ -28,4 +30,8 @@ const TitleStyled = styled.h1`
 
 const LogoStyled = styled.img`
   height: 32px;
+`
+
+const IconStyled = styled.img`
+  height: 40px;
 `

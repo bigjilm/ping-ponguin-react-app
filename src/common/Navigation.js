@@ -20,7 +20,6 @@ export default function Navigation() {
 
 const NavigationStyled = styled.nav`
   display: grid;
-  /* place-items: center; */
   grid-auto-flow: column;
   border-top: 2px solid #418ab3;
 `
