@@ -56,6 +56,7 @@ export default function CreationPage({ onSubmit }) {
     const form = event.currentTarget
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
+    console.log(data)
     onSubmit(data)
     form.reset()
     history.push('/')
