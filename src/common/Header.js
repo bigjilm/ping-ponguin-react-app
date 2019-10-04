@@ -3,12 +3,12 @@ import styled from 'styled-components/macro'
 import ppLogo from '../assets/pp-logo.png'
 import coffeeFilterIcon from '../assets/coffee-filter-icon.svg'
 
-export default function Header() {
+export default function Header({ onFilterClick }) {
   return (
     <HeaderStyled>
       <LogoStyled src={ppLogo} alt="" />
       <TitleStyled>ping ponguin</TitleStyled>
-      <IconStyled src={coffeeFilterIcon}></IconStyled>
+      <IconStyled src={coffeeFilterIcon} onClick={onFilterClick}></IconStyled>
     </HeaderStyled>
   )
 }

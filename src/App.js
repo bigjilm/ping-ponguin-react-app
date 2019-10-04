@@ -2,18 +2,24 @@ import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import playerData from './playerData.json'
-import Header from './common/Header.js'
-import PlayersList from './players/PlayersList.js'
-import CreationPage from './creation-page/CreationPage.js'
-import Navigation from './common/Navigation.js'
+import Header from './common/Header'
+import Filter from './players/Filter'
+import PlayersList from './players/PlayersList'
+import CreationPage from './creation-page/CreationPage'
+import Navigation from './common/Navigation'
 
 export default function App() {
   const [players, setPlayers] = useState(playerData)
+  const [residenceFilterValue, setResidenceFilterValue] = useState('')
 
   return (
     <Router>
       <AppStyled>
-        <Header />
+        <Header onFilterClick={handleFilterClick} />
+        <Filter
+          residenceFilterValue={residenceFilterValue}
+          onChangeResidenceFilterValue={setResidenceFilterValue}
+        ></Filter>
         <Switch>
           <Route exact path="/">
             <PlayersList playerData={players}></PlayersList>
@@ -26,6 +32,8 @@ export default function App() {
       </AppStyled>
     </Router>
   )
+
+  function handleFilterClick() {}
 
   function handleSubmit(newPlayer) {
     setPlayers([newPlayer, ...players])
