@@ -3,14 +3,22 @@ import styled from 'styled-components/macro'
 import ppLogo from '../assets/pp-logo.png'
 import coffeeFilterIcon from '../assets/coffee-filter-icon.svg'
 
-export default function Header({ onFilterClick }) {
+export default function Header({ isFilterVisible, onFilterClick }) {
   return (
     <HeaderStyled>
       <LogoStyled src={ppLogo} alt="" />
       <TitleStyled>ping ponguin</TitleStyled>
-      <IconStyled src={coffeeFilterIcon} onClick={onFilterClick}></IconStyled>
+      <IconStyled
+        isFilterVisible={isFilterVisible}
+        src={coffeeFilterIcon}
+        onClick={handleClick}
+      ></IconStyled>
     </HeaderStyled>
   )
+
+  function handleClick() {
+    onFilterClick()
+  }
 }
 
 const HeaderStyled = styled.header`
@@ -34,4 +42,6 @@ const LogoStyled = styled.img`
 
 const IconStyled = styled.img`
   height: 40px;
+  outline: ${({ isFilterVisible }) => isFilterVisible && '10px #418ab3 solid'};
+  background-color: ${({ isFilterVisible }) => isFilterVisible && '#418ab3'};
 `

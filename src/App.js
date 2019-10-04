@@ -10,16 +10,22 @@ import Navigation from './common/Navigation'
 
 export default function App() {
   const [players, setPlayers] = useState(playerData)
+  const [isFilterVisible, setIsFilterVisible] = useState(false)
   const [residenceFilterValue, setResidenceFilterValue] = useState('')
 
   return (
     <Router>
       <AppStyled>
-        <Header onFilterClick={handleFilterClick} />
-        <Filter
-          residenceFilterValue={residenceFilterValue}
-          onChangeResidenceFilterValue={setResidenceFilterValue}
-        ></Filter>
+        <Header
+          isFilterVisible={isFilterVisible}
+          onFilterClick={handleFilterClick}
+        />
+        {isFilterVisible && (
+          <Filter
+            residenceFilterValue={residenceFilterValue}
+            onChangeResidenceFilterValue={setResidenceFilterValue}
+          ></Filter>
+        )}
         <Switch>
           <Route exact path="/">
             <PlayersList playerData={players}></PlayersList>
@@ -33,7 +39,9 @@ export default function App() {
     </Router>
   )
 
-  function handleFilterClick() {}
+  function handleFilterClick() {
+    setIsFilterVisible(!isFilterVisible)
+  }
 
   function handleSubmit(newPlayer) {
     setPlayers([newPlayer, ...players])
