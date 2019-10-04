@@ -1,21 +1,18 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-export default function Checkbox({ value, activeCheckboxes }) {
+export default function Checkbox({ value, activeCheckboxes, onChange }) {
   return (
     <LabelStyled value={value} activeCheckboxes={activeCheckboxes}>
       {value}
       <CheckboxStyled
-        checked={activeCheckboxes.includes(value)}
+        // checked={activeCheckboxes.includes(value)}
         name={value}
-        value={value}
         type="checkbox"
-        onChange={handleChange}
+        onChange={onChange}
       />
     </LabelStyled>
   )
-
-  function handleChange() {}
 }
 
 const LabelStyled = styled.label`

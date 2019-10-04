@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components/macro'
-import CheckboxForm from './CheckboxForm'
+import CheckboxGroup from './CheckboxGroup'
 
 export default function Filter({
   residenceFilterValue,
@@ -25,7 +25,7 @@ export default function Filter({
       </LabelStyled>
       <LabelStyled>
         Spielstärke
-        <CheckboxForm />
+        <CheckboxGroup />
       </LabelStyled>
     </FilterStyled>
   )
