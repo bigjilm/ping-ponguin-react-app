@@ -12,6 +12,14 @@ export default function App() {
   const [players, setPlayers] = useState(playerData)
   const [isFilterVisible, setIsFilterVisible] = useState(true)
   const [residenceFilterValue, setResidenceFilterValue] = useState('')
+  const [abilityFilterValues, setAbilityFilterValues] = useState([
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    'all',
+  ])
 
   return (
     <Router>
@@ -24,6 +32,8 @@ export default function App() {
           <Filter
             residenceFilterValue={residenceFilterValue}
             onChangeResidenceFilterValue={setResidenceFilterValue}
+            abilityFilterValues={abilityFilterValues}
+            onChangeAbilityFilterValues={setAbilityFilterValues}
           ></Filter>
         )}
         <Switch>

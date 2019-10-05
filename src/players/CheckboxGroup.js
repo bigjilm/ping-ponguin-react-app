@@ -2,16 +2,10 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import Checkbox from './Checkbox'
 
-export default function CheckboxGroup() {
-  const [activeCheckboxes, setActiveCheckboxes] = useState([
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    'all',
-  ])
-
+export default function CheckboxGroup({
+  activeCheckboxes,
+  setActiveCheckboxes,
+}) {
   const values = ['1', '2', '3', '4', '5', 'all']
 
   return (

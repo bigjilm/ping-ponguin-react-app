@@ -5,6 +5,8 @@ import CheckboxGroup from './CheckboxGroup'
 export default function Filter({
   residenceFilterValue,
   onChangeResidenceFilterValue,
+  abilityFilterValues,
+  onChangeAbilityFilterValues,
 }) {
   useEffect(() => {
     document.querySelector('[name=residenceFilterInput]').focus()
@@ -24,7 +26,10 @@ export default function Filter({
         />
       </LabelStyled>
       <SubHeadlineStyled>Spielstärke</SubHeadlineStyled>
-      <CheckboxGroup />
+      <CheckboxGroup
+        activeCheckboxes={abilityFilterValues}
+        setActiveCheckboxes={onChangeAbilityFilterValues}
+      />
     </FilterStyled>
   )
 }
