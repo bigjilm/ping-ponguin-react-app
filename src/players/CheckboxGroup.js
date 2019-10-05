@@ -34,15 +34,22 @@ export default function CheckboxGroup({
   }
 
   function check(checkbox) {
-    setActiveCheckboxes([...activeCheckboxes, checkbox])
+    activeCheckboxes.length === 4
+      ? setActiveCheckboxes([...activeCheckboxes, checkbox, 'all'])
+      : setActiveCheckboxes([...activeCheckboxes, checkbox])
   }
 
   function unCheck(checkbox) {
     const index = activeCheckboxes.indexOf(checkbox)
-    setActiveCheckboxes([
-      ...activeCheckboxes.slice(0, index),
-      ...activeCheckboxes.slice(index + 1),
-    ])
+    activeCheckboxes.includes('all')
+      ? setActiveCheckboxes([
+          ...activeCheckboxes.slice(0, index),
+          ...activeCheckboxes.slice(index + 1, activeCheckboxes.length - 1),
+        ])
+      : setActiveCheckboxes([
+          ...activeCheckboxes.slice(0, index),
+          ...activeCheckboxes.slice(index + 1),
+        ])
   }
 
   function checkAll() {

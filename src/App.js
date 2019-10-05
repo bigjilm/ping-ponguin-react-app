@@ -10,7 +10,7 @@ import Navigation from './common/Navigation'
 
 export default function App() {
   const [players, setPlayers] = useState(playerData)
-  const [isFilterVisible, setIsFilterVisible] = useState(true)
+  const [isFilterVisible, setIsFilterVisible] = useState(false)
   const [residenceFilterValue, setResidenceFilterValue] = useState('')
   const [abilityFilterValues, setAbilityFilterValues] = useState([
     '1',
@@ -59,12 +59,17 @@ export default function App() {
   }
 
   function withPlayersListPage() {
-    const playersFiltered = players.filter(
+    const playersFilteredByResidence = players.filter(
       player =>
         player.residence === residenceFilterValue ||
         residenceFilterValue.length === 0
     )
-    return <PlayersListPage players={playersFiltered} />
+    const playersFilteredByResidenceAndAbility = playersFilteredByResidence.filter(
+      player =>
+        abilityFilterValues.includes(player.abilityLeft) ||
+        abilityFilterValues.includes(player.abilityRight)
+    )
+    return <PlayersListPage players={playersFilteredByResidenceAndAbility} />
   }
 }
 
