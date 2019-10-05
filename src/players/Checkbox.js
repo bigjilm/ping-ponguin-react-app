@@ -6,7 +6,7 @@ export default function Checkbox({ value, activeCheckboxes, onChange }) {
     <LabelStyled value={value} activeCheckboxes={activeCheckboxes}>
       {value}
       <CheckboxStyled
-        // checked={activeCheckboxes.includes(value)}
+        checked={activeCheckboxes.includes(value)}
         name={value}
         type="checkbox"
         onChange={onChange}

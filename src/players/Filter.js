@@ -12,7 +12,7 @@ export default function Filter({
 
   return (
     <FilterStyled>
-      <h3>Filtern nach:</h3>
+      <HeadlineStyled>Filtern nach:</HeadlineStyled>
       <LabelStyled>
         Wohnort
         <InputStyled
@@ -23,10 +23,8 @@ export default function Filter({
           }
         />
       </LabelStyled>
-      <LabelStyled>
-        Spielstärke
-        <CheckboxGroup />
-      </LabelStyled>
+      <SubHeadlineStyled>Spielstärke</SubHeadlineStyled>
+      <CheckboxGroup />
     </FilterStyled>
   )
 }
@@ -39,11 +37,18 @@ const FilterStyled = styled.div`
   grid-auto-flow: row;
   grid-gap: 10px;
   height: 300px;
-  width: 300px;
+  width: 325px;
   background-color: #418ab3;
-  box-shadow: -7px 7px 6px 0;
+  box-shadow: -7px 7px 6px 0 rgba(0, 0, 0, 0.5);
   border-bottom-left-radius: 20px;
-  padding: 10px;
+  padding: 20px;
+`
+
+const HeadlineStyled = styled.h3`
+  margin: 0;
+`
+const SubHeadlineStyled = styled.h4`
+  margin: 0;
 `
 
 const LabelStyled = styled.label`
