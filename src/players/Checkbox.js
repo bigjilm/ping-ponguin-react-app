@@ -21,8 +21,10 @@ const LabelStyled = styled.label`
   width: 40px;
   height: 30px;
   border-radius: 5px;
-  /* background-color: ${({ activeCheckboxes, value }) =>
-    activeCheckboxes.includes(value) ? '#849237' : '#c2d4d8'}; */
+  background-color: ${({ activeCheckboxes, value }) =>
+    activeCheckboxes.includes(value) ? '#849237' : '#c2d4d8'};
 `
 
-const CheckboxStyled = styled.input``
+const CheckboxStyled = styled.input`
+  display: none;
+`

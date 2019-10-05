@@ -10,7 +10,7 @@ import Navigation from './common/Navigation'
 
 export default function App() {
   const [players, setPlayers] = useState(playerData)
-  const [isFilterVisible, setIsFilterVisible] = useState(false)
+  const [isFilterVisible, setIsFilterVisible] = useState(true)
   const [residenceFilterValue, setResidenceFilterValue] = useState('')
   const [abilityFilterValues, setAbilityFilterValues] = useState([
     '1',

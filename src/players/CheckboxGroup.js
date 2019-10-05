@@ -29,7 +29,6 @@ export default function CheckboxGroup({
       activeCheckboxes.includes(changedCheckbox)
         ? unCheck(changedCheckbox)
         : check(changedCheckbox)
-      console.log(activeCheckboxes)
     }
   }
 

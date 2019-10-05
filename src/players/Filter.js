@@ -25,11 +25,13 @@ export default function Filter({
           }
         />
       </LabelStyled>
-      <SubHeadlineStyled>Spielstärke</SubHeadlineStyled>
-      <CheckboxGroup
-        activeCheckboxes={abilityFilterValues}
-        setActiveCheckboxes={onChangeAbilityFilterValues}
-      />
+      <AbilityFilterStyled>
+        <SubHeadlineStyled>Spielstärke</SubHeadlineStyled>
+        <CheckboxGroup
+          activeCheckboxes={abilityFilterValues}
+          setActiveCheckboxes={onChangeAbilityFilterValues}
+        />
+      </AbilityFilterStyled>
     </FilterStyled>
   )
 }
@@ -39,9 +41,9 @@ const FilterStyled = styled.div`
   top: 48px;
   right: 0;
   display: grid;
-  grid-auto-flow: row;
-  grid-gap: 10px;
-  height: 300px;
+  grid-auto-rows: min-content;
+  grid-gap: 20px;
+  height: 220px;
   width: 325px;
   background-color: #418ab3;
   box-shadow: -7px 7px 6px 0 rgba(0, 0, 0, 0.5);
@@ -54,6 +56,7 @@ const HeadlineStyled = styled.h3`
 `
 const SubHeadlineStyled = styled.h4`
   margin: 0;
+  font-weight: normal;
 `
 
 const LabelStyled = styled.label`
@@ -68,4 +71,9 @@ const InputStyled = styled.input`
   :focus {
     border-color: #849237;
   }
+`
+
+const AbilityFilterStyled = styled.div`
+  display: grid;
+  grid-gap: 10px;
 `
