@@ -3,14 +3,14 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import playerData from './playerData.json'
 import Header from './common/Header'
-import Filter from './players/Filter'
-import PlayersListPage from './players/PlayersListPage'
+import Filter from './playersList-page/Filter'
+import PlayersListPage from './playersList-page/PlayersListPage'
 import CreationPage from './creation-page/CreationPage'
 import Navigation from './common/Navigation'
 
 export default function App() {
   const [players, setPlayers] = useState(playerData)
-  const [isFilterVisible, setIsFilterVisible] = useState(true)
+  const [isFilterVisible, setIsFilterVisible] = useState(false)
   const [residenceFilterValue, setResidenceFilterValue] = useState('')
   const [abilityFilterValues, setAbilityFilterValues] = useState([
     '1',
@@ -39,7 +39,6 @@ export default function App() {
         <Switch>
           <Route exact path="/">
             {withPlayersListPage(players)}
-            {/* <PlayersListPage players={players}></PlayersListPage> */}
           </Route>
           <Route path="/profile">
             <CreationPage onSubmit={handleSubmit}></CreationPage>

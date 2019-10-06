@@ -43,12 +43,12 @@ const FilterStyled = styled.div`
   display: grid;
   grid-auto-rows: min-content;
   grid-gap: 20px;
-  height: 220px;
+  height: 230px;
   width: 325px;
   background-color: #418ab3;
   box-shadow: -7px 7px 6px 0 rgba(0, 0, 0, 0.5);
   border-bottom-left-radius: 20px;
-  padding: 20px;
+  padding: 30px 20px;
 `
 
 const HeadlineStyled = styled.h3`
