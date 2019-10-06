@@ -6,7 +6,7 @@ export default function CheckboxGroup({
   activeCheckboxes,
   setActiveCheckboxes,
 }) {
-  const values = ['1', '2', '3', '4', '5', 'all']
+  const values = ['1', '2', '3', '4', '5', 'alle']
 
   return (
     <CheckboxGroupStyled>
@@ -23,8 +23,10 @@ export default function CheckboxGroup({
 
   function handleChange(event) {
     const changedCheckbox = event.currentTarget.name
-    if (changedCheckbox === 'all') {
-      activeCheckboxes.includes('all') ? unCheckAll() : checkAll()
+    if (changedCheckbox === 'alle') {
+      activeCheckboxes.includes('alle')
+        ? setActiveCheckboxes([])
+        : setActiveCheckboxes(['1', '2', '3', '4', '5', 'alle'])
     } else {
       activeCheckboxes.includes(changedCheckbox)
         ? unCheck(changedCheckbox)
@@ -34,13 +36,13 @@ export default function CheckboxGroup({
 
   function check(checkbox) {
     activeCheckboxes.length === 4
-      ? setActiveCheckboxes([...activeCheckboxes, checkbox, 'all'])
+      ? setActiveCheckboxes([...activeCheckboxes, checkbox, 'alle'])
       : setActiveCheckboxes([...activeCheckboxes, checkbox])
   }
 
   function unCheck(checkbox) {
     const index = activeCheckboxes.indexOf(checkbox)
-    activeCheckboxes.includes('all')
+    activeCheckboxes.includes('alle')
       ? setActiveCheckboxes([
           ...activeCheckboxes.slice(0, index),
           ...activeCheckboxes.slice(index + 1, activeCheckboxes.length - 1),
@@ -49,14 +51,6 @@ export default function CheckboxGroup({
           ...activeCheckboxes.slice(0, index),
           ...activeCheckboxes.slice(index + 1),
         ])
-  }
-
-  function checkAll() {
-    setActiveCheckboxes(['1', '2', '3', '4', '5', 'all'])
-  }
-
-  function unCheckAll() {
-    setActiveCheckboxes([])
   }
 }
 

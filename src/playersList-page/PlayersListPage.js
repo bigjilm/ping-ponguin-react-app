@@ -18,7 +18,7 @@ export default function PlayersListPage({ players }) {
     '3',
     '4',
     '5',
-    'all',
+    'alle',
   ])
 
   return (
