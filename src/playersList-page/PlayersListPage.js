@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components/macro'
-import Header from './Header'
+import React, { useState } from 'react'
+import Page from '../common/Page'
 import Filter from './Filter'
 import PlayersList from './PlayersList'
 
@@ -22,11 +21,11 @@ export default function PlayersListPage({ players }) {
   ])
 
   return (
-    <PlayersListPageStyled>
-      <Header
-        isFilterVisible={isFilterVisible}
-        onFilterClick={handleFilterClick}
-      />
+    <Page
+      title="ping ponguin"
+      isFilterVisible={isFilterVisible}
+      onFilterClick={handleFilterClick}
+    >
       {isFilterVisible && (
         <Filter
           residenceFilterValue={residenceFilterValue}
@@ -36,7 +35,7 @@ export default function PlayersListPage({ players }) {
         ></Filter>
       )}
       {withPlayersList(players)}
-    </PlayersListPageStyled>
+    </Page>
   )
   function handleFilterClick() {
     setIsFilterVisible(!isFilterVisible)
@@ -56,9 +55,3 @@ export default function PlayersListPage({ players }) {
     return <PlayersList players={playersFilteredByResidenceAndAbility} />
   }
 }
-
-const PlayersListPageStyled = styled.main`
-  display: grid;
-  grid-template-rows: 48px auto;
-  overflow: auto;
-`
