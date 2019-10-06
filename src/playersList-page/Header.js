@@ -27,7 +27,7 @@ const HeaderStyled = styled.header`
   place-items: center;
   grid-gap: 5px;
   background-color: #c2d4d8;
-  padding: 5px;
+  padding: 5px 5px 0 5px;
   border-bottom: 2px solid #418ab3;
 `
 

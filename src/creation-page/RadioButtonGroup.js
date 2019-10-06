@@ -39,4 +39,5 @@ const RadioButtonGroupStyled = styled.div`
 const HeadlineStyled = styled.h4`
   margin: 0;
   width: 50px;
+  font-weight: normal;
 `

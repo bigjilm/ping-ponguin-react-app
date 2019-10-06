@@ -1,28 +1,64 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
-import PlayerCard from './PlayerCard'
+import Header from './Header'
+import Filter from './Filter'
+import PlayersList from './PlayersList'
 
 PlayersListPage.propTypes = {
-  playerData: PropTypes.arrayOf(PropTypes.object),
+  players: PropTypes.arrayOf(PropTypes.object),
 }
 
 export default function PlayersListPage({ players }) {
+  const [isFilterVisible, setIsFilterVisible] = useState(false)
+  const [residenceFilterValue, setResidenceFilterValue] = useState('')
+  const [abilityFilterValues, setAbilityFilterValues] = useState([
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    'all',
+  ])
+
   return (
     <PlayersListPageStyled>
-      {players.map((player, index) => (
-        <PlayerCard key={index} {...player}></PlayerCard>
-      ))}
+      <Header
+        isFilterVisible={isFilterVisible}
+        onFilterClick={handleFilterClick}
+      />
+      {isFilterVisible && (
+        <Filter
+          residenceFilterValue={residenceFilterValue}
+          onChangeResidenceFilterValue={setResidenceFilterValue}
+          abilityFilterValues={abilityFilterValues}
+          onChangeAbilityFilterValues={setAbilityFilterValues}
+        ></Filter>
+      )}
+      {withPlayersList(players)}
     </PlayersListPageStyled>
   )
+  function handleFilterClick() {
+    setIsFilterVisible(!isFilterVisible)
+  }
+
+  function withPlayersList(players) {
+    const playersFilteredByResidence = players.filter(
+      player =>
+        player.residence === residenceFilterValue ||
+        residenceFilterValue.length === 0
+    )
+    const playersFilteredByResidenceAndAbility = playersFilteredByResidence.filter(
+      player =>
+        abilityFilterValues.includes(player.abilityLeft) ||
+        abilityFilterValues.includes(player.abilityRight)
+    )
+    return <PlayersList players={playersFilteredByResidenceAndAbility} />
+  }
 }
 
 const PlayersListPageStyled = styled.main`
   display: grid;
-  grid-auto-rows: min-content;
-  grid-gap: 10px;
-  overflow-y: auto;
-  scroll-behavior: smooth;
-  background-color: #418ab3;
-  padding: 10px;
+  grid-template-rows: 48px auto;
+  overflow: auto;
 `

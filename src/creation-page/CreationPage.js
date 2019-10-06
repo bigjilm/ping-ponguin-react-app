@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useHistory } from 'react-router'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
+import Header from './Header'
 import RadioButtonGroup from './RadioButtonGroup'
 import TextInput from './TextInput'
 
@@ -18,6 +19,7 @@ export default function CreationPage({ onSubmit }) {
 
   return (
     <CreationPageStyled>
+      <Header />
       <FormStyled onSubmit={handleSubmit}>
         <TextInput
           labelName="Name"
@@ -63,16 +65,19 @@ export default function CreationPage({ onSubmit }) {
 }
 
 const CreationPageStyled = styled.main`
-  overflow-y: auto;
-  scroll-behavior: smooth;
+  display: grid;
+  grid-template-rows: 48px auto;
   background-color: #418ab3;
-  padding: 20px;
+  overflow: auto;
 `
 
 const FormStyled = styled.form`
   display: grid;
   grid-auto-rows: min-content;
-  grid-gap: 40px;
+  grid-gap: 30px;
+  padding: 20px;
+  overflow: auto;
+  scroll-behavior: smooth;
 `
 
 const LabelStyled = styled.label`
