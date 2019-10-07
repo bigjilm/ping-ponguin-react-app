@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import playerData from './playerData.json'
-import Header from './common/Header.js'
-import PlayersList from './players/PlayersList.js'
-import CreationPage from './creation-page/CreationPage.js'
-import Navigation from './common/Navigation.js'
+import PlayersListPage from './playersList-page/PlayersListPage'
+import CreationPage from './creation-page/CreationPage'
+import Navigation from './common/Navigation'
 
 export default function App() {
   const [players, setPlayers] = useState(playerData)
@@ -13,10 +12,9 @@ export default function App() {
   return (
     <Router>
       <AppStyled>
-        <Header />
         <Switch>
           <Route exact path="/">
-            <PlayersList playerData={players}></PlayersList>
+            <PlayersListPage players={players} />
           </Route>
           <Route path="/profile">
             <CreationPage onSubmit={handleSubmit}></CreationPage>
@@ -34,7 +32,7 @@ export default function App() {
 
 const AppStyled = styled.div`
   display: grid;
-  grid-template-rows: 48px auto 48px;
+  grid-template-rows: auto 48px;
   position: fixed;
   left: 0;
   right: 0;

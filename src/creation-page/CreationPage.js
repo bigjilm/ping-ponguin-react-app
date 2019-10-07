@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
-import { useHistory } from 'react-router'
 import PropTypes from 'prop-types'
+import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
+import Page from '../common/Page'
 import RadioButtonGroup from './RadioButtonGroup'
 import TextInput from './TextInput'
 
@@ -17,7 +18,7 @@ export default function CreationPage({ onSubmit }) {
   }, [])
 
   return (
-    <CreationPageStyled>
+    <Page title="Profil erstellen">
       <FormStyled onSubmit={handleSubmit}>
         <TextInput
           labelName="Name"
@@ -48,7 +49,7 @@ export default function CreationPage({ onSubmit }) {
         />
         <ButtonStyled>Profil Erstellen</ButtonStyled>
       </FormStyled>
-    </CreationPageStyled>
+    </Page>
   )
 
   function handleSubmit(event) {
@@ -62,17 +63,13 @@ export default function CreationPage({ onSubmit }) {
   }
 }
 
-const CreationPageStyled = styled.main`
-  overflow-y: auto;
-  scroll-behavior: smooth;
-  background-color: #418ab3;
-  padding: 20px;
-`
-
 const FormStyled = styled.form`
   display: grid;
   grid-auto-rows: min-content;
-  grid-gap: 40px;
+  grid-gap: 30px;
+  padding: 20px;
+  overflow: auto;
+  scroll-behavior: smooth;
 `
 
 const LabelStyled = styled.label`

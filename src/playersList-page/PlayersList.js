@@ -1,23 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
-import PlayerCard from './PlayerCard.js'
+import PlayerCard from './PlayerCard'
 
 PlayersList.propTypes = {
-  playerData: PropTypes.arrayOf(PropTypes.object),
+  players: PropTypes.array,
+  onListClick: PropTypes.func,
 }
 
-export default function PlayersList({ playerData }) {
+export default function PlayersList({ players, onListClick }) {
   return (
-    <PlayersListStyled>
-      {playerData.map((player, index) => (
+    <PlayersListStyled onClick={onListClick}>
+      {players.map((player, index) => (
         <PlayerCard key={index} {...player}></PlayerCard>
       ))}
     </PlayersListStyled>
   )
 }
 
-const PlayersListStyled = styled.main`
+const PlayersListStyled = styled.div`
   display: grid;
   grid-auto-rows: min-content;
   grid-gap: 10px;

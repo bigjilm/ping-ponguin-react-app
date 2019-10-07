@@ -21,4 +21,6 @@ function Wrapper(storyFn) {
   )
 }
 
-export const header = () => <Header />
+export const header = () => <Header title="title" />
+
+export const headerWithFilter = () => <Header title="ping ponguin" />
