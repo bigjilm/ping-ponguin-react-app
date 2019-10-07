@@ -41,6 +41,11 @@ export default function PlayersListPage({ players }) {
     setIsFilterVisible(!isFilterVisible)
   }
 
+  function handleListClick() {
+    setIsFilterVisible(false)
+    console.log('clicked')
+  }
+
   function withPlayersList(players) {
     const playersFilteredByResidence = players.filter(
       player =>
@@ -52,6 +57,11 @@ export default function PlayersListPage({ players }) {
         abilityFilterValues.includes(player.abilityLeft) ||
         abilityFilterValues.includes(player.abilityRight)
     )
-    return <PlayersList players={playersFilteredByResidenceAndAbility} />
+    return (
+      <PlayersList
+        players={playersFilteredByResidenceAndAbility}
+        onListClick={handleListClick}
+      />
+    )
   }
 }

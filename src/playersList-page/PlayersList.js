@@ -7,9 +7,9 @@ PlayersList.propTypes = {
   players: PropTypes.array,
 }
 
-export default function PlayersList({ players }) {
+export default function PlayersList({ players, onListClick }) {
   return (
-    <PlayersListStyled>
+    <PlayersListStyled onClick={onListClick}>
       {players.map((player, index) => (
         <PlayerCard key={index} {...player}></PlayerCard>
       ))}
