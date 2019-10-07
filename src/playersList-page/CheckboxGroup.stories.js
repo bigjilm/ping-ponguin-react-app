@@ -1,8 +1,8 @@
 import React from 'react'
-import RadioButtonGroup from './RadioButtonGroup'
+import CheckboxGroup from './CheckboxGroup'
 
 export default {
-  title: 'Radio Button Group',
+  title: 'Checkbox Group',
   decorators: [Wrapper],
 }
 
@@ -14,4 +14,6 @@ function Wrapper(storyFn) {
   )
 }
 
-export const radioButtonGroup = () => <RadioButtonGroup name="abilityLeft" />
+export const checkboxGroup = () => (
+  <CheckboxGroup activeCheckboxes={['1', '3']} />
+)
