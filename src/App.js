@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import playerData from './playerData.json'
+import { getPlayers } from './services'
 import PlayersListPage from './playersList-page/PlayersListPage'
 import CreationPage from './creation-page/CreationPage'
 import Navigation from './common/Navigation'
 
 export default function App() {
-  const [players, setPlayers] = useState(playerData)
+  const [players, setPlayers] = useState([])
+
+  useEffect(() => {
+    getPlayers().then(setPlayers)
+  }, [])
 
   return (
     <Router>
