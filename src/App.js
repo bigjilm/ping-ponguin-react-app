@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
+import playerData from './playerData.json'
 import PlayersListPage from './playersList-page/PlayersListPage'
 import CreationPage from './creation-page/CreationPage'
 import Navigation from './common/Navigation'
