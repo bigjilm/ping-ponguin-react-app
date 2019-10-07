@@ -1,7 +1,14 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import ppLogo from '../assets/pp-logo.png'
 import coffeeFilterIcon from '../assets/coffee-filter-icon.svg'
+
+Header.propTypes = {
+  title: PropTypes.string,
+  isFilterVisible: PropTypes.bool,
+  onFilterClick: PropTypes.func,
+}
 
 export default function Header({ title, isFilterVisible, onFilterClick }) {
   return (

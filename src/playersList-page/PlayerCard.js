@@ -7,6 +7,7 @@ PlayerCard.propTypes = {
   residence: PropTypes.string,
   abilityLeft: PropTypes.string,
   abilityRight: PropTypes.string,
+  imageURL: PropTypes.string,
 }
 
 export default function PlayerCard({

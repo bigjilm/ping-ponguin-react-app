@@ -1,6 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Checkbox from './Checkbox'
+
+CheckboxGroup.propTypes = {
+  activeCheckboxes: PropTypes.array,
+  setActiveCheckboxes: PropTypes.func,
+}
 
 export default function CheckboxGroup({
   activeCheckboxes,

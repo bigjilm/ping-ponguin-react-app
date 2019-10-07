@@ -1,5 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
+
+Checkbox.propTypes = {
+  value: PropTypes.string,
+  activeCheckboxes: PropTypes.array,
+  onChange: PropTypes.func,
+}
 
 export default function Checkbox({ value, activeCheckboxes, onChange }) {
   return (

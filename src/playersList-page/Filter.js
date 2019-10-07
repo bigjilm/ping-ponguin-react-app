@@ -1,6 +1,14 @@
 import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import CheckboxGroup from './CheckboxGroup'
+
+Filter.propTypes = {
+  residenceFilterValue: PropTypes.string,
+  onChangeResidenceFilterValue: PropTypes.func,
+  abilityFilterValues: PropTypes.array,
+  onChangeAbilityFilterValues: PropTypes.func,
+}
 
 export default function Filter({
   residenceFilterValue,

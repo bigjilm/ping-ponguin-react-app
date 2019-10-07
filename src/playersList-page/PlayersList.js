@@ -5,6 +5,7 @@ import PlayerCard from './PlayerCard'
 
 PlayersList.propTypes = {
   players: PropTypes.array,
+  onListClick: PropTypes.func,
 }
 
 export default function PlayersList({ players, onListClick }) {

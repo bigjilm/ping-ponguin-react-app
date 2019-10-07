@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types'
 import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import Page from '../common/Page'
