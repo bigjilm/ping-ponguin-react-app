@@ -1,7 +1,7 @@
+import PropTypes from 'prop-types'
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
-import PropTypes from 'prop-types'
 import Page from '../common/Page'
 import { postPlayer } from '../services'
 import RadioButtonGroup from './RadioButtonGroup'
@@ -60,8 +60,8 @@ export default function CreationPage({ onSubmit }) {
     const newPlayer = Object.fromEntries(formData)
     postPlayer(newPlayer)
       .then(newPlayer => onSubmit(newPlayer))
-      .then(form.reset())
-      .then(history.push('/'))
+      .then(res => form.reset())
+      .then(res => history.push('/'))
       .catch(console.error)
   }
 }

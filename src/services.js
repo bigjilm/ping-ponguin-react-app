@@ -17,5 +17,14 @@ function fetchPlayers({ method = 'GET', id = '', data } = {}) {
     headers: {
       'Content-Type': 'application/json',
     },
-  }).then(res => res.json())
+  })
+    .then(res => handleError(res))
+    .then(res => res.json())
+}
+
+function handleError(res) {
+  if (!res.ok) {
+    throw new Error('error')
+  }
+  return res
 }
