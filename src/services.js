@@ -2,9 +2,9 @@ export function getPlayers() {
   return fetchPlayers()
 }
 
-// export function postCard(data) {
-//   return fetchPlayers({ method: 'POST', data })
-// }
+export function postPlayer(data) {
+  return fetchPlayers({ method: 'POST', data })
+}
 
 // export function patchCard(id, data) {
 //   return fetchPlayers({ method: 'PATCH', id, data })

@@ -14,10 +14,10 @@ router.get('/', (req, res) => {
 //     .catch(err => res.json(err))
 // })
 
-// router.post('/', (req, res) => {
-//   const newPlayer = req.body
-//   players.push(newPlayer)
-//   res.json(newPlayer)
-// })
+router.post('/', (req, res) => {
+  Player.create(req.body)
+    .then(newPlayer => res.json(newPlayer))
+    .catch(err => res.json(err))
+})
 
 module.exports = router
