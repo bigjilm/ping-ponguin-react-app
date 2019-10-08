@@ -43,10 +43,10 @@ export default function PlayersListPage({ players }) {
 
   function handleListClick() {
     setIsFilterVisible(false)
-    console.log('clicked')
   }
 
   function withPlayersList(players) {
+    console.log(players)
     const playersFilteredByResidence = players.filter(
       player =>
         player.residence === residenceFilterValue ||
