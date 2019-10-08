@@ -7,7 +7,7 @@ Page.propTypes = {
   title: PropTypes.string,
   isFilterVisible: PropTypes.bool,
   onFilterClick: PropTypes.func,
-  children: PropTypes.array,
+  children: PropTypes.node,
 }
 
 export default function Page({
