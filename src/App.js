@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import { getPlayers, postPlayer } from './services'
-import PlayersListPage from './playersList-page/PlayersListPage'
-import CreationPage from './creation-page/CreationPage'
 import Navigation from './common/Navigation'
+import CreationPage from './creation-page/CreationPage'
+import PlayersListPage from './playersList-page/PlayersListPage'
+import { getPlayers } from './services'
 
 export default function App() {
   const [players, setPlayers] = useState([])
@@ -30,9 +30,7 @@ export default function App() {
   )
 
   function handleSubmit(newPlayer) {
-    postPlayer(newPlayer).then(newPlayer => {
-      setPlayers([...players, newPlayer])
-    })
+    setPlayers([...players, newPlayer])
   }
 }
 

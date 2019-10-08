@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
-import PropTypes from 'prop-types'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
 import Page from '../common/Page'
+import { postPlayer } from '../services'
 import RadioButtonGroup from './RadioButtonGroup'
 import TextInput from './TextInput'
 
@@ -56,10 +57,12 @@ export default function CreationPage({ onSubmit }) {
     event.preventDefault()
     const form = event.currentTarget
     const formData = new FormData(form)
-    const data = Object.fromEntries(formData)
-    onSubmit(data)
-    form.reset()
-    history.push('/')
+    const newPlayer = Object.fromEntries(formData)
+    postPlayer(newPlayer)
+      .then(newPlayer => onSubmit(newPlayer))
+      .then(form.reset())
+      .then(history.push('/'))
+      .catch(console.error)
   }
 }
 
