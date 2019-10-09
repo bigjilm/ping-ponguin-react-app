@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import Page from '../common/Page'
@@ -12,6 +12,7 @@ CreationPage.propTypes = {
 }
 
 export default function CreationPage({ onSubmit }) {
+  const [missingInputs, setMissingInputs] = useState([])
   let history = useHistory()
 
   useEffect(() => {
@@ -26,22 +27,30 @@ export default function CreationPage({ onSubmit }) {
           name="name"
           placeholder="Gib hier deinen Namen ein"
           maxLength={20}
+          missingInputs={missingInputs}
         />
         <TextInput
           labelName="Wohnort"
           name="residence"
           placeholder="Gib hier deinen Wohnort ein"
-          maxLength={20}
+          maxLength={50}
+          missingInputs={missingInputs}
         />
-        <LabelStyled>
+        <ContainerStyled>
           Spielstärke
           <StyledParagraph>
             Schätze deine Spielstärke auf einer Skala von 1 (Blinge) bis 5
             (Profi) ein.
           </StyledParagraph>
-          <RadioButtonGroup name="abilityLeft"></RadioButtonGroup>
-          <RadioButtonGroup name="abilityRight"></RadioButtonGroup>
-        </LabelStyled>
+          <RadioButtonGroup
+            name="abilityLeft"
+            missingInputs={missingInputs}
+          ></RadioButtonGroup>
+          <RadioButtonGroup
+            name="abilityRight"
+            missingInputs={missingInputs}
+          ></RadioButtonGroup>
+        </ContainerStyled>
         <TextInput
           labelName="Bild per URL einfügen"
           name="imageURL"
@@ -59,17 +68,18 @@ export default function CreationPage({ onSubmit }) {
     const formData = new FormData(form)
     const newPlayer = Object.fromEntries(formData)
     postPlayer(newPlayer)
-      .then(newPlayer => {
-        onSubmit(newPlayer)
+      .then(res => {
+        onSubmit(res)
         form.reset()
         history.push('/')
       })
-      .catch(console.error)
+      .catch(err => handleIncompleteSubmit(err))
   }
 
-  // function handleIncompleteSubmit(res) {
-  //   res.errors.keys().includes('name') && console.log('name missing')
-  // }
+  function handleIncompleteSubmit(err) {
+    console.log(Object.keys(err.errors))
+    setMissingInputs(Object.keys(err.errors))
+  }
 }
 
 const FormStyled = styled.form`
@@ -77,11 +87,10 @@ const FormStyled = styled.form`
   grid-auto-rows: min-content;
   grid-gap: 30px;
   padding: 20px;
-  overflow: auto;
   scroll-behavior: smooth;
 `
 
-const LabelStyled = styled.label`
+const ContainerStyled = styled.div`
   display: grid;
   grid-auto-rows: auto;
   grid-gap: 20px;

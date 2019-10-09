@@ -6,10 +6,6 @@ export function postPlayer(data) {
   return fetchPlayers({ method: 'POST', data })
 }
 
-// export function patchCard(id, data) {
-//   return fetchPlayers({ method: 'PATCH', id, data })
-// }
-
 function fetchPlayers({ method = 'GET', id = '', data } = {}) {
   return fetch('/players/' + id, {
     method,
@@ -17,14 +13,16 @@ function fetchPlayers({ method = 'GET', id = '', data } = {}) {
     headers: {
       'Content-Type': 'application/json',
     },
-  })
-    .then(res => handleError(res))
-    .then(res => res.json())
+  }).then(res => handleError(res))
 }
 
 function handleError(res) {
+  let json = res.json()
   if (!res.ok) {
-    throw new Error('error')
+    return json.then(err => {
+      throw err
+    })
+    //as found here https://stackoverflow.com/questions/29473426/fetch-reject-promise-with-json-error-object
   }
-  return res
+  return json
 }

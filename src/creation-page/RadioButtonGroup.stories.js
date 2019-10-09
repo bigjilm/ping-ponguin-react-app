@@ -14,4 +14,6 @@ function Wrapper(storyFn) {
   )
 }
 
-export const radioButtonGroup = () => <RadioButtonGroup name="abilityLeft" />
+export const radioButtonGroup = () => (
+  <RadioButtonGroup name="abilityLeft" missingInputs={[]} />
+)
