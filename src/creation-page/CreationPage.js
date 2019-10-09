@@ -59,11 +59,17 @@ export default function CreationPage({ onSubmit }) {
     const formData = new FormData(form)
     const newPlayer = Object.fromEntries(formData)
     postPlayer(newPlayer)
-      .then(newPlayer => onSubmit(newPlayer))
-      .then(res => form.reset())
-      .then(res => history.push('/'))
+      .then(newPlayer => {
+        onSubmit(newPlayer)
+        form.reset()
+        history.push('/')
+      })
       .catch(console.error)
   }
+
+  // function handleIncompleteSubmit(res) {
+  //   res.errors.keys().includes('name') && console.log('name missing')
+  // }
 }
 
 const FormStyled = styled.form`

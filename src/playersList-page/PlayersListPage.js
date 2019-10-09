@@ -46,7 +46,6 @@ export default function PlayersListPage({ players }) {
   }
 
   function withPlayersList(players) {
-    console.log(players)
     const playersFilteredByResidence = players.filter(
       player =>
         player.residence === residenceFilterValue ||

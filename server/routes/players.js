@@ -4,7 +4,7 @@ const Player = require('../models/Player')
 router.get('/', (req, res) => {
   Player.find()
     .then(players => res.json(players))
-    .catch(err => res.json(err))
+    .catch(err => res.status(404).json(err))
 })
 
 router.post('/', (req, res) => {
