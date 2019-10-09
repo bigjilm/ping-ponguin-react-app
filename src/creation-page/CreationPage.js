@@ -36,15 +36,21 @@ export default function CreationPage({ onSubmit }) {
           maxLength={50}
           missingInputs={missingInputs}
         />
-        <LabelStyled>
+        <ContainerStyled>
           Spielstärke
           <StyledParagraph>
             Schätze deine Spielstärke auf einer Skala von 1 (Blinge) bis 5
             (Profi) ein.
           </StyledParagraph>
-          <RadioButtonGroup name="abilityLeft"></RadioButtonGroup>
-          <RadioButtonGroup name="abilityRight"></RadioButtonGroup>
-        </LabelStyled>
+          <RadioButtonGroup
+            name="abilityLeft"
+            missingInputs={missingInputs}
+          ></RadioButtonGroup>
+          <RadioButtonGroup
+            name="abilityRight"
+            missingInputs={missingInputs}
+          ></RadioButtonGroup>
+        </ContainerStyled>
         <TextInput
           labelName="Bild per URL einfügen"
           name="imageURL"
@@ -81,11 +87,10 @@ const FormStyled = styled.form`
   grid-auto-rows: min-content;
   grid-gap: 30px;
   padding: 20px;
-  overflow: auto;
   scroll-behavior: smooth;
 `
 
-const LabelStyled = styled.label`
+const ContainerStyled = styled.div`
   display: grid;
   grid-auto-rows: auto;
   grid-gap: 20px;

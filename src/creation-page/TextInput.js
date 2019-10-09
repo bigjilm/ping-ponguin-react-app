@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
+import Alert from '../common/Alert'
 
 TextInput.propTypes = {
   labelName: PropTypes.string,
@@ -8,6 +9,7 @@ TextInput.propTypes = {
   placeholder: PropTypes.string,
   type: PropTypes.string,
   maxLength: PropTypes.number,
+  missingInputs: PropTypes.array,
 }
 
 export default function TextInput({
@@ -32,21 +34,11 @@ export default function TextInput({
         maxLength={maxLength}
       />
       {inputValue.length === maxLength && (
-        <AlertStyled>max. 20 Zeichen</AlertStyled>
+        <Alert>max. {maxLength} Zeichen</Alert>
       )}
-      {missingInputs.includes(name) && (
-        <AlertStyled>Bitte gib deinen {setAlert(name)} ein</AlertStyled>
-      )}
+      {missingInputs.includes(name) && <Alert target={name}></Alert>}
     </LabelStyled>
   )
-
-  function setAlert(name) {
-    const alertName = {
-      name: 'Namen',
-      residence: 'Wohnort',
-    }
-    return alertName[name]
-  }
 }
 
 const LabelStyled = styled.label`
@@ -63,9 +55,4 @@ const InputStyled = styled.input`
   :focus {
     border-color: #849237;
   }
-`
-
-const AlertStyled = styled.span`
-  font-size: 14px;
-  color: #c8232a;
 `
