@@ -22,6 +22,7 @@ function handleError(res) {
     return json.then(err => {
       throw err
     })
+    //as found here https://stackoverflow.com/questions/29473426/fetch-reject-promise-with-json-error-object
   }
   return json
 }

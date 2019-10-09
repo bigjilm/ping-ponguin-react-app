@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import Page from '../common/Page'
@@ -12,6 +12,7 @@ CreationPage.propTypes = {
 }
 
 export default function CreationPage({ onSubmit }) {
+  const [missingInputs, setMissingInputs] = useState([])
   let history = useHistory()
 
   useEffect(() => {
@@ -26,12 +27,14 @@ export default function CreationPage({ onSubmit }) {
           name="name"
           placeholder="Gib hier deinen Namen ein"
           maxLength={20}
+          missingInputs={missingInputs}
         />
         <TextInput
           labelName="Wohnort"
           name="residence"
           placeholder="Gib hier deinen Wohnort ein"
-          maxLength={20}
+          maxLength={50}
+          missingInputs={missingInputs}
         />
         <LabelStyled>
           Spielstärke
@@ -68,8 +71,8 @@ export default function CreationPage({ onSubmit }) {
   }
 
   function handleIncompleteSubmit(err) {
-    console.error(err)
-    // err.errors.keys().includes('name') && console.log('name missing')
+    console.log(Object.keys(err.errors))
+    setMissingInputs(Object.keys(err.errors))
   }
 }
 

@@ -16,6 +16,7 @@ export default function TextInput({
   placeholder,
   type = 'text',
   maxLength = 1000,
+  missingInputs = [],
 }) {
   const [inputValue, setInputValue] = useState('')
 
@@ -33,8 +34,19 @@ export default function TextInput({
       {inputValue.length === maxLength && (
         <AlertStyled>max. 20 Zeichen</AlertStyled>
       )}
+      {missingInputs.includes(name) && (
+        <AlertStyled>Bitte gib deinen {setAlert(name)} ein</AlertStyled>
+      )}
     </LabelStyled>
   )
+
+  function setAlert(name) {
+    const alertName = {
+      name: 'Namen',
+      residence: 'Wohnort',
+    }
+    return alertName[name]
+  }
 }
 
 const LabelStyled = styled.label`
