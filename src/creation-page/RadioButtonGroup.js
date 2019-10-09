@@ -39,8 +39,6 @@ const RadioButtonGroupStyled = styled.label`
   display: grid;
   grid-template-columns: 50px repeat(5, 1fr);
   grid-gap: 10px;
-  /* display: flex;
-  flex-wrap: wrap; */
   align-items: center;
 `
 
