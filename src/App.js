@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import playerData from './playerData.json'
-import PlayersListPage from './playersList-page/PlayersListPage'
-import CreationPage from './creation-page/CreationPage'
 import Navigation from './common/Navigation'
+import CreationPage from './creation-page/CreationPage'
+import PlayersListPage from './playersList-page/PlayersListPage'
+import { getPlayers } from './services'
 
 export default function App() {
-  const [players, setPlayers] = useState(playerData)
+  const [players, setPlayers] = useState([])
+
+  useEffect(() => {
+    getPlayers().then(setPlayers)
+  }, [])
 
   return (
     <Router>
@@ -26,7 +30,7 @@ export default function App() {
   )
 
   function handleSubmit(newPlayer) {
-    setPlayers([newPlayer, ...players])
+    setPlayers([...players, newPlayer])
   }
 }
 

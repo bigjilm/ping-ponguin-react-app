@@ -43,7 +43,6 @@ export default function PlayersListPage({ players }) {
 
   function handleListClick() {
     setIsFilterVisible(false)
-    console.log('clicked')
   }
 
   function withPlayersList(players) {

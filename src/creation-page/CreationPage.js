@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
+import React, { useEffect } from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import Page from '../common/Page'
+import { postPlayer } from '../services'
 import RadioButtonGroup from './RadioButtonGroup'
 import TextInput from './TextInput'
 
@@ -56,11 +57,19 @@ export default function CreationPage({ onSubmit }) {
     event.preventDefault()
     const form = event.currentTarget
     const formData = new FormData(form)
-    const data = Object.fromEntries(formData)
-    onSubmit(data)
-    form.reset()
-    history.push('/')
+    const newPlayer = Object.fromEntries(formData)
+    postPlayer(newPlayer)
+      .then(newPlayer => {
+        onSubmit(newPlayer)
+        form.reset()
+        history.push('/')
+      })
+      .catch(console.error)
   }
+
+  // function handleIncompleteSubmit(res) {
+  //   res.errors.keys().includes('name') && console.log('name missing')
+  // }
 }
 
 const FormStyled = styled.form`
