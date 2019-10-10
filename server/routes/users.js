@@ -127,17 +127,46 @@ router.post('/signin', (req, res) => {
             success: false,
             message: 'Error: Server error',
           })
+        } else {
+          return res.send({
+            success: true,
+            message: 'Signed in',
+            token: doc._id,
+          })
         }
-        return res.send({
-          success: true,
-          message: 'Signed in',
-          token: doc._id,
-        })
       })
     }
   )
 })
 
+router.get('/verify', (req, res) => {
+  const { token } = req.query
 
+  //sends server error when token does not have the same length as _id. Why???
+  UserSession.find(
+    {
+      _id: token,
+      isDeleted: false,
+    },
+    (err, sessions) => {
+      if (err) {
+        return res.send({
+          success: false,
+          message: 'Error: Server error',
+        })
+      } else if (sessions.length !== 1) {
+        return res.send({
+          success: false,
+          message: 'Error: No session exists',
+        })
+      } else {
+        return res.send({
+          success: true,
+          message: 'You are logged in',
+        })
+      }
+    }
+  )
+})
 
 module.exports = router
