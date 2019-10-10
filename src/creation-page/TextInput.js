@@ -16,7 +16,6 @@ export default function TextInput({
   labelName,
   name,
   placeholder,
-  type = 'text',
   maxLength = 1000,
   missingInputs = [],
 }) {
@@ -28,7 +27,6 @@ export default function TextInput({
       <InputStyled
         name={name}
         placeholder={placeholder}
-        type={type}
         value={inputValue}
         onChange={event => setInputValue(event.currentTarget.value)}
         maxLength={maxLength}
