@@ -2,13 +2,13 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 
 const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  residence: { type: String, required: true },
-  abilityLeft: { type: String, required: true },
-  abilityRight: { type: String, required: true },
-  imageURL: { type: String },
-  email: { type: String },
-  password: { type: String },
+  name: { type: String, default: '' },
+  email: { type: String, default: '' },
+  password: { type: String, default: '' },
+  residence: { type: String, default: '' },
+  abilityLeft: { type: String, default: '' },
+  abilityRight: { type: String, default: '' },
+  imageURL: { type: String, default: '' },
   isDeleted: { type: Boolean, default: false },
 })
 
