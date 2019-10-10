@@ -67,6 +67,10 @@ export default function CreationPage({ onSubmit }) {
     const form = event.currentTarget
     const formData = new FormData(form)
     const newPlayer = Object.fromEntries(formData)
+    if (newPlayer.imageURL === '') {
+      newPlayer.imageURL =
+        'https://images.unsplash.com/photo-1481399319277-1289301d7c31?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60'
+    }
     postPlayer(newPlayer)
       .then(res => {
         onSubmit(res)
@@ -77,7 +81,6 @@ export default function CreationPage({ onSubmit }) {
   }
 
   function handleIncompleteSubmit(err) {
-    console.log(Object.keys(err.errors))
     setMissingInputs(Object.keys(err.errors))
   }
 }
