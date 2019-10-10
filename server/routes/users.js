@@ -169,4 +169,30 @@ router.get('/verify', (req, res) => {
   )
 })
 
+//logout mit GET request??? Nicht mit PATCH?
+router.get('/logout', (req, res) => {
+  const { token } = req.query
+
+  //sends server error when token does not have the same length as _id. Why???
+  UserSession.findByIdAndUpdate(
+    token,
+    {
+      isDeleted: true,
+    },
+    (err, sessions) => {
+      if (err) {
+        return res.send({
+          success: false,
+          message: 'Error: Server error',
+        })
+      } else {
+        return res.send({
+          success: true,
+          message: 'You are logged out',
+        })
+      }
+    }
+  )
+})
+
 module.exports = router
