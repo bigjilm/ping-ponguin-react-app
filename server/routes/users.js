@@ -8,14 +8,7 @@ router.get('/', (req, res) => {
     .catch(err => res.status(404).json(err))
 })
 
-// router.post('/', (req, res) => {
-//   User.create(req.body)
-//     .then(newUser => res.json(newUser))
-//     .catch(err => res.status(400).json(err))
-// })
-
 router.post('/signup', (req, res) => {
-  //Pfad???
   const { name, password } = req.body
   let { email } = req.body
 
@@ -47,10 +40,7 @@ router.post('/signup', (req, res) => {
     },
     (err, previousUsers) => {
       if (err) {
-        return res.send({
-          success: false,
-          message: 'Error: Server error',
-        })
+        sendServerError(res)
       } else if (previousUsers.length > 0) {
         return res.send({
           success: false,
@@ -64,10 +54,7 @@ router.post('/signup', (req, res) => {
       newUser.password = newUser.generateHash(password)
       newUser.save((err, user) => {
         if (err) {
-          return res.send({
-            success: false,
-            message: 'Error: Server error',
-          })
+          sendServerError(res)
         }
         return res.send({
           success: true,
@@ -150,10 +137,7 @@ router.get('/verify', (req, res) => {
     },
     (err, sessions) => {
       if (err) {
-        return res.send({
-          success: false,
-          message: 'Error: Server error',
-        })
+        sendServerError(res)
       } else if (sessions.length !== 1) {
         return res.send({
           success: false,
@@ -181,10 +165,7 @@ router.get('/logout', (req, res) => {
     },
     (err, sessions) => {
       if (err) {
-        return res.send({
-          success: false,
-          message: 'Error: Server error',
-        })
+        sendServerError(res)
       } else {
         return res.send({
           success: true,
@@ -194,5 +175,12 @@ router.get('/logout', (req, res) => {
     }
   )
 })
+
+function sendServerError(res) {
+  return res.send({
+    success: false,
+    message: 'Error: Server error',
+  })
+}
 
 module.exports = router
