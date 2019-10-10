@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const playerSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   residence: { type: String, required: true },
   abilityLeft: { type: String, required: true },
@@ -8,6 +8,6 @@ const playerSchema = new mongoose.Schema({
   imageURL: { type: String },
 })
 
-const Player = mongoose.model('Player', playerSchema)
+const User = mongoose.model('User', userSchema)
 
-module.exports = Player
+module.exports = User

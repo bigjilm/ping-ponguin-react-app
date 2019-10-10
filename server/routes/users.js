@@ -1,15 +1,15 @@
 const router = require('express').Router()
-const Player = require('../models/Player')
+const User = require('../models/User')
 
 router.get('/', (req, res) => {
-  Player.find()
-    .then(players => res.json(players))
+  User.find()
+    .then(users => res.json(users))
     .catch(err => res.status(404).json(err))
 })
 
 router.post('/', (req, res) => {
-  Player.create(req.body)
-    .then(newPlayer => res.json(newPlayer))
+  User.create(req.body)
+    .then(newUser => res.json(newUser))
     .catch(err => res.status(400).json(err))
 })
 

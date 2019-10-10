@@ -2,13 +2,13 @@ import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import Page from '../common/Page'
 import Filter from './Filter'
-import PlayersList from './PlayersList'
+import UsersList from './UsersList'
 
-PlayersListPage.propTypes = {
-  players: PropTypes.arrayOf(PropTypes.object),
+UsersListPage.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.object),
 }
 
-export default function PlayersListPage({ players }) {
+export default function UsersListPage({ users }) {
   const [isFilterVisible, setIsFilterVisible] = useState(false)
   const [residenceFilterValue, setResidenceFilterValue] = useState('')
   const [abilityFilterValues, setAbilityFilterValues] = useState([
@@ -34,7 +34,7 @@ export default function PlayersListPage({ players }) {
           onChangeAbilityFilterValues={setAbilityFilterValues}
         ></Filter>
       )}
-      {withPlayersList(players)}
+      {withUsersList(users)}
     </Page>
   )
   function handleFilterClick() {
@@ -45,20 +45,20 @@ export default function PlayersListPage({ players }) {
     setIsFilterVisible(false)
   }
 
-  function withPlayersList(players) {
-    const playersFilteredByResidence = players.filter(
-      player =>
-        player.residence === residenceFilterValue ||
+  function withUsersList(users) {
+    const usersFilteredByResidence = users.filter(
+      user =>
+        user.residence === residenceFilterValue ||
         residenceFilterValue.length === 0
     )
-    const playersFilteredByResidenceAndAbility = playersFilteredByResidence.filter(
-      player =>
-        abilityFilterValues.includes(player.abilityLeft) ||
-        abilityFilterValues.includes(player.abilityRight)
+    const usersFilteredByResidenceAndAbility = usersFilteredByResidence.filter(
+      user =>
+        abilityFilterValues.includes(user.abilityLeft) ||
+        abilityFilterValues.includes(user.abilityRight)
     )
     return (
-      <PlayersList
-        players={playersFilteredByResidenceAndAbility}
+      <UsersList
+        users={usersFilteredByResidenceAndAbility}
         onListClick={handleListClick}
       />
     )

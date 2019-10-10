@@ -1,13 +1,13 @@
-export function getPlayers() {
-  return fetchPlayers()
+export function getUsers() {
+  return fetchUsers()
 }
 
-export function postPlayer(data) {
-  return fetchPlayers({ method: 'POST', data })
+export function postUser(data) {
+  return fetchUsers({ method: 'POST', data })
 }
 
-function fetchPlayers({ method = 'GET', id = '', data } = {}) {
-  return fetch('/players/' + id, {
+function fetchUsers({ method = 'GET', id = '', data } = {}) {
+  return fetch('/Users/' + id, {
     method,
     body: JSON.stringify(data),
     headers: {

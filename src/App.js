@@ -3,14 +3,14 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import Navigation from './common/Navigation'
 import CreationPage from './creation-page/CreationPage'
-import PlayersListPage from './playersList-page/PlayersListPage'
-import { getPlayers } from './services'
+import UsersListPage from './usersList-page/UsersListPage'
+import { getUsers } from './services'
 
 export default function App() {
-  const [players, setPlayers] = useState([])
+  const [users, setUsers] = useState([])
 
   useEffect(() => {
-    getPlayers().then(setPlayers)
+    getUsers().then(setUsers)
   }, [])
 
   return (
@@ -18,7 +18,7 @@ export default function App() {
       <AppStyled>
         <Switch>
           <Route exact path="/">
-            <PlayersListPage players={players} />
+            <UsersListPage users={users} />
           </Route>
           <Route path="/profile">
             <CreationPage onSubmit={handleSubmit}></CreationPage>
@@ -29,8 +29,8 @@ export default function App() {
     </Router>
   )
 
-  function handleSubmit(newPlayer) {
-    setPlayers([...players, newPlayer])
+  function handleSubmit(newUser) {
+    setUsers([...users, newUser])
   }
 }
 

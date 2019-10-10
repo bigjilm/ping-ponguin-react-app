@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import Page from '../common/Page'
-import { postPlayer } from '../services'
+import { postUser } from '../services'
 import RadioButtonGroup from './RadioButtonGroup'
 import TextInput from './TextInput'
 
@@ -65,12 +65,12 @@ export default function CreationPage({ onSubmit }) {
     event.preventDefault()
     const form = event.currentTarget
     const formData = new FormData(form)
-    const newPlayer = Object.fromEntries(formData)
-    if (newPlayer.imageURL === '') {
-      newPlayer.imageURL =
+    const newUser = Object.fromEntries(formData)
+    if (newUser.imageURL === '') {
+      newUser.imageURL =
         'https://farm9.staticflickr.com/8494/8334907268_ffacd64d3f.jpg'
     }
-    postPlayer(newPlayer)
+    postUser(newUser)
       .then(res => {
         onSubmit(res)
         form.reset()

@@ -13,4 +13,4 @@ server.use(express.json())
 server.use(cors())
 server.set('json spaces', 2)
 
-server.use('/players', require('./routes/players'))
+server.use('/users', require('./routes/users'))
