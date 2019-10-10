@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const User = require('../models/User')
+const UserSession = require('../models/UserSession')
 
 router.get('/', (req, res) => {
   User.find()
@@ -71,6 +72,66 @@ router.post('/signup', (req, res) => {
         return res.send({
           success: true,
           message: 'Signed up',
+        })
+      })
+    }
+  )
+})
+
+router.post('/signin', (req, res) => {
+  const { password } = req.body
+  let { email } = req.body
+  email = email.toLowerCase()
+
+  if (!email) {
+    return res.send({
+      success: false,
+      message: 'Error: email must not be blank',
+    })
+  }
+  if (!password) {
+    return res.send({
+      success: false,
+      message: 'Error: password must not be blank',
+    })
+  }
+  User.find(
+    {
+      email: email,
+    },
+    (err, users) => {
+      if (err) {
+        return res.send({
+          success: false,
+          message: 'Error: Server error',
+        })
+      } else if (users.length !== 1) {
+        return res.send({
+          success: false,
+          message: 'Error: Invalid email',
+        })
+      }
+
+      const user = users[0]
+      if (!user.validPassword(password)) {
+        return res.send({
+          success: false,
+          message: 'Error: Wrong password',
+        })
+      }
+      const userSession = new UserSession()
+      userSession.userId = user._id
+      userSession.save((err, doc) => {
+        if (err) {
+          return res.send({
+            success: false,
+            message: 'Error: Server error',
+          })
+        }
+        return res.send({
+          success: true,
+          message: 'Signed in',
+          token: doc._id,
         })
       })
     }
