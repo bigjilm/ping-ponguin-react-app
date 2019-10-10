@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 
 const userSessionSchema = new mongoose.Schema({
   userId: {
-    type: Number,
+    type: String,
     default: -1,
   },
   timestamp: {
