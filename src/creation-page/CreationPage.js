@@ -52,10 +52,9 @@ export default function CreationPage({ onSubmit }) {
           ></RadioButtonGroup>
         </ContainerStyled>
         <TextInput
-          labelName="Bild per URL einfügen"
+          labelName="Bild per URL einfügen (optional)"
           name="imageURL"
           placeholder="Gib hier die URL deines Bildes ein"
-          type="url"
         />
         <ButtonStyled>Profil Erstellen</ButtonStyled>
       </FormStyled>
@@ -67,6 +66,10 @@ export default function CreationPage({ onSubmit }) {
     const form = event.currentTarget
     const formData = new FormData(form)
     const newPlayer = Object.fromEntries(formData)
+    if (newPlayer.imageURL === '') {
+      newPlayer.imageURL =
+        'https://farm9.staticflickr.com/8494/8334907268_ffacd64d3f.jpg'
+    }
     postPlayer(newPlayer)
       .then(res => {
         onSubmit(res)
@@ -77,7 +80,6 @@ export default function CreationPage({ onSubmit }) {
   }
 
   function handleIncompleteSubmit(err) {
-    console.log(Object.keys(err.errors))
     setMissingInputs(Object.keys(err.errors))
   }
 }
