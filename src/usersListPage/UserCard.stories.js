@@ -14,7 +14,7 @@ function Wrapper(storyFn) {
   )
 }
 
-export const UserCard = () => (
+export const userCard = () => (
   <UserCard
     name="Ping Pong"
     residence="Nuuk"
