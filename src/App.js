@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import Navigation from './common/Navigation'
-import CreationPage from './creation-page/CreationPage'
-import UsersListPage from './usersList-page/UsersListPage'
+import CreationPage from './creationPage/CreationPage'
+import UsersListPage from './usersListPage/UsersListPage'
 import { getUsers } from './services'
 
 export default function App() {
