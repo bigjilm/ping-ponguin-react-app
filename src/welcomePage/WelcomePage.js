@@ -16,7 +16,7 @@ export default function WelcomePage() {
 
   return (
     <WelcomePageStyled>
-      <form>
+      <form onSubmit={handleSignIn}>
         <label>
           Email
           <TextInput name="email" type="email" />
@@ -27,7 +27,7 @@ export default function WelcomePage() {
         </label>
         <button>Sign in</button>
       </form>
-      <form onSubmit={onSignUp}>
+      <form onSubmit={handleSignUp}>
         <label>
           Name
           <TextInput name="name" type="text" />
@@ -45,9 +45,18 @@ export default function WelcomePage() {
     </WelcomePageStyled>
   )
 
-  function onSignIn() {}
+  function handleSignIn(event) {
+    event.preventDefault()
+    const form = event.currentTarget
+    const formData = new FormData(form)
+    const data = Object.fromEntries(formData)
+    signIn(data).then(res => {
+      form.reset()
+      console.log(res)
+    })
+  }
 
-  function onSignUp(event) {
+  function handleSignUp(event) {
     event.preventDefault()
     const form = event.currentTarget
     const formData = new FormData(form)
