@@ -4,7 +4,8 @@ import styled from 'styled-components/macro'
 import Navigation from './common/Navigation'
 import CreationPage from './creationPage/CreationPage'
 import UsersListPage from './usersListPage/UsersListPage'
-import { getUsers } from './services'
+import WelcomePage from './welcomePage/WelcomePage'
+import { getUsers } from './utils/services'
 
 export default function App() {
   const [users, setUsers] = useState([])
@@ -19,6 +20,9 @@ export default function App() {
         <Switch>
           <Route exact path="/">
             <UsersListPage users={users} />
+          </Route>
+          <Route path="/welcome">
+            <WelcomePage />
           </Route>
           <Route path="/profile">
             <CreationPage onSubmit={handleSubmit}></CreationPage>

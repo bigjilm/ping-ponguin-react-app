@@ -15,6 +15,7 @@ TextInput.propTypes = {
 export default function TextInput({
   labelName,
   name,
+  type = 'text',
   placeholder,
   maxLength = 1000,
   missingInputs = [],
@@ -26,6 +27,7 @@ export default function TextInput({
       {labelName}
       <InputStyled
         name={name}
+        type={type}
         placeholder={placeholder}
         value={inputValue}
         onChange={event => setInputValue(event.currentTarget.value)}
