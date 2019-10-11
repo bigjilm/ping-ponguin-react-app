@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import Page from '../common/Page'
-import { postUser } from '../services'
+import { postUser } from '../utils/services'
 import RadioButtonGroup from './RadioButtonGroup'
-import TextInput from './TextInput'
+import TextInput from '../common/TextInput'
 
 CreationPage.propTypes = {
   onSubmit: PropTypes.func,
@@ -76,11 +76,7 @@ export default function CreationPage({ onSubmit }) {
         form.reset()
         history.push('/')
       })
-      .catch(err => handleIncompleteSubmit(err))
-  }
-
-  function handleIncompleteSubmit(err) {
-    setMissingInputs(Object.keys(err.errors))
+      .catch(err => setMissingInputs(Object.keys(err.errors)))
   }
 }
 
