@@ -20,6 +20,7 @@ export default function TextInput({
   maxLength = 1000,
   missingInputs = [],
 }) {
+  //no controlled input right now; state just for length check
   const [inputValue, setInputValue] = useState('')
 
   return (
@@ -29,7 +30,6 @@ export default function TextInput({
         name={name}
         type={type}
         placeholder={placeholder}
-        value={inputValue}
         onChange={event => setInputValue(event.currentTarget.value)}
         maxLength={maxLength}
       />
