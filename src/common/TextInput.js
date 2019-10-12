@@ -20,7 +20,7 @@ export default function TextInput({
   maxLength = 1000,
   missingInputs = [],
 }) {
-  //no controlled input right now; state just for length check
+  //no controlled input; state just for length check
   const [inputValue, setInputValue] = useState('')
 
   return (

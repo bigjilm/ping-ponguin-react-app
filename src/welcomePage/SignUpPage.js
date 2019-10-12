@@ -87,13 +87,11 @@ export default function SignUpPage({ onSignUp }) {
     }
     signUp(newUser)
       .then(newUser => {
-        console.log(newUser)
         onSignUp(newUser)
         form.reset()
         history.push('/users')
       })
       .catch(err => {
-        console.error(err)
         setMissingInputs(Object.keys(err.errors))
       })
   }
