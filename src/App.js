@@ -19,10 +19,10 @@ export default function App() {
       <AppStyled>
         <Switch>
           <Route exact path="/">
-            <UsersListPage users={users} />
-          </Route>
-          <Route path="/welcome">
             <WelcomePage />
+          </Route>
+          <Route path="/users">
+            <UsersListPage users={users} />
           </Route>
           <Route path="/profile">
             <CreationPage onSubmit={handleSubmit}></CreationPage>

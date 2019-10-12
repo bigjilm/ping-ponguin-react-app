@@ -4,7 +4,7 @@ import styled from 'styled-components/macro'
 import { useHistory } from 'react-router'
 import { getFromStorage, setToStorage } from '../utils/storage'
 import TextInput from '../common/TextInput'
-import { signIn, signUp, getUserSession } from '../utils/services'
+import { signIn, signUp, getUserSession, logout } from '../utils/services'
 
 export default function WelcomePage() {
   // add loading message
@@ -15,8 +15,12 @@ export default function WelcomePage() {
     const token = getFromStorage('pingu')
     if (token) {
       getUserSession(token).then(session => {
-        console.log(session.success)
-        // history.push('/')
+        console.log(session.message)
+        if (session.success) {
+          //   history.push('/users')
+        } else {
+          setIsLoading(false)
+        }
       })
     } else {
       setIsLoading(false)
@@ -52,6 +56,7 @@ export default function WelcomePage() {
         </label>
         <button>Sign up</button>
       </form>
+      <button onClick={handleLogout}>Logout</button>
     </WelcomePageStyled>
   )
 
@@ -76,6 +81,14 @@ export default function WelcomePage() {
       form.reset()
       console.log(res)
     })
+  }
+
+  function handleLogout() {
+    const token = getFromStorage('pingu')
+    if (token) {
+      setToStorage('pingu', null)
+      logout(token).then(res => console.log(res.message))
+    }
   }
 }
 

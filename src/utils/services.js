@@ -18,6 +18,14 @@ export function getUserSession(token) {
     .catch(err => console.error(err))
 }
 
+export function logout(token) {
+  return fetch('/users/logout?token=' + token, {
+    method: 'GET',
+  })
+    .then(res => res.json())
+    .catch(err => console.error(err))
+}
+
 export function postUser(data) {
   return fetchUsers({ method: 'POST', data })
 }
