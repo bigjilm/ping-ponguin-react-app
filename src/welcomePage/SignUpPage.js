@@ -1,14 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router'
+import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Page from '../common/Page'
 import TextInput from '../common/TextInput'
 import { signUp } from '../utils/services'
 import RadioButtonGroup from './RadioButtonGroup'
 
-export default function SignUpPage() {
+SignUpPage.propTypes = {
+  onSignUp: PropTypes.func,
+}
+
+export default function SignUpPage({ onSignUp }) {
   const [missingInputs, setMissingInputs] = useState([])
   let history = useHistory()
+
+  useEffect(() => {
+    document.querySelector('input').focus()
+  }, [])
 
   return (
     <Page title="Profil erstellen">
@@ -70,14 +79,22 @@ export default function SignUpPage() {
     event.preventDefault()
     const form = event.currentTarget
     const formData = new FormData(form)
-    const data = Object.fromEntries(formData)
-    signUp(data)
-      .then(res => {
+    const newUser = Object.fromEntries(formData)
+    if (newUser.imageURL === '') {
+      newUser.imageURL =
+        'https://farm9.staticflickr.com/8494/8334907268_ffacd64d3f.jpg'
+    }
+    signUp(newUser)
+      .then(newUser => {
+        console.log(newUser)
+        onSignUp(newUser)
         form.reset()
-        console.log(res)
-        //   history.push('/users')
+        history.push('/users')
       })
-      .catch(err => setMissingInputs(Object.keys(err.errors)))
+      .catch(err => {
+        console.error(err)
+        setMissingInputs(Object.keys(err.errors))
+      })
   }
 }
 
@@ -86,6 +103,7 @@ const FormStyled = styled.form`
   grid-auto-rows: min-content;
   grid-gap: 30px;
   padding: 20px;
+  overflow: auto;
   scroll-behavior: smooth;
 `
 

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
+// const bcrypt = require('bcrypt')
 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -12,13 +12,13 @@ const userSchema = new mongoose.Schema({
   isDeleted: { type: Boolean, default: false },
 })
 
-userSchema.methods.generateHash = function(password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8))
-}
+// userSchema.methods.generateHash = function(password) {
+//   return bcrypt.hashSync(password, bcrypt.genSaltSync(8))
+// }
 
-userSchema.methods.validPassword = function(password) {
-  return bcrypt.compareSync(password, this.password)
-}
+// userSchema.methods.validPassword = function(password) {
+//   return bcrypt.compareSync(password, this.password)
+// }
 
 const User = mongoose.model('User', userSchema)
 

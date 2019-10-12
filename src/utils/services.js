@@ -1,4 +1,5 @@
 export function getUsers() {
+  //need to modify: get only name, residence and ability
   return fetchUsers()
 }
 

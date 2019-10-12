@@ -8,10 +8,10 @@ import profileIcon from '../assets/profile-icon.svg'
 export default function Navigation() {
   return (
     <NavigationStyled>
-      <NavLinkStyled exact to="/">
+      <NavLinkStyled exact to="/users">
         <IconStyled src={homeIcon} />
       </NavLinkStyled>
-      <NavLinkStyled to="/profile">
+      <NavLinkStyled to="/signup">
         <IconStyled src={profileIcon} />
       </NavLinkStyled>
     </NavigationStyled>

@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const bcrypt = require('bcrypt')
 const User = require('../models/User')
 const UserSession = require('../models/UserSession')
 
@@ -23,12 +24,17 @@ router.post('/signup', (req, res) => {
           message: 'Error: Account already exists',
         })
       } else {
-        User.create(req.body)
-          .then(newUser => res.json(newUser))
+        const { password } = req.body
+        const encryptedPassword = generateHash(password)
+
+        User.create({ ...req.body, password: encryptedPassword })
+          .then(newUser => {
+            res.json(newUser)
+          })
           .catch(err => res.status(400).json(err))
       }
     })
-    .catch(err => err.json(err))
+    .catch(err => res.json(err))
 })
 
 router.post('/signin', (req, res) => {
@@ -149,6 +155,14 @@ function sendServerError(res) {
     success: false,
     message: 'Error: Server error',
   })
+}
+
+function generateHash(password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8))
+}
+
+function comparePassword(password) {
+  return bcrypt.compareSync(password, this.password)
 }
 
 module.exports = router

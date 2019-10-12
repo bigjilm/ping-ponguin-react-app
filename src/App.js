@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import Navigation from './common/Navigation'
-// import CreationPage from './creationPage/CreationPage'
 import UsersListPage from './usersListPage/UsersListPage'
 import WelcomePage from './welcomePage/WelcomePage'
 import { getUsers } from './utils/services'
@@ -23,23 +22,16 @@ export default function App() {
             <WelcomePage />
           </Route>
           <Route exact path="/signup">
-            <SignUpPage />
+            <SignUpPage onSignUp={newUser => setUsers([...users, newUser])} />
           </Route>
           <Route path="/users">
             <UsersListPage users={users} />
           </Route>
-          {/* <Route path="/profile">
-            <CreationPage onSubmit={handleSubmit}></CreationPage>
-          </Route> */}
         </Switch>
         <Navigation />
       </AppStyled>
     </Router>
   )
-
-  // function handleSubmit(newUser) {
-  //   setUsers([...users, newUser])
-  // }
 }
 
 const AppStyled = styled.div`
