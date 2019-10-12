@@ -9,60 +9,26 @@ router.get('/', (req, res) => {
 })
 
 router.post('/signup', (req, res) => {
-  const { name, password } = req.body
   let { email } = req.body
-
-  if (!name) {
-    return res.send({
-      success: false,
-      message: 'Error: name must not be blank',
-    })
-  }
-  if (!email) {
-    return res.send({
-      success: false,
-      message: 'Error: email must not be blank',
-    })
-  }
-  if (!password) {
-    return res.send({
-      success: false,
-      message: 'Error: password must not be blank',
-    })
-  }
-
   //email validation to do
   email = email.toLowerCase()
 
-  User.find(
-    {
-      email: email,
-    },
-    (err, previousUsers) => {
-      if (err) {
-        sendServerError(res)
-      } else if (previousUsers.length > 0) {
+  User.find({
+    email: email,
+  })
+    .then(previousUsers => {
+      if (previousUsers.length > 0) {
         return res.send({
           success: false,
           message: 'Error: Account already exists',
         })
+      } else {
+        User.create(req.body)
+          .then(newUser => res.json(newUser))
+          .catch(err => res.status(400).json(err))
       }
-      const newUser = new User()
-
-      newUser.email = email
-      newUser.name = name
-      newUser.password = newUser.generateHash(password)
-      newUser.save((err, user) => {
-        if (err) {
-          sendServerError(res)
-        }
-        return res.send({
-          success: true,
-          message: 'Signed up',
-        })
-      })
-    }
-  )
+    })
+    .catch(err => err.json(err))
 })
 
 router.post('/signin', (req, res) => {

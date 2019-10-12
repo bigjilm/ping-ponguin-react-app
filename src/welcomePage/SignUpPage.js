@@ -52,12 +52,14 @@ export default function SignUpPage() {
           name="email"
           type="email"
           placeholder="Gib hier deine E-Mail-Adresse ein"
+          missingInputs={missingInputs}
         />
         <TextInput
           labelName="Passwort"
           name="password"
           type="password"
           placeholder="Gib hier ein Passwort ein"
+          missingInputs={missingInputs}
         />
         <ButtonStyled>Profil Erstellen</ButtonStyled>
       </FormStyled>
@@ -69,11 +71,13 @@ export default function SignUpPage() {
     const form = event.currentTarget
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
-    signUp(data).then(res => {
-      form.reset()
-      console.log(res)
-      //   history.push('/users')
-    })
+    signUp(data)
+      .then(res => {
+        form.reset()
+        console.log(res)
+        //   history.push('/users')
+      })
+      .catch(err => setMissingInputs(Object.keys(err.errors)))
   }
 }
 

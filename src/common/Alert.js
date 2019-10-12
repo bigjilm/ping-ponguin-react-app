@@ -16,6 +16,8 @@ export default function Alert({ target, children }) {
       residence: 'Bitte gib einen Wohnort ein',
       abilityLeft: 'Bitte gib an, wie gut du mit links spielst',
       abilityRight: 'Bitte gib an, wie gut du mit rechts spielst',
+      email: 'Bitte gib eine E-Mail-Adresse ein',
+      password: 'Bitte gib ein Passwort ein',
     }
     return alertName[target]
   }
