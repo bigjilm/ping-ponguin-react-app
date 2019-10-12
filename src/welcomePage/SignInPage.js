@@ -1,11 +1,10 @@
 import React from 'react'
-import styled from 'styled-components/macro'
 import { useHistory } from 'react-router'
 import Page from '../common/Page'
+import { ButtonStyled, FormStyled } from '../common/StyledElements'
 import TextInput from '../common/TextInput'
 import { signIn } from '../utils/services'
 import { setToStorage } from '../utils/storage'
-import { FormStyled, ButtonStyled } from '../common/StyledElements'
 
 export default function SignInPage() {
   let history = useHistory()
@@ -28,8 +27,8 @@ export default function SignInPage() {
     console.log(data)
     signIn(data).then(res => {
       setToStorage('pingu', res.token)
-      form.reset()
       console.log(res)
+      //   form.reset()
       //   history.push('/users')
     })
   }

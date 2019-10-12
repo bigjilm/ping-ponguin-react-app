@@ -54,49 +54,82 @@ router.post('/signin', (req, res) => {
       message: 'Error: password must not be blank',
     })
   }
-  User.find(
-    {
-      email: email,
-    },
-    (err, users) => {
-      if (err) {
-        return res.send({
-          success: false,
-          message: 'Error: Server error',
-        })
-      } else if (users.length !== 1) {
-        return res.send({
-          success: false,
-          message: 'Error: Invalid email',
-        })
-      }
 
+  User.find({
+    email: email,
+  }).then(users => {
+    if (users.length !== 1) {
+      return res.send({
+        success: false,
+        message: 'Error: Invalid email',
+      })
+    } else {
       const user = users[0]
       if (!user.validPassword(password)) {
         return res.send({
           success: false,
           message: 'Error: Wrong password',
         })
+      } else {
+        UserSession.create({
+          userId: user._id,
+        })
+          .then(user => {
+            res.json({
+              success: true,
+              message: 'Signed in',
+              token: user._id,
+            })
+          })
+          .catch(err => console.error(err))
       }
-      const userSession = new UserSession()
-      userSession.userId = user._id
-      userSession.save((err, doc) => {
-        if (err) {
-          return res.send({
-            success: false,
-            message: 'Error: Server error',
-          })
-        } else {
-          return res.send({
-            success: true,
-            message: 'Signed in',
-            token: doc._id,
-          })
-        }
-      })
     }
-  )
+  })
 })
+
+// User.find(
+//   {
+//     email: email,
+//   },
+//   (err, users) => {
+//     if (err) {
+//       return res.send({
+//         success: false,
+//         message: 'Error: Server error',
+//       })
+//     } else if (users.length !== 1) {
+//       return res.send({
+//         success: false,
+//         message: 'Error: Invalid email',
+//       })
+//     }
+
+//     const user = users[0]
+//     if (!user.validPassword(password)) {
+//       return res.send({
+//         success: false,
+//         message: 'Error: Wrong password',
+//       })
+//     }
+//     const userSession = new UserSession()
+//     userSession.userId = user._id
+//     userSession.save((err, doc) => {
+//       if (err) {
+//         return res.send({
+//           success: false,
+//           message: 'Error: Server error',
+//         })
+//       } else {
+//         return res.send({
+//           success: true,
+//           message: 'Signed in',
+//           token: doc._id,
+//         })
+//       }
+//     })
+//     }
+//   )
+// })
 
 router.get('/verify', (req, res) => {
   const { token } = req.query
@@ -159,10 +192,6 @@ function sendServerError(res) {
 
 function generateHash(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8))
-}
-
-function comparePassword(password) {
-  return bcrypt.compareSync(password, this.password)
 }
 
 module.exports = router
