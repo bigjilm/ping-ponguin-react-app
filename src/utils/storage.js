@@ -1,6 +1,12 @@
 export function getFromStorage(key) {
-  //error handling!!!
-  return localStorage.getItem(key)
+  if (!key) {
+    return null
+  }
+  try {
+    return localStorage.getItem(key)
+  } catch {
+    return null
+  }
 }
 
 export function setToStorage(key, value) {

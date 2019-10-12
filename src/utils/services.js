@@ -2,22 +2,20 @@ export function getUsers() {
   return fetchUsers()
 }
 
-// export function getToken(key) {
-//   return fetch('/users/verify', {
-//     method: 'GET',
-//     body: JSON.stringify(key),
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   }).then(res => handleError(res))
-// }
-
 export function signIn(data) {
   return fetchUsers({ path: 'users/signin', method: 'POST', data })
 }
 
 export function signUp(data) {
   return fetchUsers({ path: 'users/signup', method: 'POST', data })
+}
+
+export function getUserSession(token) {
+  return fetch('/users/verify?token=' + token, {
+    method: 'GET',
+  })
+    .then(res => res.json())
+    .catch(err => console.error(err))
 }
 
 export function postUser(data) {

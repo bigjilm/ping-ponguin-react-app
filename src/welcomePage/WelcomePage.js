@@ -1,21 +1,31 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
-import { getFromStorage } from '../utils/storage'
+import { useHistory } from 'react-router'
+import { getFromStorage, setToStorage } from '../utils/storage'
 import TextInput from '../common/TextInput'
-import { getToken, postUser, signIn, signUp } from '../utils/services'
+import { signIn, signUp, getUserSession } from '../utils/services'
 
 export default function WelcomePage() {
   // add loading message
+  const [isLoading, setIsLoading] = useState(true)
+  let history = useHistory()
 
   useEffect(() => {
-    // const token = getFromStorage('pingu')
-    // if (token) {
-    // }
+    const token = getFromStorage('pingu')
+    if (token) {
+      getUserSession(token).then(session => {
+        console.log(session.success)
+        // history.push('/')
+      })
+    } else {
+      setIsLoading(false)
+    }
   }, [])
 
   return (
     <WelcomePageStyled>
+      {isLoading && <p>Loading...</p>}
       <form onSubmit={handleSignIn}>
         <label>
           Email
@@ -51,6 +61,7 @@ export default function WelcomePage() {
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
     signIn(data).then(res => {
+      setToStorage('pingu', res.token)
       form.reset()
       console.log(res)
     })
