@@ -87,6 +87,7 @@ export default function SignUpPage({ onSignUp }) {
     }
     signUp(newUser)
       .then(newUser => {
+        //notify user if email already registered
         onSignUp(newUser)
         form.reset()
         history.push('/users')

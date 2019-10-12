@@ -7,8 +7,8 @@ Alert.propTypes = {
   children: PropTypes.node,
 }
 
-export default function Alert({ target }) {
-  return <AlertStyled>{setAlert(target)}</AlertStyled>
+export default function Alert({ target, children }) {
+  return <AlertStyled>{target ? setAlert(target) : children}</AlertStyled>
 
   function setAlert(target) {
     const alertName = {
@@ -25,5 +25,6 @@ export default function Alert({ target }) {
 
 const AlertStyled = styled.span`
   font-size: 14px;
+  font-weight: bold;
   color: #c8232a;
 `

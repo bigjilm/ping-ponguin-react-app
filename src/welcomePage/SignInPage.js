@@ -5,25 +5,18 @@ import { ButtonStyled, FormStyled } from '../common/StyledElements'
 import TextInput from '../common/TextInput'
 import { signIn } from '../utils/services'
 import { setToStorage } from '../utils/storage'
+import Alert from '../common/Alert'
 
 export default function SignInPage() {
-  const [missingInputs, setMissingInputs] = useState([])
+  const [alert, setAlert] = useState('')
   let history = useHistory()
 
   return (
     <Page title="ping ponguin">
       <FormStyled onSubmit={handleSignIn}>
-        <TextInput
-          name="email"
-          labelName="E-Mail-Adresse"
-          missingInputs={missingInputs}
-        />
-        <TextInput
-          name="password"
-          labelName="Passwort"
-          type="password"
-          missingInputs={missingInputs}
-        />
+        <TextInput name="email" labelName="E-Mail-Adresse" />
+        <TextInput name="password" labelName="Passwort" type="password" />
+        {alert && <Alert>{alert}</Alert>}
         <ButtonStyled>Sign in</ButtonStyled>
       </FormStyled>
     </Page>
@@ -40,16 +33,18 @@ export default function SignInPage() {
           throw new Error(res.message)
         }
         setToStorage('pingu', res.token)
-        // console.log(res)
-        //   form.reset()
-        //   history.push('/users')
+        form.reset()
+        history.push('/users')
       })
       .catch(err => {
-        console.log(err)
         if (err.message === 'Error: email must not be blank') {
-          setMissingInputs(['email'])
+          setAlert('Bitte gib deine E-Mail-Adresse ein')
         } else if (err.message === 'Error: password must not be blank') {
-          setMissingInputs(['password'])
+          setAlert('Bitte gib dein Passwort ein')
+        } else if (err.message === 'Error: invalid email') {
+          setAlert('Zu dieser E-Mail-Adresse existiert kein Konto')
+        } else if (err.message === 'Error: wrong password') {
+          setAlert('Das Passwort ist falsch')
         }
       })
   }

@@ -72,14 +72,14 @@ router.post('/signin', (req, res) => {
       if (users.length !== 1) {
         return res.json({
           success: false,
-          message: 'Error: Invalid email',
+          message: 'Error: invalid email',
         })
       } else {
         const user = users[0]
         if (!user.validPassword(password)) {
           return res.json({
             success: false,
-            message: 'Error: Wrong password',
+            message: 'Error: wrong password',
           })
         } else {
           UserSession.create({
@@ -113,7 +113,7 @@ router.get('/verify', (req, res) => {
       if (sessions.length !== 1) {
         return res.json({
           success: false,
-          message: 'Error: No session exists',
+          message: 'Error: no session exists',
         })
       } else {
         return res.json({
