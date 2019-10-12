@@ -23,6 +23,7 @@ export default function UsersListPage({ users }) {
   return (
     <Page
       title="ping ponguin"
+      showFilterSymbol={true}
       isFilterVisible={isFilterVisible}
       onFilterClick={handleFilterClick}
     >

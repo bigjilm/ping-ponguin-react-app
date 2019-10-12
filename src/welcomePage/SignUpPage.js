@@ -6,6 +6,7 @@ import Page from '../common/Page'
 import TextInput from '../common/TextInput'
 import { signUp } from '../utils/services'
 import RadioButtonGroup from './RadioButtonGroup'
+import { ButtonStyled, FormStyled } from '../common/StyledElements'
 
 SignUpPage.propTypes = {
   onSignUp: PropTypes.func,
@@ -98,15 +99,6 @@ export default function SignUpPage({ onSignUp }) {
   }
 }
 
-const FormStyled = styled.form`
-  display: grid;
-  grid-auto-rows: min-content;
-  grid-gap: 30px;
-  padding: 20px;
-  overflow: auto;
-  scroll-behavior: smooth;
-`
-
 const ContainerStyled = styled.div`
   display: grid;
   grid-auto-rows: auto;
@@ -118,11 +110,4 @@ const StyledParagraph = styled.p`
   font-size: 14px;
   font-weight: normal;
   margin: 0;
-`
-
-const ButtonStyled = styled.button`
-  width: 150px;
-  height: 50px;
-  background-color: #c2d4d8;
-  border-radius: 5px;
 `

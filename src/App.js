@@ -6,6 +6,7 @@ import UsersListPage from './usersListPage/UsersListPage'
 import WelcomePage from './welcomePage/WelcomePage'
 import { getUsers } from './utils/services'
 import SignUpPage from './welcomePage/SignUpPage'
+import SignInPage from './welcomePage/SignInPage'
 
 export default function App() {
   const [users, setUsers] = useState([])
@@ -20,6 +21,9 @@ export default function App() {
         <Switch>
           <Route exact path="/">
             <WelcomePage />
+          </Route>
+          <Route exact path="/signin">
+            <SignInPage />
           </Route>
           <Route exact path="/signup">
             <SignUpPage onSignUp={newUser => setUsers([...users, newUser])} />

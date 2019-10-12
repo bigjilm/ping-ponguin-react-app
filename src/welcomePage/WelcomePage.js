@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
-import Page from '../common/Page'
-import TextInput from '../common/TextInput'
-import { getUserSession, logout, signIn } from '../utils/services'
-import { getFromStorage, setToStorage } from '../utils/storage'
+import ppLogo from '../assets/pp-logo.png'
+import { ButtonStyled } from '../common/StyledElements'
+import { getUserSession } from '../utils/services'
+import { getFromStorage } from '../utils/storage'
 
 export default function WelcomePage() {
   // add loading message
@@ -28,47 +28,58 @@ export default function WelcomePage() {
   }, [])
 
   return (
-    <Page title="ping ponguin">
+    <WelcomePageStyled>
+      <HeadlineStyled>ping ponguin</HeadlineStyled>
+      <LogoStyled src={ppLogo} />
       {isLoading && <p>Loading...</p>}
-      <form onSubmit={handleSignIn}>
-        <label>
-          Email
-          <TextInput name="email" type="email" />
-        </label>
-        <label>
-          Passwort
-          <TextInput name="password" type="password" />
-        </label>
-        <button>Sign in</button>
-      </form>
-
-      <button onClick={handleSignUpClick}>Sign up</button>
-
-      <button onClick={handleLogout}>Logout</button>
-    </Page>
+      {isLoading || (
+        <WelcomeButtonsStyled>
+          <ButtonStyled onClick={handleSignInClick}>Sign in</ButtonStyled>
+          <ButtonStyled onClick={handleSignUpClick}>Sign up</ButtonStyled>
+        </WelcomeButtonsStyled>
+      )}
+    </WelcomePageStyled>
   )
 
-  function handleSignIn(event) {
-    event.preventDefault()
-    const form = event.currentTarget
-    const formData = new FormData(form)
-    const data = Object.fromEntries(formData)
-    signIn(data).then(res => {
-      setToStorage('pingu', res.token)
-      form.reset()
-      console.log(res)
-    })
+  function handleSignInClick() {
+    history.push('/signin')
   }
 
   function handleSignUpClick() {
     history.push('/signup')
   }
 
-  function handleLogout() {
-    const token = getFromStorage('pingu')
-    if (token) {
-      setToStorage('pingu', null)
-      logout(token).then(res => console.log(res.message))
-    }
-  }
+  //   function handleLogout() {
+  //     const token = getFromStorage('pingu')
+  //     if (token) {
+  //       setToStorage('pingu', null)
+  //       logout(token).then(res => console.log(res.message))
+  //     }
+  //   }
 }
+
+const WelcomePageStyled = styled.main`
+  display: grid;
+  grid-auto-rows: min-content;
+  justify-items: center;
+  grid-gap: 50px;
+  background-color: #418ab3;
+  overflow: auto;
+  padding: 80px;
+  color: #c2d4d8;
+`
+
+const HeadlineStyled = styled.h1`
+  margin: 0;
+`
+
+const WelcomeButtonsStyled = styled.div`
+  display: grid;
+  grid-auto-rows: min-content;
+  justify-items: center;
+  grid-gap: 30px;
+`
+
+const LogoStyled = styled.img`
+  height: 100px;
+`

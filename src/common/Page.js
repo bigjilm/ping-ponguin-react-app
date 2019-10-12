@@ -5,6 +5,7 @@ import Header from './Header'
 
 Page.propTypes = {
   title: PropTypes.string,
+  showFilterSymbol: PropTypes.bool,
   isFilterVisible: PropTypes.bool,
   onFilterClick: PropTypes.func,
   children: PropTypes.node,
@@ -12,6 +13,7 @@ Page.propTypes = {
 
 export default function Page({
   title,
+  showFilterSymbol,
   isFilterVisible,
   onFilterClick,
   children,
@@ -20,6 +22,7 @@ export default function Page({
     <PageStyled>
       <Header
         title={title}
+        showFilterSymbol={showFilterSymbol}
         isFilterVisible={isFilterVisible}
         onFilterClick={onFilterClick}
       />
