@@ -48,6 +48,7 @@ function handleError(res) {
       throw err
     })
     //as found here https://stackoverflow.com/questions/29473426/fetch-reject-promise-with-json-error-object
+  } else {
+    return json
   }
-  return json
 }

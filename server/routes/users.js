@@ -25,16 +25,26 @@ router.post('/signup', (req, res) => {
         })
       } else {
         const { password } = req.body
-        const encryptedPassword = generateHash(password)
+        let encryptedPassword
+
+        if (password) {
+          encryptedPassword = generateHash(password)
+        } else {
+          encryptedPassword = ''
+        }
 
         User.create({ ...req.body, password: encryptedPassword })
           .then(newUser => {
             res.json(newUser)
           })
-          .catch(err => res.status(400).json(err))
+          .catch(err => {
+            res.status(400).json(err)
+          })
       }
     })
-    .catch(err => res.status(400).json(err))
+    .catch(err => {
+      res.status(400).json(err)
+    })
 })
 
 router.post('/signin', (req, res) => {
