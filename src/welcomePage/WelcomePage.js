@@ -17,7 +17,8 @@ export default function WelcomePage() {
       getUserSession(token).then(session => {
         console.log(session.message)
         if (session.success) {
-          //   history.push('/users')
+          setIsLoading(false)
+          history.push('/users')
         } else {
           setIsLoading(false)
         }
