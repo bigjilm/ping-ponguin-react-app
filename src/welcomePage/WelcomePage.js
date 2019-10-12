@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components/macro'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
-import { getFromStorage, setToStorage } from '../utils/storage'
+import styled from 'styled-components/macro'
+import Page from '../common/Page'
 import TextInput from '../common/TextInput'
-import { signIn, signUp, getUserSession, logout } from '../utils/services'
+import { getUserSession, logout, signIn } from '../utils/services'
+import { getFromStorage, setToStorage } from '../utils/storage'
 
 export default function WelcomePage() {
   // add loading message
@@ -28,7 +28,7 @@ export default function WelcomePage() {
   }, [])
 
   return (
-    <WelcomePageStyled>
+    <Page title="ping ponguin">
       {isLoading && <p>Loading...</p>}
       <form onSubmit={handleSignIn}>
         <label>
@@ -41,23 +41,11 @@ export default function WelcomePage() {
         </label>
         <button>Sign in</button>
       </form>
-      <form onSubmit={handleSignUp}>
-        <label>
-          Name
-          <TextInput name="name" type="text" />
-        </label>
-        <label>
-          Email
-          <TextInput name="email" type="email" />
-        </label>
-        <label>
-          Passwort
-          <TextInput name="password" type="password" />
-        </label>
-        <button>Sign up</button>
-      </form>
+
+      <button onClick={handleSignUpClick}>Sign up</button>
+
       <button onClick={handleLogout}>Logout</button>
-    </WelcomePageStyled>
+    </Page>
   )
 
   function handleSignIn(event) {
@@ -72,15 +60,8 @@ export default function WelcomePage() {
     })
   }
 
-  function handleSignUp(event) {
-    event.preventDefault()
-    const form = event.currentTarget
-    const formData = new FormData(form)
-    const data = Object.fromEntries(formData)
-    signUp(data).then(res => {
-      form.reset()
-      console.log(res)
-    })
+  function handleSignUpClick() {
+    history.push('/signup')
   }
 
   function handleLogout() {
@@ -91,7 +72,3 @@ export default function WelcomePage() {
     }
   }
 }
-
-const WelcomePageStyled = styled.main`
-  display: grid;
-`

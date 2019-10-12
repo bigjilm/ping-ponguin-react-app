@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import Navigation from './common/Navigation'
-import CreationPage from './creationPage/CreationPage'
+// import CreationPage from './creationPage/CreationPage'
 import UsersListPage from './usersListPage/UsersListPage'
 import WelcomePage from './welcomePage/WelcomePage'
 import { getUsers } from './utils/services'
+import SignUpPage from './welcomePage/SignUpPage'
 
 export default function App() {
   const [users, setUsers] = useState([])
@@ -21,21 +22,24 @@ export default function App() {
           <Route exact path="/">
             <WelcomePage />
           </Route>
+          <Route exact path="/signup">
+            <SignUpPage />
+          </Route>
           <Route path="/users">
             <UsersListPage users={users} />
           </Route>
-          <Route path="/profile">
+          {/* <Route path="/profile">
             <CreationPage onSubmit={handleSubmit}></CreationPage>
-          </Route>
+          </Route> */}
         </Switch>
         <Navigation />
       </AppStyled>
     </Router>
   )
 
-  function handleSubmit(newUser) {
-    setUsers([...users, newUser])
-  }
+  // function handleSubmit(newUser) {
+  //   setUsers([...users, newUser])
+  // }
 }
 
 const AppStyled = styled.div`

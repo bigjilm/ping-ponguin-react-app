@@ -1,27 +1,18 @@
-import PropTypes from 'prop-types'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import Page from '../common/Page'
-import { postUser } from '../utils/services'
-import RadioButtonGroup from '../welcomePage/RadioButtonGroup'
 import TextInput from '../common/TextInput'
+import { signUp } from '../utils/services'
+import RadioButtonGroup from './RadioButtonGroup'
 
-CreationPage.propTypes = {
-  onSubmit: PropTypes.func,
-}
-
-export default function CreationPage({ onSubmit }) {
+export default function SignUpPage() {
   const [missingInputs, setMissingInputs] = useState([])
   let history = useHistory()
 
-  useEffect(() => {
-    document.querySelector('input').focus()
-  }, [])
-
   return (
     <Page title="Profil erstellen">
-      <FormStyled onSubmit={handleSubmit}>
+      <FormStyled onSubmit={handleSignUp}>
         <TextInput
           labelName="Name"
           name="name"
@@ -56,27 +47,33 @@ export default function CreationPage({ onSubmit }) {
           name="imageURL"
           placeholder="Gib hier die URL deines Bildes ein"
         />
+        <TextInput
+          labelName="E-Mail"
+          name="email"
+          type="email"
+          placeholder="Gib hier deine E-Mail-Adresse ein"
+        />
+        <TextInput
+          labelName="Passwort"
+          name="password"
+          type="password"
+          placeholder="Gib hier ein Passwort ein"
+        />
         <ButtonStyled>Profil Erstellen</ButtonStyled>
       </FormStyled>
     </Page>
   )
 
-  function handleSubmit(event) {
+  function handleSignUp(event) {
     event.preventDefault()
     const form = event.currentTarget
     const formData = new FormData(form)
-    const newUser = Object.fromEntries(formData)
-    if (newUser.imageURL === '') {
-      newUser.imageURL =
-        'https://farm9.staticflickr.com/8494/8334907268_ffacd64d3f.jpg'
-    }
-    postUser(newUser)
-      .then(res => {
-        onSubmit(res)
-        form.reset()
-        history.push('/')
-      })
-      .catch(err => setMissingInputs(Object.keys(err.errors)))
+    const data = Object.fromEntries(formData)
+    signUp(data).then(res => {
+      form.reset()
+      console.log(res)
+      //   history.push('/users')
+    })
   }
 }
 
