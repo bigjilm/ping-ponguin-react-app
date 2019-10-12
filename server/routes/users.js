@@ -19,7 +19,7 @@ router.post('/signup', (req, res) => {
   })
     .then(previousUsers => {
       if (previousUsers.length > 0) {
-        return res.send({
+        return res.json({
           success: false,
           message: 'Error: Account already exists',
         })
@@ -34,7 +34,7 @@ router.post('/signup', (req, res) => {
           .catch(err => res.status(400).json(err))
       }
     })
-    .catch(err => res.json(err))
+    .catch(err => res.status(400).json(err))
 })
 
 router.post('/signin', (req, res) => {
@@ -43,13 +43,13 @@ router.post('/signin', (req, res) => {
   email = email.toLowerCase()
 
   if (!email) {
-    return res.send({
+    return res.json({
       success: false,
       message: 'Error: email must not be blank',
     })
   }
   if (!password) {
-    return res.send({
+    return res.json({
       success: false,
       message: 'Error: password must not be blank',
     })
@@ -57,79 +57,37 @@ router.post('/signin', (req, res) => {
 
   User.find({
     email: email,
-  }).then(users => {
-    if (users.length !== 1) {
-      return res.send({
-        success: false,
-        message: 'Error: Invalid email',
-      })
-    } else {
-      const user = users[0]
-      if (!user.validPassword(password)) {
-        return res.send({
+  })
+    .then(users => {
+      if (users.length !== 1) {
+        return res.json({
           success: false,
-          message: 'Error: Wrong password',
+          message: 'Error: Invalid email',
         })
       } else {
-        UserSession.create({
-          userId: user._id,
-        })
-          .then(user => {
-            res.json({
-              success: true,
-              message: 'Signed in',
-              token: user._id,
-            })
+        const user = users[0]
+        if (!user.validPassword(password)) {
+          return res.json({
+            success: false,
+            message: 'Error: Wrong password',
           })
-          .catch(err => console.error(err))
+        } else {
+          UserSession.create({
+            userId: user._id,
+          })
+            .then(user => {
+              res.json({
+                success: true,
+                message: 'Signed in',
+                token: user._id,
+              })
+            })
+            .catch(err => res.status(400).json(err))
+        }
       }
-    }
-  })
+    })
+    .catch(err => res.status(400).json(err))
 })
-
-// User.find(
-//   {
-//     email: email,
-//   },
-//   (err, users) => {
-//     if (err) {
-//       return res.send({
-//         success: false,
-//         message: 'Error: Server error',
-//       })
-//     } else if (users.length !== 1) {
-//       return res.send({
-//         success: false,
-//         message: 'Error: Invalid email',
-//       })
-//     }
-
-//     const user = users[0]
-//     if (!user.validPassword(password)) {
-//       return res.send({
-//         success: false,
-//         message: 'Error: Wrong password',
-//       })
-//     }
-//     const userSession = new UserSession()
-//     userSession.userId = user._id
-//     userSession.save((err, doc) => {
-//       if (err) {
-//         return res.send({
-//           success: false,
-//           message: 'Error: Server error',
-//         })
-//       } else {
-//         return res.send({
-//           success: true,
-//           message: 'Signed in',
-//           token: doc._id,
-//         })
-//       }
-//     })
-//     }
-//   )
-// })
 
 router.get('/verify', (req, res) => {
   const { token } = req.query
@@ -137,58 +95,40 @@ router.get('/verify', (req, res) => {
   //sends server error when token does not have the same length as _id. Why???
   //https://github.com/Automattic/mongoose/issues/1959
   //Check length or just leave it throwing the server error???
-  UserSession.find(
-    {
-      _id: token,
-      isDeleted: false,
-    },
-    (err, sessions) => {
-      if (err) {
-        sendServerError(res)
-      } else if (sessions.length !== 1) {
-        return res.send({
+  UserSession.find({
+    _id: token,
+    isDeleted: false,
+  })
+    .then(sessions => {
+      if (sessions.length !== 1) {
+        return res.json({
           success: false,
           message: 'Error: No session exists',
         })
       } else {
-        return res.send({
+        return res.json({
           success: true,
           message: 'You are logged in',
         })
       }
-    }
-  )
+    })
+    .catch(err => res.status(400).json(err))
 })
 
-//logout mit GET request??? Nicht mit PATCH?
 router.get('/logout', (req, res) => {
   const { token } = req.query
 
-  //sends server error when token does not have the same length as _id. Why???
-  UserSession.findByIdAndUpdate(
-    token,
-    {
-      isDeleted: true,
-    },
-    (err, sessions) => {
-      if (err) {
-        sendServerError(res)
-      } else {
-        return res.send({
-          success: true,
-          message: 'You are logged out',
-        })
-      }
-    }
-  )
-})
-
-function sendServerError(res) {
-  return res.send({
-    success: false,
-    message: 'Error: Server error',
+  UserSession.findByIdAndUpdate(token, {
+    isDeleted: true,
   })
-}
+    .then(() =>
+      res.json({
+        success: true,
+        message: 'You are logged out',
+      })
+    )
+    .catch(err => res.status(400).json(err))
+})
 
 function generateHash(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8))
