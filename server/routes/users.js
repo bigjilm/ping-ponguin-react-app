@@ -21,7 +21,7 @@ router.post('/signup', (req, res) => {
       if (previousUsers.length > 0) {
         return res.json({
           success: false,
-          message: 'Error: Account already exists',
+          message: 'Error: account already exists',
         })
       } else {
         const { password } = req.body

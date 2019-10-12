@@ -7,6 +7,7 @@ import TextInput from '../common/TextInput'
 import { signUp } from '../utils/services'
 import RadioButtonGroup from './RadioButtonGroup'
 import { ButtonStyled, FormStyled } from '../common/StyledElements'
+import Alert from '../common/Alert'
 
 SignUpPage.propTypes = {
   onSignUp: PropTypes.func,
@@ -14,6 +15,7 @@ SignUpPage.propTypes = {
 
 export default function SignUpPage({ onSignUp }) {
   const [missingInputs, setMissingInputs] = useState([])
+  const [alert, setAlert] = useState('')
   let history = useHistory()
 
   useEffect(() => {
@@ -60,7 +62,6 @@ export default function SignUpPage({ onSignUp }) {
         <TextInput
           labelName="E-Mail"
           name="email"
-          type="email"
           placeholder="Gib hier deine E-Mail-Adresse ein"
           missingInputs={missingInputs}
         />
@@ -71,7 +72,9 @@ export default function SignUpPage({ onSignUp }) {
           placeholder="Gib hier ein Passwort ein"
           missingInputs={missingInputs}
         />
+        {alert && <Alert>{alert}</Alert>}
         <ButtonStyled>Profil Erstellen</ButtonStyled>
+        <Cushion />
       </FormStyled>
     </Page>
   )
@@ -86,14 +89,21 @@ export default function SignUpPage({ onSignUp }) {
         'https://farm9.staticflickr.com/8494/8334907268_ffacd64d3f.jpg'
     }
     signUp(newUser)
-      .then(newUser => {
-        //notify user if email already registered
-        onSignUp(newUser)
+      .then(res => {
+        if (!res.success) {
+          throw new Error(res.message)
+        }
+        onSignUp(res)
         form.reset()
         history.push('/users')
       })
       .catch(err => {
-        setMissingInputs(Object.keys(err.errors))
+        console.log(err.message)
+        if (err.message === 'Error: account already exists') {
+          setAlert('Zu dieser E-Mail-Adresse existiert bereits ein Konto')
+        } else if (err.message.startsWith('User validation failed')) {
+          setMissingInputs(Object.keys(err.errors))
+        }
       })
   }
 }
@@ -109,4 +119,10 @@ const StyledParagraph = styled.p`
   font-size: 14px;
   font-weight: normal;
   margin: 0;
+`
+
+//Das folgende Element erzeugt einen Abstand zur Unterkante, wenn man ganz nach unten scrollt.
+//Gibt es eine bessere Lösung?
+const Cushion = styled.div`
+  height: 20px;
 `
