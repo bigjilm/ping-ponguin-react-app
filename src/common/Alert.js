@@ -7,8 +7,8 @@ Alert.propTypes = {
   children: PropTypes.node,
 }
 
-export default function Alert({ target, children }) {
-  return <AlertStyled>{target ? setAlert(target) : children}</AlertStyled>
+export default function Alert({ target }) {
+  return <AlertStyled>{setAlert(target)}</AlertStyled>
 
   function setAlert(target) {
     const alertName = {
