@@ -4,15 +4,15 @@ export function getUsers() {
 }
 
 export function signIn(data) {
-  return fetchUsers({ path: 'users/signin', method: 'POST', data })
+  return fetchUsers({ path: '/signin', method: 'POST', data })
 }
 
 export function signUp(data) {
-  return fetchUsers({ path: 'users/signup', method: 'POST', data })
+  return fetchUsers({ path: '/signup', method: 'POST', data })
 }
 
 export function getUserSession(token) {
-  return fetch('/users/verify?token=' + token, {
+  return fetch('/verify?token=' + token, {
     method: 'GET',
   })
     .then(res => res.json())
@@ -20,7 +20,7 @@ export function getUserSession(token) {
 }
 
 export function logout(token) {
-  return fetch('/users/logout?token=' + token, {
+  return fetch('/logout?token=' + token, {
     method: 'GET',
   })
     .then(res => res.json())
@@ -45,6 +45,7 @@ function handleError(res) {
   let json = res.json()
   if (!res.ok) {
     return json.then(err => {
+      console.error(err)
       throw err
     })
     //as found here https://stackoverflow.com/questions/29473426/fetch-reject-promise-with-json-error-object

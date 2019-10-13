@@ -15,4 +15,7 @@ server.use(cors())
 server.set('json spaces', 2)
 
 server.use('/users', require('./routes/users'))
-// server.use('/users/signin', require('./routes/signin'))
+server.use('/signup', require('./routes/signup'))
+server.use('/signin', require('./routes/signin'))
+server.use('/verify', require('./routes/verify'))
+server.use('/logout', require('./routes/logout'))
