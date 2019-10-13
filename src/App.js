@@ -25,7 +25,7 @@ export default function App() {
             <SignInPage />
           </Route>
           <Route exact path="/signup">
-            <SignUpPage onSignUp={newUser => setUsers([...users, newUser])} />
+            <SignUpPage />
           </Route>
           <Route path="/users">
             <UsersListPage users={users} />

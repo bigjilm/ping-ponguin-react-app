@@ -27,8 +27,11 @@ router.post('/', (req, res) => {
         }
 
         User.create({ ...req.body, password: encryptedPassword })
-          .then(newUser => {
-            res.json(newUser)
+          .then(() => {
+            res.json({
+              success: true,
+              message: 'You are now signed up',
+            })
           })
           .catch(err => {
             res.status(400).json(err)

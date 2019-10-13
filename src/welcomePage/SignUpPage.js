@@ -1,19 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
-import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
+import Alert from '../common/Alert'
 import Page from '../common/Page'
+import { ButtonStyled, FormStyled } from '../common/StyledElements'
 import TextInput from '../common/TextInput'
 import { signUp } from '../utils/services'
 import RadioButtonGroup from './RadioButtonGroup'
-import { ButtonStyled, FormStyled } from '../common/StyledElements'
-import Alert from '../common/Alert'
 
-SignUpPage.propTypes = {
-  onSignUp: PropTypes.func,
-}
-
-export default function SignUpPage({ onSignUp }) {
+export default function SignUpPage() {
   const [missingInputs, setMissingInputs] = useState([])
   const [alert, setAlert] = useState('')
   let history = useHistory()
@@ -90,12 +85,12 @@ export default function SignUpPage({ onSignUp }) {
     }
     signUp(newUser)
       .then(res => {
+        console.log(res)
         if (!res.success) {
           throw new Error(res.message)
         }
-        onSignUp(res)
         form.reset()
-        history.push('/users')
+        history.push('/signin')
       })
       .catch(err => {
         console.log(err.message)
@@ -103,6 +98,8 @@ export default function SignUpPage({ onSignUp }) {
           setAlert('Zu dieser E-Mail-Adresse existiert bereits ein Konto')
         } else if (err.message.startsWith('User validation failed')) {
           setMissingInputs(Object.keys(err.errors))
+        } else {
+          console.error(err)
         }
       })
   }
