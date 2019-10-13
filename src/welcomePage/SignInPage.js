@@ -57,6 +57,8 @@ export default function SignInPage() {
           setAlert('Zu dieser E-Mail-Adresse existiert kein Konto')
         } else if (err.message === 'Error: wrong password') {
           setAlert('Das Passwort ist falsch')
+        } else {
+          console.error(err)
         }
       })
   }

@@ -26,7 +26,7 @@ export default function WelcomePage() {
     } else {
       setIsLoading(false)
     }
-  }, [])
+  }, [history])
 
   return (
     <WelcomePageStyled>

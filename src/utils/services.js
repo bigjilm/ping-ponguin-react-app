@@ -26,10 +26,6 @@ export function logout(token) {
     .catch(err => console.error(err))
 }
 
-export function postUser(data) {
-  return fetchUsers({ method: 'POST', data })
-}
-
 function fetchUsers({ path = '/users/', method = 'GET', id = '', data } = {}) {
   return fetch(path + id, {
     method,
