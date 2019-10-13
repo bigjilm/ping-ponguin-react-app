@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import UsersListPage from './usersListPage/UsersListPage'
+import UsersListPage from './usersList/UsersListPage'
 import { getUsers } from './utils/services'
-import SignInPage from './welcomePage/SignInPage'
-import SignUpPage from './welcomePage/SignUpPage'
-import WelcomePage from './welcomePage/WelcomePage'
+import SignInPage from './login/SignInPage'
+import SignUpPage from './login/SignUpPage'
+import WelcomePage from './login/WelcomePage'
 
 export default function App() {
   const [users, setUsers] = useState([])
