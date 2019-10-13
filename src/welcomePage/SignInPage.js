@@ -1,25 +1,37 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router'
-import Page from '../common/Page'
+import styled from 'styled-components/macro'
+import Alert from '../common/Alert'
 import { ButtonStyled, FormStyled } from '../common/StyledElements'
 import TextInput from '../common/TextInput'
 import { signIn } from '../utils/services'
 import { setToStorage } from '../utils/storage'
-import Alert from '../common/Alert'
+import ppLogo from '../assets/pp-logo.png'
 
 export default function SignInPage() {
   const [alert, setAlert] = useState('')
   let history = useHistory()
 
   return (
-    <Page title="ping ponguin">
+    <SignInPageStyled title="ping ponguin">
+      <HeadlineStyled>ping ponguin</HeadlineStyled>
+      <LogoStyled src={ppLogo} />
       <FormStyled onSubmit={handleSignIn}>
-        <TextInput name="email" labelName="E-Mail-Adresse" />
-        <TextInput name="password" labelName="Passwort" type="password" />
+        <TextInput
+          name="email"
+          labelName="E-Mail-Adresse"
+          placeholder="Gib hier deine E-Mail-Adresse ein"
+        />
+        <TextInput
+          name="password"
+          labelName="Passwort"
+          placeholder="Gib hier ein Passwort ein"
+          type="password"
+        />
         {alert && <Alert>{alert}</Alert>}
         <ButtonStyled>Sign in</ButtonStyled>
       </FormStyled>
-    </Page>
+    </SignInPageStyled>
   )
 
   function handleSignIn(event) {
@@ -49,3 +61,22 @@ export default function SignInPage() {
       })
   }
 }
+
+const SignInPageStyled = styled.main`
+  display: grid;
+  grid-auto-rows: min-content;
+  justify-items: center;
+  grid-gap: 50px;
+  background-color: #418ab3;
+  overflow: auto;
+  padding: 80px;
+  color: #c2d4d8;
+`
+
+const HeadlineStyled = styled.h1`
+  margin: 0;
+`
+
+const LogoStyled = styled.img`
+  height: 100px;
+`

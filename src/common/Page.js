@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Header from './Header'
+import Navigation from './Navigation'
 
 Page.propTypes = {
   title: PropTypes.string,
@@ -27,13 +28,14 @@ export default function Page({
         onFilterClick={onFilterClick}
       />
       {children}
+      <Navigation />
     </PageStyled>
   )
 }
 
 const PageStyled = styled.main`
   display: grid;
-  grid-template-rows: 48px auto;
+  grid-template-rows: 48px auto 48px;
   background-color: #418ab3;
   overflow: auto;
 `

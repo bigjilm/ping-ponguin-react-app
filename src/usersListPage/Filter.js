@@ -34,7 +34,7 @@ export default function Filter({
         />
       </LabelStyled>
       <AbilityFilterStyled>
-        <SubHeadlineStyled>Spielstärke</SubHeadlineStyled>
+        <SubHeadlineStyled>Spielstärken</SubHeadlineStyled>
         <CheckboxGroup
           activeCheckboxes={abilityFilterValues}
           setActiveCheckboxes={onChangeAbilityFilterValues}

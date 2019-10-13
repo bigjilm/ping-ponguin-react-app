@@ -49,7 +49,7 @@ const LabelStyled = styled.label`
 `
 
 const InputStyled = styled.input`
-  width: 300px;
+  width: 315px;
   height: 30px;
 
   :focus {
