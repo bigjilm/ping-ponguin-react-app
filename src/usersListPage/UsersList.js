@@ -11,11 +11,9 @@ UsersList.propTypes = {
 export default function UsersList({ users, onListClick }) {
   return (
     <UsersListStyled onClick={onListClick}>
-      {users
-        .filter(user => !user.isDeleted)
-        .map(user => (
-          <UserCard key={user._id} {...user}></UserCard>
-        ))}
+      {users.map(user => (
+        <UserCard key={user._id} {...user}></UserCard>
+      ))}
     </UsersListStyled>
   )
 }
