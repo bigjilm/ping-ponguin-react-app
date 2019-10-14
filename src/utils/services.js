@@ -10,8 +10,8 @@ export function signUp(data) {
   return fetchUsers({ path: '/signup', method: 'POST', data })
 }
 
-export function getUserSession(token) {
-  return fetch('/verify?token=' + token, {
+export function verifyUserSession(token) {
+  return fetch('/verifySession?token=' + token, {
     method: 'GET',
   })
     .then(res => handleError(res))
@@ -26,7 +26,12 @@ export function logout(token) {
     .catch(err => console.error(err))
 }
 
-function fetchUsers({ path = '/users/', method = 'GET', id = '', data } = {}) {
+function fetchUsers({
+  path = '/getAllUsers/',
+  method = 'GET',
+  id = '',
+  data,
+} = {}) {
   return fetch(path + id, {
     method,
     body: JSON.stringify(data),

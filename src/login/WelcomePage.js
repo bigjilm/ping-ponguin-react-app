@@ -3,7 +3,7 @@ import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import ppLogo from '../assets/pp-logo.png'
 import { ButtonStyled } from '../common/StyledElements'
-import { getUserSession } from '../utils/services'
+import { verifyUserSession } from '../utils/services'
 import { getFromStorage } from '../utils/storage'
 
 export default function WelcomePage() {
@@ -14,7 +14,7 @@ export default function WelcomePage() {
   useEffect(() => {
     const token = getFromStorage('pingu')
     if (token) {
-      getUserSession(token).then(session => {
+      verifyUserSession(token).then(session => {
         console.log(session.message)
         if (session.success) {
           setIsLoading(false)

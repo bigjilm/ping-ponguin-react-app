@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import UsersListPage from './usersList/UsersListPage'
-import { getUsers } from './utils/services'
 import SignInPage from './login/SignInPage'
 import SignUpPage from './login/SignUpPage'
 import WelcomePage from './login/WelcomePage'
+import UsersListPage from './usersList/UsersListPage'
 
 export default function App() {
   return (
