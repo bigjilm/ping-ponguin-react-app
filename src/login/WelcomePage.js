@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import ppLogo from '../assets/pp-logo.png'
-import { ButtonStyled } from '../common/StyledElements'
+import { ButtonStyled, LoadingMessageStyled } from '../common/StyledElements'
 import { verifyUserSession } from '../utils/services'
 import { getFromStorage } from '../utils/storage'
 
@@ -32,7 +32,7 @@ export default function WelcomePage() {
     <WelcomePageStyled>
       <HeadlineStyled>ping ponguin</HeadlineStyled>
       <LogoStyled src={ppLogo} />
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <LoadingMessageStyled>Loading...</LoadingMessageStyled>}
       {isLoading || (
         <WelcomeButtonsStyled>
           <ButtonStyled onClick={handleSignInClick}>Sign in</ButtonStyled>

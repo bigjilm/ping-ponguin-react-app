@@ -11,7 +11,7 @@ export default function Navigation() {
       <NavLinkStyled exact to="/users">
         <IconStyled src={homeIcon} />
       </NavLinkStyled>
-      <NavLinkStyled to="/signup">
+      <NavLinkStyled to="/profile">
         <IconStyled src={profileIcon} />
       </NavLinkStyled>
     </NavigationStyled>

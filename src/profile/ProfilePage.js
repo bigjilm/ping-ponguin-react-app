@@ -4,9 +4,10 @@ import Page from '../common/Page'
 import { getUser } from '../utils/services'
 import { getFromStorage } from '../utils/storage'
 import RadioButtonGroup from '../login/RadioButtonGroup'
-import { Cushion } from '../common/StyledElements'
+import { Cushion, LoadingMessageStyled } from '../common/StyledElements'
 
 export default function ProfilePage() {
+  const [isLoading, setIsLoading] = useState(true)
   const [user, setUser] = useState({})
 
   useEffect(() => {
@@ -14,45 +15,51 @@ export default function ProfilePage() {
     getUser(token)
       .then(currentUser => {
         setUser(currentUser)
+        setIsLoading(false)
       })
       .catch(err => console.error(err))
   }, [])
 
   return (
     <Page title="Profil">
-      <ProfileStyled>
-        <PropStyled>
-          <KeyStyled>Name:</KeyStyled>
-          <ValueStyled>{user.name}</ValueStyled>
-        </PropStyled>
-        <PropStyled>
-          <KeyStyled>Wohnort:</KeyStyled>
-          <ValueStyled>{user.residence}</ValueStyled>
-        </PropStyled>
-        <PropStyled>
-          <KeyStyled>Spielstärke:</KeyStyled>
-          <RadioButtonGroup
-            name="abilityLeft"
-            initialActiveRadio={user.abilityLeft}
-          />
-          <RadioButtonGroup
-            name="abilityRight"
-            initialActiveRadio={user.abilityRight}
-          />
-        </PropStyled>
-        <PropStyled>
-          <KeyStyled>Bild:</KeyStyled>
-          <ImageStyled src={user.imageURL} />
-        </PropStyled>
-        <PropStyled>
-          <KeyStyled>E-Mail-Adresse:</KeyStyled>
-          <ValueStyled>{user.email}</ValueStyled>
-        </PropStyled>
-        <PropStyled>
-          <KeyStyled>Passwort</KeyStyled>
-        </PropStyled>
-        <Cushion />
-      </ProfileStyled>
+      <>
+        {isLoading && <LoadingMessageStyled>Loading...</LoadingMessageStyled>}
+        {isLoading || (
+          <ProfileStyled>
+            <PropStyled>
+              <KeyStyled>Name:</KeyStyled>
+              <ValueStyled>{user.name}</ValueStyled>
+            </PropStyled>
+            <PropStyled>
+              <KeyStyled>Wohnort:</KeyStyled>
+              <ValueStyled>{user.residence}</ValueStyled>
+            </PropStyled>
+            <PropStyled>
+              <KeyStyled>Spielstärke:</KeyStyled>
+              <RadioButtonGroup
+                name="abilityLeft"
+                initialActiveRadio={user.abilityLeft}
+              />
+              <RadioButtonGroup
+                name="abilityRight"
+                initialActiveRadio={user.abilityRight}
+              />
+            </PropStyled>
+            <PropStyled>
+              <KeyStyled>Bild:</KeyStyled>
+              <ImageStyled src={user.imageURL} />
+            </PropStyled>
+            <PropStyled>
+              <KeyStyled>E-Mail-Adresse:</KeyStyled>
+              <ValueStyled>{user.email}</ValueStyled>
+            </PropStyled>
+            <PropStyled>
+              <KeyStyled>Passwort</KeyStyled>
+            </PropStyled>
+            <Cushion />
+          </ProfileStyled>
+        )}
+      </>
     </Page>
   )
 }

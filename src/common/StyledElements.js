@@ -22,3 +22,5 @@ export const ButtonStyled = styled.button`
 export const Cushion = styled.div`
   height: 40px;
 `
+
+export const LoadingMessageStyled = styled.div``

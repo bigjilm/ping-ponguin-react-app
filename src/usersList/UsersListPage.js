@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Page from '../common/Page'
-import { Cushion } from '../common/StyledElements'
+import { LoadingMessageStyled } from '../common/StyledElements'
 import { getAllUsers } from '../utils/services'
 import Filter from './Filter'
 import UsersList from './UsersList'
 
 export default function UsersListPage() {
+  const [isLoading, setIsLoading] = useState(true)
   const [users, setUsers] = useState([])
   const [isFilterVisible, setIsFilterVisible] = useState(false)
   const [residenceFilterValue, setResidenceFilterValue] = useState('')
@@ -19,7 +20,10 @@ export default function UsersListPage() {
   ])
 
   useEffect(() => {
-    getAllUsers().then(setUsers)
+    getAllUsers().then(users => {
+      setUsers(users)
+      setIsLoading(false)
+    })
   }, [])
 
   return (
@@ -29,16 +33,18 @@ export default function UsersListPage() {
       isFilterVisible={isFilterVisible}
       onFilterClick={handleFilterClick}
     >
-      {isFilterVisible && (
-        <Filter
-          residenceFilterValue={residenceFilterValue}
-          onChangeResidenceFilterValue={setResidenceFilterValue}
-          abilityFilterValues={abilityFilterValues}
-          onChangeAbilityFilterValues={setAbilityFilterValues}
-        ></Filter>
-      )}
-      {withUsersList(users)}
-      <Cushion />
+      <>
+        {isFilterVisible && (
+          <Filter
+            residenceFilterValue={residenceFilterValue}
+            onChangeResidenceFilterValue={setResidenceFilterValue}
+            abilityFilterValues={abilityFilterValues}
+            onChangeAbilityFilterValues={setAbilityFilterValues}
+          ></Filter>
+        )}
+        {isLoading && <LoadingMessageStyled>Loading...</LoadingMessageStyled>}
+        {isLoading || withUsersList(users)}
+      </>
     </Page>
   )
   function handleFilterClick() {

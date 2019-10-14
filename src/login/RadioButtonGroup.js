@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import RadioButton from './RadioButton'
 import Alert from '../common/Alert'
+import RadioButton from './RadioButton'
 
 RadioButtonGroup.propTypes = {
   name: PropTypes.string,
@@ -15,13 +15,8 @@ export default function RadioButtonGroup({
   initialActiveRadio = '',
   missingInputs = [],
 }) {
-  const [activeRadio, setActiveRadio] = useState()
+  const [activeRadio, setActiveRadio] = useState(initialActiveRadio)
   const values = ['1', '2', '3', '4', '5']
-
-  useEffect(() => {
-    console.log(initialActiveRadio)
-    setActiveRadio(initialActiveRadio)
-  }, [initialActiveRadio])
 
   return (
     <RadioButtonGroupStyled>

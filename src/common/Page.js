@@ -28,14 +28,14 @@ export default function Page({
         onFilterClick={onFilterClick}
       />
       {children}
-      {/* <Navigation /> */}
+      <Navigation />
     </PageStyled>
   )
 }
 
 const PageStyled = styled.main`
   display: grid;
-  grid-template-rows: 48px auto;
+  grid-template-rows: 48px auto 48px;
   background-color: #418ab3;
   overflow: auto;
 `
