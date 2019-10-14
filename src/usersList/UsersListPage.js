@@ -1,14 +1,11 @@
-import PropTypes from 'prop-types'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import styled from 'styled-components/macro'
 import Page from '../common/Page'
 import Filter from './Filter'
-import PlayersList from './PlayersList'
+import UsersList from './UsersList'
+import { getUsers } from '../utils/services'
 
-PlayersListPage.propTypes = {
-  players: PropTypes.arrayOf(PropTypes.object),
-}
-
-export default function PlayersListPage({ players }) {
+export default function UsersListPage() {
   const [isFilterVisible, setIsFilterVisible] = useState(false)
   const [residenceFilterValue, setResidenceFilterValue] = useState('')
   const [abilityFilterValues, setAbilityFilterValues] = useState([
@@ -19,10 +16,16 @@ export default function PlayersListPage({ players }) {
     '5',
     'alle',
   ])
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    getUsers().then(setUsers)
+  }, [])
 
   return (
     <Page
       title="ping ponguin"
+      showFilterSymbol={true}
       isFilterVisible={isFilterVisible}
       onFilterClick={handleFilterClick}
     >
@@ -34,7 +37,8 @@ export default function PlayersListPage({ players }) {
           onChangeAbilityFilterValues={setAbilityFilterValues}
         ></Filter>
       )}
-      {withPlayersList(players)}
+      {withUsersList(users)}
+      <Cushion />
     </Page>
   )
   function handleFilterClick() {
@@ -45,22 +49,28 @@ export default function PlayersListPage({ players }) {
     setIsFilterVisible(false)
   }
 
-  function withPlayersList(players) {
-    const playersFilteredByResidence = players.filter(
-      player =>
-        player.residence === residenceFilterValue ||
+  function withUsersList(users) {
+    const usersFilteredByResidence = users.filter(
+      user =>
+        user.residence === residenceFilterValue ||
         residenceFilterValue.length === 0
     )
-    const playersFilteredByResidenceAndAbility = playersFilteredByResidence.filter(
-      player =>
-        abilityFilterValues.includes(player.abilityLeft) ||
-        abilityFilterValues.includes(player.abilityRight)
+    const usersFilteredByResidenceAndAbility = usersFilteredByResidence.filter(
+      user =>
+        abilityFilterValues.includes(user.abilityLeft) ||
+        abilityFilterValues.includes(user.abilityRight)
     )
     return (
-      <PlayersList
-        players={playersFilteredByResidenceAndAbility}
+      <UsersList
+        users={usersFilteredByResidenceAndAbility}
         onListClick={handleListClick}
       />
     )
   }
 }
+
+//Das folgende Element erzeugt einen Abstand zur Unterkante, wenn man ganz nach unten scrollt.
+//Gibt es eine bessere Lösung?
+const Cushion = styled.div`
+  height: 20px;
+`

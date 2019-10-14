@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
-PlayerCard.propTypes = {
+UserCard.propTypes = {
   name: PropTypes.string,
   residence: PropTypes.string,
   abilityLeft: PropTypes.string,
@@ -10,7 +10,7 @@ PlayerCard.propTypes = {
   imageURL: PropTypes.string,
 }
 
-export default function PlayerCard({
+export default function UserCard({
   name,
   residence,
   abilityLeft,
@@ -18,7 +18,7 @@ export default function PlayerCard({
   imageURL,
 }) {
   return (
-    <PlayerCardStyled>
+    <UserCardStyled>
       <NameStyled>{name}</NameStyled>
       <ImageStyled src={imageURL}></ImageStyled>
       <ResidenceStyled>Wohnort: {residence}</ResidenceStyled>
@@ -27,11 +27,11 @@ export default function PlayerCard({
         <AbilityStyled>links: {abilityLeft}</AbilityStyled>
         <AbilityStyled>rechts: {abilityRight}</AbilityStyled>
       </div>
-    </PlayerCardStyled>
+    </UserCardStyled>
   )
 }
 
-const PlayerCardStyled = styled.section`
+const UserCardStyled = styled.section`
   display: grid;
   grid-template-rows: auto auto auto;
   grid-template-columns: 1fr 1fr;

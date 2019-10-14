@@ -15,10 +15,12 @@ TextInput.propTypes = {
 export default function TextInput({
   labelName,
   name,
+  type = 'text',
   placeholder,
   maxLength = 1000,
   missingInputs = [],
 }) {
+  //no controlled input; state just for length check
   const [inputValue, setInputValue] = useState('')
 
   return (
@@ -26,8 +28,8 @@ export default function TextInput({
       {labelName}
       <InputStyled
         name={name}
+        type={type}
         placeholder={placeholder}
-        value={inputValue}
         onChange={event => setInputValue(event.currentTarget.value)}
         maxLength={maxLength}
       />
@@ -47,7 +49,7 @@ const LabelStyled = styled.label`
 `
 
 const InputStyled = styled.input`
-  width: 300px;
+  width: 315px;
   height: 30px;
 
   :focus {

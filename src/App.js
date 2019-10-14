@@ -1,42 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import Navigation from './common/Navigation'
-import CreationPage from './creation-page/CreationPage'
-import PlayersListPage from './playersList-page/PlayersListPage'
-import { getPlayers } from './services'
+import UsersListPage from './usersList/UsersListPage'
+import { getUsers } from './utils/services'
+import SignInPage from './login/SignInPage'
+import SignUpPage from './login/SignUpPage'
+import WelcomePage from './login/WelcomePage'
 
 export default function App() {
-  const [players, setPlayers] = useState([])
-
-  useEffect(() => {
-    getPlayers().then(setPlayers)
-  }, [])
-
   return (
     <Router>
       <AppStyled>
         <Switch>
           <Route exact path="/">
-            <PlayersListPage players={players} />
+            <WelcomePage />
           </Route>
-          <Route path="/profile">
-            <CreationPage onSubmit={handleSubmit}></CreationPage>
+          <Route exact path="/signin">
+            <SignInPage />
+          </Route>
+          <Route exact path="/signup">
+            <SignUpPage />
+          </Route>
+          <Route path="/users">
+            <UsersListPage />
           </Route>
         </Switch>
-        <Navigation />
       </AppStyled>
     </Router>
   )
-
-  function handleSubmit(newPlayer) {
-    setPlayers([...players, newPlayer])
-  }
 }
 
 const AppStyled = styled.div`
   display: grid;
-  grid-template-rows: auto 48px;
   position: fixed;
   left: 0;
   right: 0;

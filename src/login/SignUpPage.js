@@ -1,18 +1,16 @@
-import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
+import Alert from '../common/Alert'
 import Page from '../common/Page'
-import { postPlayer } from '../services'
+import { ButtonStyled, FormStyled } from '../common/StyledElements'
+import TextInput from '../common/TextInput'
+import { signUp } from '../utils/services'
 import RadioButtonGroup from './RadioButtonGroup'
-import TextInput from './TextInput'
 
-CreationPage.propTypes = {
-  onSubmit: PropTypes.func,
-}
-
-export default function CreationPage({ onSubmit }) {
+export default function SignUpPage() {
   const [missingInputs, setMissingInputs] = useState([])
+  const [alert, setAlert] = useState('')
   let history = useHistory()
 
   useEffect(() => {
@@ -21,7 +19,7 @@ export default function CreationPage({ onSubmit }) {
 
   return (
     <Page title="Profil erstellen">
-      <FormStyled onSubmit={handleSubmit}>
+      <FormStyled onSubmit={handleSignUp}>
         <TextInput
           labelName="Name"
           name="name"
@@ -56,41 +54,56 @@ export default function CreationPage({ onSubmit }) {
           name="imageURL"
           placeholder="Gib hier die URL deines Bildes ein"
         />
+        <TextInput
+          labelName="E-Mail"
+          name="email"
+          placeholder="Gib hier deine E-Mail-Adresse ein"
+          missingInputs={missingInputs}
+        />
+        <TextInput
+          labelName="Passwort"
+          name="password"
+          type="password"
+          placeholder="Gib hier ein Passwort ein"
+          missingInputs={missingInputs}
+        />
+        {alert && <Alert>{alert}</Alert>}
         <ButtonStyled>Profil Erstellen</ButtonStyled>
+        <Cushion />
       </FormStyled>
     </Page>
   )
 
-  function handleSubmit(event) {
+  function handleSignUp(event) {
     event.preventDefault()
     const form = event.currentTarget
     const formData = new FormData(form)
-    const newPlayer = Object.fromEntries(formData)
-    if (newPlayer.imageURL === '') {
-      newPlayer.imageURL =
+    const newUser = Object.fromEntries(formData)
+    if (newUser.imageURL === '') {
+      newUser.imageURL =
         'https://farm9.staticflickr.com/8494/8334907268_ffacd64d3f.jpg'
     }
-    postPlayer(newPlayer)
+    signUp(newUser)
       .then(res => {
-        onSubmit(res)
+        console.log(res)
+        if (!res.success) {
+          throw new Error(res.message)
+        }
         form.reset()
-        history.push('/')
+        history.push('/signin')
       })
-      .catch(err => handleIncompleteSubmit(err))
-  }
-
-  function handleIncompleteSubmit(err) {
-    setMissingInputs(Object.keys(err.errors))
+      .catch(err => {
+        console.log(err.message)
+        if (err.message === 'Error: account already exists') {
+          setAlert('Zu dieser E-Mail-Adresse existiert bereits ein Konto')
+        } else if (err.message.startsWith('User validation failed')) {
+          setMissingInputs(Object.keys(err.errors))
+        } else {
+          console.error(err)
+        }
+      })
   }
 }
-
-const FormStyled = styled.form`
-  display: grid;
-  grid-auto-rows: min-content;
-  grid-gap: 30px;
-  padding: 20px;
-  scroll-behavior: smooth;
-`
 
 const ContainerStyled = styled.div`
   display: grid;
@@ -105,9 +118,8 @@ const StyledParagraph = styled.p`
   margin: 0;
 `
 
-const ButtonStyled = styled.button`
-  width: 150px;
-  height: 50px;
-  background-color: #c2d4d8;
-  border-radius: 5px;
+//Das folgende Element erzeugt einen Abstand zur Unterkante, wenn man ganz nach unten scrollt.
+//Gibt es eine bessere Lösung?
+const Cushion = styled.div`
+  height: 20px;
 `

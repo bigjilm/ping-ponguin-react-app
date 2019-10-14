@@ -6,16 +6,22 @@ import coffeeFilterIcon from '../assets/coffee-filter-icon.svg'
 
 Header.propTypes = {
   title: PropTypes.string,
+  showFilterSymbol: PropTypes.bool,
   isFilterVisible: PropTypes.bool,
   onFilterClick: PropTypes.func,
 }
 
-export default function Header({ title, isFilterVisible, onFilterClick }) {
+export default function Header({
+  title,
+  showFilterSymbol = false,
+  isFilterVisible = false,
+  onFilterClick,
+}) {
   return (
     <HeaderStyled>
       <LogoStyled src={ppLogo} />
       <TitleStyled>{title}</TitleStyled>
-      {title === 'ping ponguin' && (
+      {showFilterSymbol && (
         <IconStyled
           isFilterVisible={isFilterVisible}
           src={coffeeFilterIcon}
