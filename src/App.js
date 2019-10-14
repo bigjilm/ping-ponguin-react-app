@@ -8,12 +8,6 @@ import SignUpPage from './login/SignUpPage'
 import WelcomePage from './login/WelcomePage'
 
 export default function App() {
-  const [users, setUsers] = useState([])
-
-  useEffect(() => {
-    getUsers().then(setUsers)
-  }, [])
-
   return (
     <Router>
       <AppStyled>
@@ -28,7 +22,7 @@ export default function App() {
             <SignUpPage />
           </Route>
           <Route path="/users">
-            <UsersListPage users={users} />
+            <UsersListPage />
           </Route>
         </Switch>
       </AppStyled>

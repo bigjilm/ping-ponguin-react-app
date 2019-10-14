@@ -1,15 +1,11 @@
-import PropTypes from 'prop-types'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/macro'
-import React, { useState } from 'react'
 import Page from '../common/Page'
 import Filter from './Filter'
 import UsersList from './UsersList'
+import { getUsers } from '../utils/services'
 
-UsersListPage.propTypes = {
-  users: PropTypes.arrayOf(PropTypes.object),
-}
-
-export default function UsersListPage({ users }) {
+export default function UsersListPage() {
   const [isFilterVisible, setIsFilterVisible] = useState(false)
   const [residenceFilterValue, setResidenceFilterValue] = useState('')
   const [abilityFilterValues, setAbilityFilterValues] = useState([
@@ -20,6 +16,11 @@ export default function UsersListPage({ users }) {
     '5',
     'alle',
   ])
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    getUsers().then(setUsers)
+  }, [])
 
   return (
     <Page
