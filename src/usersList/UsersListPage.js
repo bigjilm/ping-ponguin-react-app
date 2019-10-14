@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import styled from 'styled-components/macro'
 import React, { useState } from 'react'
 import Page from '../common/Page'
 import Filter from './Filter'
@@ -36,6 +37,7 @@ export default function UsersListPage({ users }) {
         ></Filter>
       )}
       {withUsersList(users)}
+      <Cushion />
     </Page>
   )
   function handleFilterClick() {
@@ -65,3 +67,9 @@ export default function UsersListPage({ users }) {
     )
   }
 }
+
+//Das folgende Element erzeugt einen Abstand zur Unterkante, wenn man ganz nach unten scrollt.
+//Gibt es eine bessere Lösung?
+const Cushion = styled.div`
+  height: 20px;
+`
