@@ -58,7 +58,9 @@ export default function UsersListPage() {
   function withUsersList(users) {
     const usersFilteredByResidence = users.filter(
       user =>
-        user.residence === residenceFilterValue ||
+        user.residence
+          .toLowerCase()
+          .startsWith(residenceFilterValue.toLowerCase()) ||
         residenceFilterValue.length === 0
     )
     const usersFilteredByResidenceAndAbility = usersFilteredByResidence.filter(
