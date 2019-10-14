@@ -9,7 +9,7 @@ TextInput.propTypes = {
   placeholder: PropTypes.string,
   type: PropTypes.string,
   maxLength: PropTypes.number,
-  missingInputs: PropTypes.array,
+  missingInputs: PropTypes.arrayOf(PropTypes.string),
 }
 
 export default function TextInput({

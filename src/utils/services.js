@@ -32,9 +32,6 @@ export function logout(token) {
 
 //to do
 // export function editProfile(token, data) {
-//   return fetch('/editProfile?token=' + token, { method: 'PATCH' })
-//     .then()
-//     .catch()
 // }
 
 function fetchUsers({ path = '/getAllUsers/', method = 'GET', data } = {}) {

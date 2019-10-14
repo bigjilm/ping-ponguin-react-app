@@ -20,5 +20,5 @@ export const ButtonStyled = styled.button`
 //wenn man ganz nach unten scrollt.
 //Gibt es eine bessere Lösung?
 export const Cushion = styled.div`
-  height: 20px;
+  height: 40px;
 `
