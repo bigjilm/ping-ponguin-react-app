@@ -1,5 +1,9 @@
-export function getUsers() {
+export function getAllUsers() {
   return fetchUsers()
+}
+
+export function getUser(token) {
+  return fetchUsers({ path: '/getUser?token=' + token })
 }
 
 export function signIn(data) {
@@ -26,13 +30,15 @@ export function logout(token) {
     .catch(err => console.error(err))
 }
 
-function fetchUsers({
-  path = '/getAllUsers/',
-  method = 'GET',
-  id = '',
-  data,
-} = {}) {
-  return fetch(path + id, {
+//to do
+// export function editProfile(token, data) {
+//   return fetch('/editProfile?token=' + token, { method: 'PATCH' })
+//     .then()
+//     .catch()
+// }
+
+function fetchUsers({ path = '/getAllUsers/', method = 'GET', data } = {}) {
+  return fetch(path, {
     method,
     body: JSON.stringify(data),
     headers: {

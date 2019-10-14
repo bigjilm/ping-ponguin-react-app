@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components/macro'
+import React, { useEffect, useState } from 'react'
 import Page from '../common/Page'
+import { Cushion } from '../common/StyledElements'
+import { getAllUsers } from '../utils/services'
 import Filter from './Filter'
 import UsersList from './UsersList'
-import { getUsers } from '../utils/services'
 
 export default function UsersListPage() {
+  const [users, setUsers] = useState([])
   const [isFilterVisible, setIsFilterVisible] = useState(false)
   const [residenceFilterValue, setResidenceFilterValue] = useState('')
   const [abilityFilterValues, setAbilityFilterValues] = useState([
@@ -16,10 +17,9 @@ export default function UsersListPage() {
     '5',
     'alle',
   ])
-  const [users, setUsers] = useState([])
 
   useEffect(() => {
-    getUsers().then(setUsers)
+    getAllUsers().then(setUsers)
   }, [])
 
   return (
@@ -68,9 +68,3 @@ export default function UsersListPage() {
     )
   }
 }
-
-//Das folgende Element erzeugt einen Abstand zur Unterkante, wenn man ganz nach unten scrollt.
-//Gibt es eine bessere Lösung?
-const Cushion = styled.div`
-  height: 20px;
-`
