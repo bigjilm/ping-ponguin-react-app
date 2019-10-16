@@ -9,9 +9,8 @@ import UserForm from '../common/UserForm'
 
 export default function ProfilePage() {
   const [isLoading, setIsLoading] = useState(true)
-  const [isEditing, setIsEditing] = useState(false)
+  const [isEditing, setIsEditing] = useState(true)
   const [user, setUser] = useState({})
-  const [missingInputs, setMissingInputs] = useState([])
 
   useEffect(() => {
     const token = getFromStorage('pingu')
@@ -25,21 +24,28 @@ export default function ProfilePage() {
 
   return (
     <Page title="Profil">
-      <main>
+      <>
         {isLoading && <LoadingMessageStyled>Loading...</LoadingMessageStyled>}
         {!isLoading && !isEditing && (
           <Profile user={user} onEditClick={() => setIsEditing(true)} />
         )}
         {!isLoading && isEditing && (
           <UserForm
-            id="editForm"
+            user={user}
             onSubmit={handleSubmit}
-            missingInputs={missingInputs}
+            onChange={handleChange}
           />
         )}
-      </main>
+      </>
     </Page>
   )
 
-  function handleSubmit() {}
+  function handleChange(changedProp) {
+    console.log(changedProp)
+    setUser({ ...user, ...changedProp })
+  }
+
+  function handleSubmit() {
+    setIsEditing(false)
+  }
 }
