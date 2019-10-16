@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const User = require('../models/User')
 
 router.patch('/', (req, res) => {
-  const { token } = req.query
+  const { id } = req.query
   const { password } = req.body
   let encryptedPassword
 
@@ -13,11 +13,11 @@ router.patch('/', (req, res) => {
     encryptedPassword = ''
   }
 
-  User.findByIdAndUpdate(token, {
+  User.findByIdAndUpdate(id, {
     ...req.body,
     password: encryptedPassword,
   })
-    .then(() => {
+    .then(user => {
       res.json({
         success: true,
         message: 'Your profile has been edited',

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Page from '../common/Page'
 import { LoadingMessageStyled } from '../common/StyledElements'
 import UserForm from '../common/UserForm'
-import { getUser } from '../utils/services'
+import { getUser, editProfile } from '../utils/services'
 import { getFromStorage } from '../utils/storage'
 import Profile from './Profile'
 
@@ -44,6 +44,11 @@ export default function ProfilePage() {
   }
 
   function handleSubmit() {
-    setIsEditing(false)
+    editProfile(user)
+      .then(res => {
+        console.log(res)
+        setIsEditing(false)
+      })
+      .catch(err => console.error(err))
   }
 }

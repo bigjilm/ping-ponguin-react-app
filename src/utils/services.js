@@ -30,9 +30,13 @@ export function logout(token) {
     .catch(err => console.error(err))
 }
 
-//to do
-// export function editProfile(token, data) {
-// }
+export function editProfile(data) {
+  return fetchUsers({
+    path: '/editProfile?id=' + data._id,
+    method: 'PATCH',
+    data,
+  })
+}
 
 function fetchUsers({ path = '/getAllUsers/', method = 'GET', data } = {}) {
   return fetch(path, {

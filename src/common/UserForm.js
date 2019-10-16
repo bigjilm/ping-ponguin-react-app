@@ -10,7 +10,7 @@ export default function UserForm({ user, onSubmit, onChange }) {
   const [alert, setAlert] = useState('')
 
   return (
-    <FormStyled onSubmit={onSubmit}>
+    <FormStyled onSubmit={handleSubmit}>
       <TextInputControlled
         labelName="Name"
         name="name"
@@ -80,6 +80,11 @@ export default function UserForm({ user, onSubmit, onChange }) {
 
   function handleChange(changedProp) {
     onChange(changedProp)
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    onSubmit()
   }
 }
 
