@@ -8,7 +8,7 @@ import Profile from './Profile'
 
 export default function ProfilePage() {
   const [isLoading, setIsLoading] = useState(true)
-  const [isEditing, setIsEditing] = useState(true)
+  const [isEditing, setIsEditing] = useState(false)
   const [user, setUser] = useState({})
 
   useEffect(() => {

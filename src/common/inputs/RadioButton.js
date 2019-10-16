@@ -7,9 +7,16 @@ RadioButton.propTypes = {
   name: PropTypes.string,
   activeRadio: PropTypes.string,
   onClick: PropTypes.func,
+  disabled: PropTypes.bool,
 }
 
-export default function RadioButton({ value, name, activeRadio, onClick }) {
+export default function RadioButton({
+  value,
+  name,
+  activeRadio = '',
+  onClick,
+  disabled = false,
+}) {
   return (
     <LabelStyled value={value} activeRadio={activeRadio}>
       {value}
@@ -18,6 +25,7 @@ export default function RadioButton({ value, name, activeRadio, onClick }) {
         name={name}
         value={value}
         onClick={handleClick}
+        disabled={disabled}
       />
     </LabelStyled>
   )

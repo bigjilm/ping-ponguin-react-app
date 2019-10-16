@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import RadioButtonGroup from '../common/inputs/RadioButtonGroup'
+import RadioButtonGroupStateless from '../common/inputs/RadioButtonGroupStateless'
 import { Cushion, ButtonStyled } from '../common/StyledElements'
 
 export default function Profile({ user, onEditClick }) {
@@ -11,6 +11,9 @@ export default function Profile({ user, onEditClick }) {
         <ButtonStyled>Logout</ButtonStyled>
       </ButtonContainerStyled>
       <PropStyled>
+        <ImageStyled src={user.imageURL} />
+      </PropStyled>
+      <PropStyled>
         <KeyStyled>Name:</KeyStyled>
         <ValueStyled>{user.name}</ValueStyled>
       </PropStyled>
@@ -20,25 +23,20 @@ export default function Profile({ user, onEditClick }) {
       </PropStyled>
       <PropStyled>
         <KeyStyled>Spielstärke:</KeyStyled>
-        <RadioButtonGroup
+        <RadioButtonGroupStateless
           name="abilityLeft"
-          initialActiveRadio={user.abilityLeft}
+          activeRadio={user.abilityLeft}
+          disabled
         />
-        <RadioButtonGroup
+        <RadioButtonGroupStateless
           name="abilityRight"
-          initialActiveRadio={user.abilityRight}
+          activeRadio={user.abilityRight}
+          disabled
         />
-      </PropStyled>
-      <PropStyled>
-        <KeyStyled>Bild:</KeyStyled>
-        <ImageStyled src={user.imageURL} />
       </PropStyled>
       <PropStyled>
         <KeyStyled>E-Mail-Adresse:</KeyStyled>
         <ValueStyled>{user.email}</ValueStyled>
-      </PropStyled>
-      <PropStyled>
-        <KeyStyled>Passwort</KeyStyled>
       </PropStyled>
       <Cushion />
     </ProfileStyled>
@@ -74,8 +72,8 @@ const ValueStyled = styled.span`
 `
 
 const ImageStyled = styled.img`
-  height: 100px;
-  width: 100px;
-  border-radius: 50px 50px 37px 37px;
+  height: 150px;
+  width: 150px;
+  border-radius: 75px 75px 55.5px 55.5px;
   object-fit: cover;
 `

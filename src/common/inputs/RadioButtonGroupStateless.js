@@ -8,6 +8,8 @@ RadioButtonGroup.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
   missingInputs: PropTypes.arrayOf(PropTypes.string),
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
 }
 
 export default function RadioButtonGroup({
@@ -15,6 +17,7 @@ export default function RadioButtonGroup({
   activeRadio = '',
   missingInputs = [],
   onClick,
+  disabled = false,
 }) {
   const values = ['1', '2', '3', '4', '5']
 
@@ -30,6 +33,7 @@ export default function RadioButtonGroup({
           name={name}
           activeRadio={activeRadio}
           onClick={handleClick}
+          disabled={disabled}
         />
       ))}
       {missingInputs.includes(name) && (
