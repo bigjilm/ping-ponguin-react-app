@@ -4,9 +4,9 @@ import styled from 'styled-components/macro'
 import Alert from '../common/Alert'
 import Page from '../common/Page'
 import { ButtonStyled, FormStyled, Cushion } from '../common/StyledElements'
-import TextInput from '../common/TextInput'
+import TextInput from '../common/inputs/TextInput'
 import { signUp } from '../utils/services'
-import RadioButtonGroup from './RadioButtonGroup'
+import RadioButtonGroup from '../common/inputs/RadioButtonGroup'
 
 export default function SignUpPage() {
   const [missingInputs, setMissingInputs] = useState([])

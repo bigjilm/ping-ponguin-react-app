@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components/macro'
 import Page from '../common/Page'
-import { LoadingMessageStyled, ButtonStyled } from '../common/StyledElements'
+import { LoadingMessageStyled } from '../common/StyledElements'
+import UserForm from '../common/UserForm'
 import { getUser } from '../utils/services'
 import { getFromStorage } from '../utils/storage'
 import Profile from './Profile'
-import UserForm from '../common/UserForm'
 
 export default function ProfilePage() {
   const [isLoading, setIsLoading] = useState(true)
@@ -41,7 +40,6 @@ export default function ProfilePage() {
   )
 
   function handleChange(changedProp) {
-    console.log(changedProp)
     setUser({ ...user, ...changedProp })
   }
 

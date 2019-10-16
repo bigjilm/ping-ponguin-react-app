@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import RadioButtonGroup from '../login/RadioButtonGroup'
+import RadioButtonGroup from '../common/inputs/RadioButtonGroup'
 import { Cushion, ButtonStyled } from '../common/StyledElements'
 
 export default function Profile({ user, onEditClick }) {

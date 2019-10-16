@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import { FormStyled, ButtonStyled, Cushion } from './StyledElements'
-import TextInputControlled from './TextInputControlled'
-import RadioButtonGroup from '../login/RadioButtonGroup'
+import TextInputControlled from './inputs/TextInputControlled'
+import RadioButtonGroupStateless from './inputs/RadioButtonGroupStateless'
 import Alert from './Alert'
 
 export default function UserForm({ user, onSubmit, onChange }) {
@@ -35,14 +35,18 @@ export default function UserForm({ user, onSubmit, onChange }) {
           Schätze deine Spielstärke auf einer Skala von 1 (Blinge) bis 5 (Profi)
           ein.
         </StyledParagraph>
-        <RadioButtonGroup
+        <RadioButtonGroupStateless
           name="abilityLeft"
+          activeRadio={user.abilityLeft}
           missingInputs={missingInputs}
-        ></RadioButtonGroup>
-        <RadioButtonGroup
+          onClick={handleChange}
+        ></RadioButtonGroupStateless>
+        <RadioButtonGroupStateless
           name="abilityRight"
+          activeRadio={user.abilityRight}
           missingInputs={missingInputs}
-        ></RadioButtonGroup>
+          onClick={handleChange}
+        ></RadioButtonGroupStateless>
       </ContainerStyled>
       <TextInputControlled
         labelName="Bild per URL einfügen (optional)"

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components/macro'
-import Alert from '../common/Alert'
+import Alert from '../Alert'
 
 TextInput.propTypes = {
   labelName: PropTypes.string,
@@ -22,10 +22,6 @@ export default function TextInput({
   missingInputs = [],
   onChange,
 }) {
-  useEffect(() => {
-    console.log(value)
-  }, [value])
-
   return (
     <LabelStyled>
       {labelName}
@@ -46,7 +42,6 @@ export default function TextInput({
     const inputName = event.currentTarget.name
     const inputValue = event.currentTarget.value
     const changedProp = { [inputName]: inputValue }
-    console.log(inputName, inputValue, changedProp)
     onChange(changedProp)
   }
 }
