@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
 import Page from '../common/Page'
+import { LoadingMessageStyled, ButtonStyled } from '../common/StyledElements'
 import { getUser } from '../utils/services'
 import { getFromStorage } from '../utils/storage'
-import RadioButtonGroup from '../login/RadioButtonGroup'
-import { Cushion, LoadingMessageStyled } from '../common/StyledElements'
+import Profile from './Profile'
+import UserForm from '../common/UserForm'
 
 export default function ProfilePage() {
   const [isLoading, setIsLoading] = useState(true)
+  const [isEditing, setIsEditing] = useState(false)
   const [user, setUser] = useState({})
+  const [missingInputs, setMissingInputs] = useState([])
 
   useEffect(() => {
     const token = getFromStorage('pingu')
@@ -22,73 +25,21 @@ export default function ProfilePage() {
 
   return (
     <Page title="Profil">
-      <>
+      <main>
         {isLoading && <LoadingMessageStyled>Loading...</LoadingMessageStyled>}
-        {isLoading || (
-          <ProfileStyled>
-            <PropStyled>
-              <KeyStyled>Name:</KeyStyled>
-              <ValueStyled>{user.name}</ValueStyled>
-            </PropStyled>
-            <PropStyled>
-              <KeyStyled>Wohnort:</KeyStyled>
-              <ValueStyled>{user.residence}</ValueStyled>
-            </PropStyled>
-            <PropStyled>
-              <KeyStyled>Spielstärke:</KeyStyled>
-              <RadioButtonGroup
-                name="abilityLeft"
-                initialActiveRadio={user.abilityLeft}
-              />
-              <RadioButtonGroup
-                name="abilityRight"
-                initialActiveRadio={user.abilityRight}
-              />
-            </PropStyled>
-            <PropStyled>
-              <KeyStyled>Bild:</KeyStyled>
-              <ImageStyled src={user.imageURL} />
-            </PropStyled>
-            <PropStyled>
-              <KeyStyled>E-Mail-Adresse:</KeyStyled>
-              <ValueStyled>{user.email}</ValueStyled>
-            </PropStyled>
-            <PropStyled>
-              <KeyStyled>Passwort</KeyStyled>
-            </PropStyled>
-            <Cushion />
-          </ProfileStyled>
+        {!isLoading && !isEditing && (
+          <Profile user={user} onEditClick={() => setIsEditing(true)} />
         )}
-      </>
+        {!isLoading && isEditing && (
+          <UserForm
+            id="editForm"
+            onSubmit={handleSubmit}
+            missingInputs={missingInputs}
+          />
+        )}
+      </main>
     </Page>
   )
+
+  function handleSubmit() {}
 }
-
-const ProfileStyled = styled.div`
-  display: grid;
-  grid-auto-rows: min-content;
-  grid-gap: 30px;
-  padding: 50px 30px;
-  overflow: auto;
-`
-
-const PropStyled = styled.div`
-  display: grid;
-  grid-gap: 10px;
-`
-
-const KeyStyled = styled.h3`
-  margin: 0;
-`
-
-const ValueStyled = styled.span`
-  background-color: #c2d4d8;
-  padding: 5px;
-`
-
-const ImageStyled = styled.img`
-  height: 100px;
-  width: 100px;
-  border-radius: 50px 50px 37px 37px;
-  object-fit: cover;
-`

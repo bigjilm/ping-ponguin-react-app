@@ -33,7 +33,7 @@ export default function Page({
   )
 }
 
-const PageStyled = styled.main`
+const PageStyled = styled.div`
   display: grid;
   grid-template-rows: 48px auto 48px;
   background-color: #418ab3;
