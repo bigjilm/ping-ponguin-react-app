@@ -17,17 +17,13 @@ export function signUp(data) {
 export function verifyUserSession(token) {
   return fetch('/verifySession?token=' + token, {
     method: 'GET',
-  })
-    .then(res => handleError(res))
-    .catch(err => console.error(err))
+  }).then(res => handleError(res))
 }
 
 export function logout(token) {
   return fetch('/logout?token=' + token, {
     method: 'GET',
-  })
-    .then(res => handleError(res))
-    .catch(err => console.error(err))
+  }).then(res => handleError(res))
 }
 
 export function editProfile(data) {

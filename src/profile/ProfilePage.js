@@ -40,7 +40,10 @@ export default function ProfilePage() {
               />
             </Route>
             <Route exact path="/profile/edit">
-              <UserForm user={user} onChange={handleChange} />
+              <UserForm
+                user={user}
+                onChange={handleChange}
+              />
             </Route>
             <Route path="/profile/changePassword">
               <PasswordForm

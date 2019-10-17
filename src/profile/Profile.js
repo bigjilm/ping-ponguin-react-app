@@ -1,14 +1,19 @@
 import React from 'react'
+import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import RadioButtonGroupStateless from '../common/inputs/RadioButtonGroupStateless'
 import { Cushion, ButtonStyled } from '../common/StyledElements'
+import { logout } from '../utils/services'
+import { getFromStorage } from '../utils/storage'
 
 export default function Profile({ user, onEditClick, onChangePasswordClick }) {
+  let history = useHistory()
+
   return (
     <ProfileStyled>
       <ButtonContainerStyled>
         <ButtonStyled onClick={onEditClick}>Bearbeiten</ButtonStyled>
-        <ButtonStyled>Logout</ButtonStyled>
+        <ButtonStyled onClick={handleLogout}>Logout</ButtonStyled>
       </ButtonContainerStyled>
       <PropStyled>
         <ImageStyled src={user.imageURL} />
@@ -50,6 +55,16 @@ export default function Profile({ user, onEditClick, onChangePasswordClick }) {
       <Cushion />
     </ProfileStyled>
   )
+
+  function handleLogout() {
+    const token = getFromStorage('pingu')
+    logout(token)
+      .then(res => {
+        console.log(res)
+        history.push('/')
+      })
+      .catch(err => console.error(err))
+  }
 }
 
 const ProfileStyled = styled.div`
