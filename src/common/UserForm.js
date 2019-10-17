@@ -63,15 +63,6 @@ export default function UserForm({ user, onSubmit, onChange }) {
         missingInputs={missingInputs}
         onChange={handleChange}
       />
-      <TextInputControlled
-        labelName="Passwort"
-        name="password"
-        value={user.password}
-        type="password"
-        placeholder="Gib hier ein Passwort ein"
-        missingInputs={missingInputs}
-        onChange={handleChange}
-      />
       {alert && <Alert>{alert}</Alert>}
       <ButtonStyled>Speichern</ButtonStyled>
       <Cushion />

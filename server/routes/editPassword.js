@@ -11,7 +11,7 @@ router.patch('/', (req, res) => {
   if (!(newPassword === newPasswordRepeat)) {
     res.json({
       success: false,
-      message: 'The two new passwords are not the same',
+      message: 'The new passwords dont match',
     })
   } else {
     if (newPassword) {
@@ -29,16 +29,20 @@ router.patch('/', (req, res) => {
           message: 'The old password is wrong',
         })
       } else {
+        console.log(newPasswordEncrypted)
         user.password = newPasswordEncrypted
         user
           .save()
-          .then(
+          .then(() =>
             res.json({
               success: true,
               message: 'Your new password has been saved',
             })
           )
-          .catch(err => res.status(400).json(err))
+          .catch(err => {
+            console.error(err)
+            res.status(400).json(err)
+          })
       }
     })
     .catch(err => res.status(400).json(err))

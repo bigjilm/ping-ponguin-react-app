@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import RadioButtonGroupStateless from '../common/inputs/RadioButtonGroupStateless'
 import { Cushion, ButtonStyled } from '../common/StyledElements'
 
-export default function Profile({ user, onEditClick }) {
+export default function Profile({ user, onEditClick, onChangePasswordClick }) {
   return (
     <ProfileStyled>
       <ButtonContainerStyled>
@@ -14,15 +14,15 @@ export default function Profile({ user, onEditClick }) {
         <ImageStyled src={user.imageURL} />
       </PropStyled>
       <PropStyled>
-        <KeyStyled>Name:</KeyStyled>
+        <KeyStyled>Name</KeyStyled>
         <ValueStyled>{user.name}</ValueStyled>
       </PropStyled>
       <PropStyled>
-        <KeyStyled>Wohnort:</KeyStyled>
+        <KeyStyled>Wohnort</KeyStyled>
         <ValueStyled>{user.residence}</ValueStyled>
       </PropStyled>
       <PropStyled>
-        <KeyStyled>Spielstärke:</KeyStyled>
+        <KeyStyled>Spielstärke</KeyStyled>
         <RadioButtonGroupStateless
           name="abilityLeft"
           activeRadio={user.abilityLeft}
@@ -35,8 +35,14 @@ export default function Profile({ user, onEditClick }) {
         />
       </PropStyled>
       <PropStyled>
-        <KeyStyled>E-Mail-Adresse:</KeyStyled>
+        <KeyStyled>E-Mail-Adresse</KeyStyled>
         <ValueStyled>{user.email}</ValueStyled>
+      </PropStyled>
+      <PropStyled>
+        <KeyStyled>Passwort</KeyStyled>
+        <ButtonStyled onClick={onChangePasswordClick}>
+          Passwort ändern
+        </ButtonStyled>
       </PropStyled>
       <Cushion />
     </ProfileStyled>
@@ -67,8 +73,8 @@ const KeyStyled = styled.h3`
 `
 
 const ValueStyled = styled.span`
-  background-color: #c2d4d8;
-  padding: 5px;
+  /* background-color: #c2d4d8; */
+  /* padding: 5px; */
 `
 
 const ImageStyled = styled.img`

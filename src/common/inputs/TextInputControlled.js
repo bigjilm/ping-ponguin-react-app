@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import Alert from '../Alert'
 
-TextInput.propTypes = {
+TextInputControlled.propTypes = {
   labelName: PropTypes.string,
   name: PropTypes.string,
   placeholder: PropTypes.string,
@@ -12,7 +12,7 @@ TextInput.propTypes = {
   missingInputs: PropTypes.arrayOf(PropTypes.string),
 }
 
-export default function TextInput({
+export default function TextInputControlled({
   labelName = '',
   name,
   value = '',

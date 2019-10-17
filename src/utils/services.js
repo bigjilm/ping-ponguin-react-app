@@ -38,6 +38,14 @@ export function editProfile(data) {
   })
 }
 
+export function editPassword(id, data) {
+  return fetchUsers({
+    path: '/editPassword?id=' + id,
+    method: 'PATCH',
+    data,
+  })
+}
+
 function fetchUsers({ path = '/getAllUsers/', method = 'GET', data } = {}) {
   return fetch(path, {
     method,
