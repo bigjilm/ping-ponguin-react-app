@@ -6,7 +6,6 @@ router.post('/', (req, res) => {
   const { password } = req.body
   let { email } = req.body
   email = email.toLowerCase()
-  console.log(email, password)
 
   if (!email) {
     return res.json({
