@@ -1,5 +1,4 @@
 const router = require('express').Router()
-const bcrypt = require('bcrypt')
 const User = require('../models/User')
 
 router.patch('/', (req, res) => {
@@ -11,17 +10,7 @@ router.patch('/', (req, res) => {
     abilityRight,
     imageURL,
     email,
-    password,
   } = req.body
-  let encryptedPassword
-
-  if (password) {
-    encryptedPassword = generateHash(password)
-  } else {
-    encryptedPassword = ''
-  }
-
-  //Doppelte Email ausschließen
 
   User.findById(id)
     .then(user => {
@@ -44,7 +33,6 @@ router.patch('/', (req, res) => {
       user.abilityRight = abilityRight
       user.imageURL = imageURL
       user.email = email
-      user.password = encryptedPassword
 
       user
         .save()
@@ -58,9 +46,5 @@ router.patch('/', (req, res) => {
     })
     .catch(err => res.status(400).json(err))
 })
-
-function generateHash(password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8))
-}
 
 module.exports = router
