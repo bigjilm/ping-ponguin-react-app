@@ -10,6 +10,7 @@ TextInputControlled.propTypes = {
   type: PropTypes.string,
   maxLength: PropTypes.number,
   missingInputs: PropTypes.arrayOf(PropTypes.string),
+  onChange: PropTypes.func,
 }
 
 export default function TextInputControlled({
@@ -17,7 +18,7 @@ export default function TextInputControlled({
   name,
   value = '',
   type = 'text',
-  placeholder,
+  placeholder = '',
   maxLength = 1000,
   missingInputs = [],
   onChange,

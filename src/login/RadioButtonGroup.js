@@ -6,16 +6,11 @@ import RadioButton from '../common/RadioButton'
 
 RadioButtonGroup.propTypes = {
   name: PropTypes.string,
-  value: PropTypes.string,
   missingInputs: PropTypes.arrayOf(PropTypes.string),
 }
 
-export default function RadioButtonGroup({
-  name,
-  initialActiveRadio = '',
-  missingInputs = [],
-}) {
-  const [activeRadio, setActiveRadio] = useState(initialActiveRadio)
+export default function RadioButtonGroup({ name, missingInputs = [] }) {
+  const [activeRadio, setActiveRadio] = useState('')
   const values = ['1', '2', '3', '4', '5']
 
   return (

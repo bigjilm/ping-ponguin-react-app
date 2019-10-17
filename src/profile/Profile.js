@@ -1,10 +1,17 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import RadioButtonGroupStateless from './RadioButtonGroupStateless'
 import { Cushion, ButtonStyled } from '../common/StyledElements'
 import { logout } from '../utils/services'
 import { getFromStorage } from '../utils/storage'
+
+Profile.propTypes = {
+  user: PropTypes.object,
+  onEditClick: PropTypes.func,
+  onChangePasswordClick: PropTypes.func,
+}
 
 export default function Profile({ user, onEditClick, onChangePasswordClick }) {
   let history = useHistory()

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import { FormStyled, ButtonStyled, Cushion } from '../common/StyledElements'
@@ -7,7 +8,12 @@ import RadioButtonGroupStateless from './RadioButtonGroupStateless'
 import Alert from '../common/Alert'
 import { editProfile } from '../utils/services'
 
-export default function UserForm({ user, onSubmit, onChange }) {
+EditProfileForm.propTypes = {
+  user: PropTypes.object,
+  onChange: PropTypes.func,
+}
+
+export default function EditProfileForm({ user, onChange }) {
   const [missingInputs, setMissingInputs] = useState([])
   const [alert, setAlert] = useState('')
   let history = useHistory()
@@ -21,7 +27,7 @@ export default function UserForm({ user, onSubmit, onChange }) {
         placeholder="Gib hier deinen Namen ein"
         maxLength={20}
         missingInputs={missingInputs}
-        onChange={handleChange}
+        onChange={onChange}
       />
       <TextInputControlled
         labelName="Wohnort"
@@ -30,7 +36,7 @@ export default function UserForm({ user, onSubmit, onChange }) {
         placeholder="Gib hier deinen Wohnort ein"
         maxLength={50}
         missingInputs={missingInputs}
-        onChange={handleChange}
+        onChange={onChange}
       />
       <ContainerStyled>
         Spielstärke
@@ -42,13 +48,13 @@ export default function UserForm({ user, onSubmit, onChange }) {
           name="abilityLeft"
           activeRadio={user.abilityLeft}
           missingInputs={missingInputs}
-          onClick={handleChange}
+          onClick={onChange}
         ></RadioButtonGroupStateless>
         <RadioButtonGroupStateless
           name="abilityRight"
           activeRadio={user.abilityRight}
           missingInputs={missingInputs}
-          onClick={handleChange}
+          onClick={onChange}
         ></RadioButtonGroupStateless>
       </ContainerStyled>
       <TextInputControlled
@@ -56,7 +62,7 @@ export default function UserForm({ user, onSubmit, onChange }) {
         name="imageURL"
         value={user.imageURL}
         placeholder="Gib hier die URL deines Bildes ein"
-        onChange={handleChange}
+        onChange={onChange}
       />
       <TextInputControlled
         labelName="E-Mail"
@@ -64,17 +70,13 @@ export default function UserForm({ user, onSubmit, onChange }) {
         value={user.email}
         placeholder="Gib hier deine E-Mail-Adresse ein"
         missingInputs={missingInputs}
-        onChange={handleChange}
+        onChange={onChange}
       />
       {alert && <Alert>{alert}</Alert>}
       <ButtonStyled>Speichern</ButtonStyled>
       <Cushion />
     </FormStyled>
   )
-
-  function handleChange(changedProp) {
-    onChange(changedProp)
-  }
 
   function handleSubmit(event) {
     event.preventDefault()

@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import Alert from '../common/Alert'
 import TextInput from '../common/TextInput'
 import { ButtonStyled, FormStyled } from '../common/StyledElements'
 import { editPassword } from '../utils/services'
+
+PasswordForm.propTypes = {
+  userId: PropTypes.string,
+  onSubmit: PropTypes.func,
+}
 
 export default function PasswordForm({ userId, onSubmit }) {
   const [alert, setAlert] = useState('')
