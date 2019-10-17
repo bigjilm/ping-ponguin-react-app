@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import { FormStyled, ButtonStyled, Cushion } from './StyledElements'
 import TextInputControlled from './inputs/TextInputControlled'
 import RadioButtonGroupStateless from './inputs/RadioButtonGroupStateless'
 import Alert from './Alert'
+import { editProfile } from '../utils/services'
 
 export default function UserForm({ user, onSubmit, onChange }) {
   const [missingInputs, setMissingInputs] = useState([])
   const [alert, setAlert] = useState('')
+  let history = useHistory()
 
   return (
     <FormStyled onSubmit={handleSubmit}>
@@ -75,7 +78,26 @@ export default function UserForm({ user, onSubmit, onChange }) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    onSubmit()
+    const form = event.currentTarget
+    editProfile(user)
+      .then(res => {
+        console.log(res)
+        if (!res.success) {
+          throw new Error(res.message)
+        }
+        form.reset()
+        history.push('/profile')
+      })
+      .catch(err => {
+        console.error(err)
+        if (err.message === 'Error: account already exists') {
+          setAlert('Zu dieser E-Mail-Adresse existiert bereits ein Konto')
+        } else if (err.message.startsWith('User validation failed')) {
+          setMissingInputs(Object.keys(err.errors))
+        } else {
+          console.error(err)
+        }
+      })
   }
 }
 

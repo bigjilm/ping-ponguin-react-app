@@ -21,7 +21,7 @@ export default function App() {
           <Route exact path="/signup">
             <SignUpPage />
           </Route>
-          <Route path="/users">
+          <Route exact path="/users">
             <UsersListPage />
           </Route>
           <Route path="/profile">

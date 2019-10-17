@@ -40,7 +40,10 @@ export default function Profile({ user, onEditClick, onChangePasswordClick }) {
       </PropStyled>
       <PropStyled>
         <KeyStyled>Passwort</KeyStyled>
-        <ButtonStyled onClick={onChangePasswordClick}>
+        <ButtonStyled
+          style={{ justifySelf: 'start' }}
+          onClick={onChangePasswordClick}
+        >
           Passwort ändern
         </ButtonStyled>
       </PropStyled>

@@ -25,13 +25,18 @@ router.patch('/', (req, res) => {
 
   User.findById(id)
     .then(user => {
-      // name && (user.name = name)
-      // residence && (user.residence = residence)
-      // abilityLeft && (user.abilityLeft = abilityLeft)
-      // abilityRight && (user.abilityRight = abilityRight)
-      // imageURL && (user.imageURL = imageURL)
-      // email && (user.email = email)
-      // password && (user.password = password)
+      if (!(user.email === email)) {
+        User.find({ email: email })
+          .then(previousUsers => {
+            if (previousUsers.length > 0) {
+              return res.json({
+                success: false,
+                message: 'Error: account already exists',
+              })
+            }
+          })
+          .catch(err => res.status(400).json(err))
+      }
 
       user.name = name
       user.residence = residence

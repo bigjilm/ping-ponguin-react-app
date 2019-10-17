@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router'
+import { Route } from 'react-router-dom'
 import Page from '../common/Page'
 import { LoadingMessageStyled } from '../common/StyledElements'
 import UserForm from '../common/UserForm'
-import { getUser, editProfile } from '../utils/services'
+import { editProfile, getUser } from '../utils/services'
 import { getFromStorage } from '../utils/storage'
-import Profile from './Profile'
 import PasswordForm from './PasswordForm'
+import Profile from './Profile'
 
 export default function ProfilePage() {
   const [isLoading, setIsLoading] = useState(true)
-  const [isEditing, setIsEditing] = useState(false)
-  const [isChangingPassword, setIsChangingPassword] = useState(true)
   const [user, setUser] = useState({})
+  let history = useHistory()
 
   useEffect(() => {
     const token = getFromStorage('pingu')
@@ -27,25 +28,27 @@ export default function ProfilePage() {
     <Page title="Profil">
       <>
         {isLoading && <LoadingMessageStyled>Loading...</LoadingMessageStyled>}
-        {!isLoading && !isEditing && !isChangingPassword && (
-          <Profile
-            user={user}
-            onEditClick={() => setIsEditing(true)}
-            onChangePasswordClick={() => setIsChangingPassword(true)}
-          />
-        )}
-        {!isLoading && isEditing && (
-          <UserForm
-            user={user}
-            onSubmit={handleSubmit}
-            onChange={handleChange}
-          />
-        )}
-        {!isLoading && isChangingPassword && (
-          <PasswordForm
-            userId={user._id}
-            onSubmit={() => setIsChangingPassword(false)}
-          />
+        {!isLoading && (
+          <>
+            <Route exact path="/profile">
+              <Profile
+                user={user}
+                onEditClick={() => history.push('/profile/edit')}
+                onChangePasswordClick={() =>
+                  history.push('/profile/changePassword')
+                }
+              />
+            </Route>
+            <Route exact path="/profile/edit">
+              <UserForm user={user} onChange={handleChange} />
+            </Route>
+            <Route path="/profile/changePassword">
+              <PasswordForm
+                userId={user._id}
+                onSubmit={() => history.push('/profile')}
+              />
+            </Route>
+          </>
         )}
       </>
     </Page>
@@ -53,14 +56,5 @@ export default function ProfilePage() {
 
   function handleChange(changedProp) {
     setUser({ ...user, ...changedProp })
-  }
-
-  function handleSubmit() {
-    editProfile(user)
-      .then(res => {
-        console.log(res)
-        setIsEditing(false)
-      })
-      .catch(err => console.error(err))
   }
 }
