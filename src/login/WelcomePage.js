@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import ppLogo from '../assets/pp-logo.png'
-import { ButtonStyled } from '../common/StyledElements'
-import { getUserSession } from '../utils/services'
+import { ButtonStyled, LoadingMessageStyled } from '../common/StyledElements'
+import { verifyUserSession } from '../utils/services'
 import { getFromStorage } from '../utils/storage'
 
 export default function WelcomePage() {
@@ -14,15 +14,13 @@ export default function WelcomePage() {
   useEffect(() => {
     const token = getFromStorage('pingu')
     if (token) {
-      getUserSession(token).then(session => {
-        console.log(session.message)
-        if (session.success) {
-          setIsLoading(false)
-          history.push('/users')
-        } else {
-          setIsLoading(false)
-        }
-      })
+      verifyUserSession(token)
+        .then(res => {
+          if (res.success) {
+            history.push('/users')
+          }
+        })
+        .catch(err => console.error(err))
     } else {
       setIsLoading(false)
     }
@@ -32,7 +30,7 @@ export default function WelcomePage() {
     <WelcomePageStyled>
       <HeadlineStyled>ping ponguin</HeadlineStyled>
       <LogoStyled src={ppLogo} />
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <LoadingMessageStyled>Loading...</LoadingMessageStyled>}
       {isLoading || (
         <WelcomeButtonsStyled>
           <ButtonStyled onClick={handleSignInClick}>Sign in</ButtonStyled>
@@ -49,14 +47,6 @@ export default function WelcomePage() {
   function handleSignUpClick() {
     history.push('/signup')
   }
-
-  //   function handleLogout() {
-  //     const token = getFromStorage('pingu')
-  //     if (token) {
-  //       setToStorage('pingu', null)
-  //       logout(token).then(res => console.log(res.message))
-  //     }
-  //   }
 }
 
 const WelcomePageStyled = styled.main`

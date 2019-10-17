@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import UsersListPage from './usersList/UsersListPage'
-import { getUsers } from './utils/services'
 import SignInPage from './login/SignInPage'
 import SignUpPage from './login/SignUpPage'
 import WelcomePage from './login/WelcomePage'
+import UsersListPage from './usersList/UsersListPage'
+import ProfilePage from './profile/ProfilePage'
 
 export default function App() {
   return (
@@ -21,8 +21,11 @@ export default function App() {
           <Route exact path="/signup">
             <SignUpPage />
           </Route>
-          <Route path="/users">
+          <Route exact path="/users">
             <UsersListPage />
+          </Route>
+          <Route path="/profile">
+            <ProfilePage />
           </Route>
         </Switch>
       </AppStyled>

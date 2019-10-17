@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components/macro'
+import React, { useEffect, useState } from 'react'
 import Page from '../common/Page'
+import { LoadingMessageStyled } from '../common/StyledElements'
+import { getAllUsers } from '../utils/services'
 import Filter from './Filter'
 import UsersList from './UsersList'
-import { getUsers } from '../utils/services'
 
 export default function UsersListPage() {
+  const [isLoading, setIsLoading] = useState(true)
+  const [users, setUsers] = useState([])
   const [isFilterVisible, setIsFilterVisible] = useState(false)
   const [residenceFilterValue, setResidenceFilterValue] = useState('')
   const [abilityFilterValues, setAbilityFilterValues] = useState([
@@ -16,10 +18,12 @@ export default function UsersListPage() {
     '5',
     'alle',
   ])
-  const [users, setUsers] = useState([])
 
   useEffect(() => {
-    getUsers().then(setUsers)
+    getAllUsers().then(users => {
+      setUsers(users)
+      setIsLoading(false)
+    })
   }, [])
 
   return (
@@ -29,16 +33,18 @@ export default function UsersListPage() {
       isFilterVisible={isFilterVisible}
       onFilterClick={handleFilterClick}
     >
-      {isFilterVisible && (
-        <Filter
-          residenceFilterValue={residenceFilterValue}
-          onChangeResidenceFilterValue={setResidenceFilterValue}
-          abilityFilterValues={abilityFilterValues}
-          onChangeAbilityFilterValues={setAbilityFilterValues}
-        ></Filter>
-      )}
-      {withUsersList(users)}
-      <Cushion />
+      <>
+        {isFilterVisible && (
+          <Filter
+            residenceFilterValue={residenceFilterValue}
+            onChangeResidenceFilterValue={setResidenceFilterValue}
+            abilityFilterValues={abilityFilterValues}
+            onChangeAbilityFilterValues={setAbilityFilterValues}
+          ></Filter>
+        )}
+        {isLoading && <LoadingMessageStyled>Loading...</LoadingMessageStyled>}
+        {isLoading || withUsersList(users)}
+      </>
     </Page>
   )
   function handleFilterClick() {
@@ -52,7 +58,9 @@ export default function UsersListPage() {
   function withUsersList(users) {
     const usersFilteredByResidence = users.filter(
       user =>
-        user.residence === residenceFilterValue ||
+        user.residence
+          .toLowerCase()
+          .startsWith(residenceFilterValue.toLowerCase()) ||
         residenceFilterValue.length === 0
     )
     const usersFilteredByResidenceAndAbility = usersFilteredByResidence.filter(
@@ -68,9 +76,3 @@ export default function UsersListPage() {
     )
   }
 }
-
-//Das folgende Element erzeugt einen Abstand zur Unterkante, wenn man ganz nach unten scrollt.
-//Gibt es eine bessere Lösung?
-const Cushion = styled.div`
-  height: 20px;
-`

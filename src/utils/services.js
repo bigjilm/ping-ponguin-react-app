@@ -1,5 +1,9 @@
-export function getUsers() {
+export function getAllUsers() {
   return fetchUsers()
+}
+
+export function getUser(token) {
+  return fetchUsers({ path: '/getUser?token=' + token })
 }
 
 export function signIn(data) {
@@ -10,24 +14,36 @@ export function signUp(data) {
   return fetchUsers({ path: '/signup', method: 'POST', data })
 }
 
-export function getUserSession(token) {
-  return fetch('/verify?token=' + token, {
+export function verifyUserSession(token) {
+  return fetch('/verifySession?token=' + token, {
     method: 'GET',
-  })
-    .then(res => handleError(res))
-    .catch(err => console.error(err))
+  }).then(res => handleError(res))
 }
 
 export function logout(token) {
   return fetch('/logout?token=' + token, {
     method: 'GET',
-  })
-    .then(res => handleError(res))
-    .catch(err => console.error(err))
+  }).then(res => handleError(res))
 }
 
-function fetchUsers({ path = '/users/', method = 'GET', id = '', data } = {}) {
-  return fetch(path + id, {
+export function editProfile(data) {
+  return fetchUsers({
+    path: '/editProfile?id=' + data._id,
+    method: 'PATCH',
+    data,
+  })
+}
+
+export function editPassword(id, data) {
+  return fetchUsers({
+    path: '/editPassword?id=' + id,
+    method: 'PATCH',
+    data,
+  })
+}
+
+function fetchUsers({ path = '/getAllUsers/', method = 'GET', data } = {}) {
+  return fetch(path, {
     method,
     body: JSON.stringify(data),
     headers: {

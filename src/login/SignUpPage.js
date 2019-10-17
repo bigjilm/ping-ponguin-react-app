@@ -3,7 +3,7 @@ import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import Alert from '../common/Alert'
 import Page from '../common/Page'
-import { ButtonStyled, FormStyled } from '../common/StyledElements'
+import { ButtonStyled, FormStyled, Cushion } from '../common/StyledElements'
 import TextInput from '../common/TextInput'
 import { signUp } from '../utils/services'
 import RadioButtonGroup from './RadioButtonGroup'
@@ -116,10 +116,4 @@ const StyledParagraph = styled.p`
   font-size: 14px;
   font-weight: normal;
   margin: 0;
-`
-
-//Das folgende Element erzeugt einen Abstand zur Unterkante, wenn man ganz nach unten scrollt.
-//Gibt es eine bessere Lösung?
-const Cushion = styled.div`
-  height: 20px;
 `

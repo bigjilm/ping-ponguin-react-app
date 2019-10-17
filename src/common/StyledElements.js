@@ -15,3 +15,12 @@ export const ButtonStyled = styled.button`
   background-color: #c2d4d8;
   border: none;
 `
+
+//Das folgende Element ist zum Erzeugen eines Abstands zur Unterkante,
+//wenn man ganz nach unten scrollt.
+//Gibt es eine bessere Lösung?
+export const Cushion = styled.div`
+  height: 40px;
+`
+
+export const LoadingMessageStyled = styled.div``

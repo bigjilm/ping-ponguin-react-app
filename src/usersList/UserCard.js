@@ -47,9 +47,9 @@ const UserCardStyled = styled.section`
 const ImageStyled = styled.img`
   grid-area: image;
   justify-self: center;
-  height: 100px;
-  width: 100px;
-  border-radius: 50px 50px 37px 37px;
+  height: 150px;
+  width: 150px;
+  border-radius: 75px 75px 55.5px 55.5px;
   object-fit: cover;
 `
 

@@ -23,7 +23,8 @@ router.post('/', (req, res) => {
         if (password) {
           encryptedPassword = generateHash(password)
         } else {
-          encryptedPassword = ''
+          //empty password will be rejected by mongoDB
+          encryptedPassword = null
         }
 
         User.create({ ...req.body, password: encryptedPassword })
