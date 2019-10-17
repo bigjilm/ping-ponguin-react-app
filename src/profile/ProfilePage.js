@@ -3,8 +3,8 @@ import { useHistory } from 'react-router'
 import { Route } from 'react-router-dom'
 import Page from '../common/Page'
 import { LoadingMessageStyled } from '../common/StyledElements'
-import UserForm from '../common/UserForm'
-import { editProfile, getUser } from '../utils/services'
+import UserForm from './EditProfileForm'
+import { getUser } from '../utils/services'
 import { getFromStorage } from '../utils/storage'
 import PasswordForm from './PasswordForm'
 import Profile from './Profile'
@@ -42,7 +42,7 @@ export default function ProfilePage() {
             <Route exact path="/profile/edit">
               <UserForm
                 user={user}
-                onChange={handleChange}
+                onChange={changedProp => setUser({ ...user, ...changedProp })}
               />
             </Route>
             <Route path="/profile/changePassword">
@@ -56,8 +56,4 @@ export default function ProfilePage() {
       </>
     </Page>
   )
-
-  function handleChange(changedProp) {
-    setUser({ ...user, ...changedProp })
-  }
 }

@@ -1,9 +1,9 @@
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import React from 'react'
 import styled from 'styled-components/macro'
-import Alert from '../Alert'
+import Alert from './Alert'
 
-TextInputControlled.propTypes = {
+TextInput.propTypes = {
   labelName: PropTypes.string,
   name: PropTypes.string,
   placeholder: PropTypes.string,
@@ -12,16 +12,17 @@ TextInputControlled.propTypes = {
   missingInputs: PropTypes.arrayOf(PropTypes.string),
 }
 
-export default function TextInputControlled({
-  labelName = '',
+export default function TextInput({
+  labelName,
   name,
-  value = '',
   type = 'text',
   placeholder,
   maxLength = 1000,
   missingInputs = [],
-  onChange,
 }) {
+  //no controlled input; state just for length check
+  const [inputValue, setInputValue] = useState('')
+
   return (
     <LabelStyled>
       {labelName}
@@ -29,21 +30,15 @@ export default function TextInputControlled({
         name={name}
         type={type}
         placeholder={placeholder}
-        value={value}
-        onChange={handleChange}
+        onChange={event => setInputValue(event.currentTarget.value)}
         maxLength={maxLength}
       />
-      {value.length === maxLength && <Alert>max. {maxLength} Zeichen</Alert>}
+      {inputValue.length === maxLength && (
+        <Alert>max. {maxLength} Zeichen</Alert>
+      )}
       {missingInputs.includes(name) && <Alert target={name}></Alert>}
     </LabelStyled>
   )
-
-  function handleChange(event) {
-    const inputName = event.currentTarget.name
-    const inputValue = event.currentTarget.value
-    const changedProp = { [inputName]: inputValue }
-    onChange(changedProp)
-  }
 }
 
 const LabelStyled = styled.label`

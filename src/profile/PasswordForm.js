@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import styled from 'styled-components/macro'
-import TextInput from '../common/inputs/TextInput'
-import { FormStyled, ButtonStyled } from '../common/StyledElements'
-import { editPassword } from '../utils/services'
 import Alert from '../common/Alert'
+import TextInput from '../common/TextInput'
+import { ButtonStyled, FormStyled } from '../common/StyledElements'
+import { editPassword } from '../utils/services'
 
 export default function PasswordForm({ userId, onSubmit }) {
   const [alert, setAlert] = useState('')

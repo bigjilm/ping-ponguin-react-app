@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
-import RadioButtonGroupStateless from '../common/inputs/RadioButtonGroupStateless'
+import RadioButtonGroupStateless from './RadioButtonGroupStateless'
 import { Cushion, ButtonStyled } from '../common/StyledElements'
 import { logout } from '../utils/services'
 import { getFromStorage } from '../utils/storage'
