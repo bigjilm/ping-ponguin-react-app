@@ -14,15 +14,13 @@ export default function WelcomePage() {
   useEffect(() => {
     const token = getFromStorage('pingu')
     if (token) {
-      verifyUserSession(token).then(session => {
-        console.log(session.message)
-        if (session.success) {
-          setIsLoading(false)
-          history.push('/users')
-        } else {
-          setIsLoading(false)
-        }
-      })
+      verifyUserSession(token)
+        .then(res => {
+          if (res.success) {
+            history.push('/users')
+          }
+        })
+        .catch(err => console.error(err))
     } else {
       setIsLoading(false)
     }
@@ -49,14 +47,6 @@ export default function WelcomePage() {
   function handleSignUpClick() {
     history.push('/signup')
   }
-
-  //   function handleLogout() {
-  //     const token = getFromStorage('pingu')
-  //     if (token) {
-  //       setToStorage('pingu', null)
-  //       logout(token).then(res => console.log(res.message))
-  //     }
-  //   }
 }
 
 const WelcomePageStyled = styled.main`

@@ -17,7 +17,8 @@ router.patch('/', (req, res) => {
     if (newPassword) {
       newPasswordEncrypted = generateHash(newPassword)
     } else {
-      newPasswordEncrypted = ''
+      //empty password will be rejected by mongoDB
+      newPasswordEncrypted = null
     }
   }
 
@@ -29,7 +30,6 @@ router.patch('/', (req, res) => {
           message: 'The old password is wrong',
         })
       } else {
-        console.log(newPasswordEncrypted)
         user.password = newPasswordEncrypted
         user
           .save()

@@ -57,18 +57,6 @@ router.patch('/', (req, res) => {
         .catch(err => res.status(400).json(err))
     })
     .catch(err => res.status(400).json(err))
-
-  // User.findByIdAndUpdate(id, {
-  //   ...req.body,
-  //   password: encryptedPassword,
-  // })
-  //   .then(() => {
-  //     res.json({
-  //       success: true,
-  //       message: 'Your profile has been edited',
-  //     })
-  //   })
-  //   .catch(err => res.status(400).json(err))
 })
 
 function generateHash(password) {

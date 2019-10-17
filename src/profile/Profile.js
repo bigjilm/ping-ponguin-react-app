@@ -5,7 +5,7 @@ import styled from 'styled-components/macro'
 import RadioButtonGroupStateless from './RadioButtonGroupStateless'
 import { Cushion, ButtonStyled } from '../common/StyledElements'
 import { logout } from '../utils/services'
-import { getFromStorage } from '../utils/storage'
+import { getFromStorage, setToStorage } from '../utils/storage'
 
 Profile.propTypes = {
   user: PropTypes.object,
@@ -67,7 +67,7 @@ export default function Profile({ user, onEditClick, onChangePasswordClick }) {
     const token = getFromStorage('pingu')
     logout(token)
       .then(res => {
-        console.log(res)
+        setToStorage('pingu', '')
         history.push('/')
       })
       .catch(err => console.error(err))
@@ -97,10 +97,7 @@ const KeyStyled = styled.h3`
   margin: 0;
 `
 
-const ValueStyled = styled.span`
-  /* background-color: #c2d4d8; */
-  /* padding: 5px; */
-`
+const ValueStyled = styled.span``
 
 const ImageStyled = styled.img`
   height: 150px;
