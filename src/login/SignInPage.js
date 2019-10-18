@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
+import ppLogo from '../assets/pp-logo.png'
 import Alert from '../common/Alert'
-import { ButtonStyled, FormStyled } from '../common/StyledElements'
+import { ButtonStyled } from '../common/StyledElements'
 import TextInput from '../common/TextInput'
 import { signIn } from '../utils/services'
 import { setToStorage } from '../utils/storage'
-import ppLogo from '../assets/pp-logo.png'
 
 export default function SignInPage() {
   const [alert, setAlert] = useState('')
@@ -16,7 +16,7 @@ export default function SignInPage() {
     <SignInPageStyled title="ping ponguin">
       <HeadlineStyled>ping ponguin</HeadlineStyled>
       <LogoStyled src={ppLogo} />
-      <FormStyled onSubmit={handleSignIn}>
+      <SignInFormStyled onSubmit={handleSignIn}>
         <TextInput
           name="email"
           labelName="E-Mail-Adresse"
@@ -25,12 +25,12 @@ export default function SignInPage() {
         <TextInput
           name="password"
           labelName="Passwort"
-          placeholder="Gib hier ein Passwort ein"
+          placeholder="Gib hier dein Passwort ein"
           type="password"
         />
         {alert && <Alert>{alert}</Alert>}
         <ButtonStyled>Sign in</ButtonStyled>
-      </FormStyled>
+      </SignInFormStyled>
     </SignInPageStyled>
   )
 
@@ -68,7 +68,7 @@ const SignInPageStyled = styled.main`
   display: grid;
   grid-auto-rows: min-content;
   justify-items: center;
-  grid-gap: 50px;
+  grid-gap: 40px;
   background-color: #418ab3;
   overflow: auto;
   padding: 80px;
@@ -81,4 +81,12 @@ const HeadlineStyled = styled.h1`
 
 const LogoStyled = styled.img`
   height: 100px;
+`
+
+const SignInFormStyled = styled.form`
+  display: grid;
+  grid-auto-rows: min-content;
+  grid-gap: 30px;
+  padding: 0px 30px;
+  overflow: auto;
 `

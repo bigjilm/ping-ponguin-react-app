@@ -21,16 +21,15 @@ export default function Page({
   children,
   showNavigation = true,
 }) {
-  console.log(showNavigation)
   return (
-    <PageStyled showNavigation>
+    <PageStyled showNavigation={showNavigation}>
       <Header
         title={title}
         showFilterSymbol={showFilterSymbol}
         isFilterVisible={isFilterVisible}
         onFilterClick={onFilterClick}
       />
-      {children}
+      <MainStyled>{children}</MainStyled>
       {showNavigation && <Navigation />}
     </PageStyled>
   )
@@ -41,5 +40,10 @@ const PageStyled = styled.div`
   grid-template-rows: ${props =>
     props.showNavigation ? '48px auto 48px' : '48px auto'};
   background-color: #418ab3;
+  overflow: auto;
+`
+
+const MainStyled = styled.main`
+  padding: 30px 30px;
   overflow: auto;
 `

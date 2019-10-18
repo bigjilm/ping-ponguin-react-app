@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import React, { useState } from 'react'
+import styled from 'styled-components/macro'
 import Alert from '../common/Alert'
+import { ButtonStyled } from '../common/StyledElements'
 import TextInput from '../common/TextInput'
-import { ButtonStyled, FormStyled } from '../common/StyledElements'
 import { editPassword } from '../utils/services'
 
 PasswordForm.propTypes = {
@@ -14,7 +15,7 @@ export default function PasswordForm({ userId, onSubmit }) {
   const [alert, setAlert] = useState('')
 
   return (
-    <FormStyled onSubmit={handleSubmit}>
+    <PasswordFormStyled onSubmit={handleSubmit}>
       <TextInput
         labelName="Altes Passwort"
         name="oldPassword"
@@ -32,7 +33,7 @@ export default function PasswordForm({ userId, onSubmit }) {
       />
       {alert && <Alert>{alert}</Alert>}
       <ButtonStyled>Speichern</ButtonStyled>
-    </FormStyled>
+    </PasswordFormStyled>
   )
 
   function handleSubmit(event) {
@@ -54,3 +55,9 @@ export default function PasswordForm({ userId, onSubmit }) {
       })
   }
 }
+
+const PasswordFormStyled = styled.form`
+  display: grid;
+  grid-auto-rows: min-content;
+  grid-gap: 30px;
+`

@@ -78,8 +78,6 @@ const ProfileStyled = styled.div`
   display: grid;
   grid-auto-rows: min-content;
   grid-gap: 30px;
-  padding: 50px 30px;
-  overflow: auto;
 `
 
 const ButtonContainerStyled = styled.div`
