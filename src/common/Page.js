@@ -41,6 +41,7 @@ const PageStyled = styled.div`
     props.showNavigation ? '48px auto 48px' : '48px auto'};
   background-color: #418ab3;
   overflow: auto;
+  height: 100%;
 `
 
 const MainStyled = styled.main`

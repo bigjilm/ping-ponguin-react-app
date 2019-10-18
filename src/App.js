@@ -38,7 +38,6 @@ export default function App() {
 }
 
 const AppStyled = styled.div`
-  display: grid;
   position: fixed;
   left: 0;
   right: 0;

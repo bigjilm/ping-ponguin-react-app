@@ -73,6 +73,7 @@ const SignInPageStyled = styled.main`
   overflow: auto;
   padding: 80px;
   color: #c2d4d8;
+  height: 100%;
 `
 
 const HeadlineStyled = styled.h1`
