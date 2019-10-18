@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import io from 'socket.io-client'
+import Page from '../common/Page'
 const socket = io.connect('http://localhost:3333')
 
 export default function ChatPage() {
@@ -12,7 +13,7 @@ export default function ChatPage() {
   })
 
   return (
-    <>
+    <Page title="Chat">
       <form onSubmit={sendSocketIO}>
         <input name="input" type="text" />
         <button>Send Socket.io</button>
@@ -20,7 +21,7 @@ export default function ChatPage() {
       {messages.map((message, index) => (
         <div key={index}>{message}</div>
       ))}
-    </>
+    </Page>
   )
 
   function sendSocketIO(event) {
