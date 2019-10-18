@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import styled from 'styled-components/macro'
 import io from 'socket.io-client'
 import Page from '../common/Page'
+import MessageInputForm from './MessageInputForm'
 const socket = io.connect('http://localhost:3333')
 
 export default function ChatPage() {
@@ -14,19 +16,29 @@ export default function ChatPage() {
 
   return (
     <Page title="Chat">
-      <form onSubmit={sendSocketIO}>
-        <input name="input" type="text" />
-        <button>Send Socket.io</button>
-      </form>
-      {messages.map((message, index) => (
-        <div key={index}>{message}</div>
-      ))}
+      <ChatContainerStyled>
+        <MessagesContainerStyled>
+          {messages.map((message, index) => (
+            <div key={index}>{message}</div>
+          ))}
+        </MessagesContainerStyled>
+        <MessageInputForm onSubmit={sendSocketIO} />
+      </ChatContainerStyled>
     </Page>
   )
 
   function sendSocketIO(event) {
     event.preventDefault()
-    const message = event.currentTarget.input.value
+    const message = event.currentTarget.textarea.value
     socket.emit('example_message', message)
   }
 }
+
+const ChatContainerStyled = styled.div`
+  display: grid;
+  grid-template-rows: auto 48px;
+  height: 100%;
+  background-color: #c2d4d8;
+`
+
+const MessagesContainerStyled = styled.div``
