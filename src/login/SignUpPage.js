@@ -18,7 +18,7 @@ export default function SignUpPage() {
   }, [])
 
   return (
-    <Page title="Profil erstellen">
+    <Page title="Profil erstellen" showNavigation={false}>
       <FormStyled onSubmit={handleSignUp}>
         <TextInput
           labelName="Name"

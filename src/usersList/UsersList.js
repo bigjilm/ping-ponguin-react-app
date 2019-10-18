@@ -23,9 +23,7 @@ export default function UsersList({ users, onListClick }) {
 const UsersListStyled = styled.div`
   display: grid;
   grid-auto-rows: min-content;
-  grid-gap: 20px;
+  grid-gap: 30px;
   overflow-y: auto;
   scroll-behavior: smooth;
-  background-color: #418ab3;
-  padding: 20px;
 `
