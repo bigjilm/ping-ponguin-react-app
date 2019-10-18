@@ -6,6 +6,7 @@ import SignUpPage from './login/SignUpPage'
 import WelcomePage from './login/WelcomePage'
 import UsersListPage from './usersList/UsersListPage'
 import ProfilePage from './profile/ProfilePage'
+import ChatPage from './chat/ChatPage'
 
 export default function App() {
   return (
@@ -23,6 +24,9 @@ export default function App() {
           </Route>
           <Route exact path="/users">
             <UsersListPage />
+          </Route>
+          <Route exact path="/chat">
+            <ChatPage />
           </Route>
           <Route path="/profile">
             <ProfilePage />
