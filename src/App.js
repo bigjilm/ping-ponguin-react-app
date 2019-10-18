@@ -1,12 +1,12 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
+import ChatPage from './chat/ChatPage'
 import SignInPage from './login/SignInPage'
 import SignUpPage from './login/SignUpPage'
 import WelcomePage from './login/WelcomePage'
-import UsersListPage from './usersList/UsersListPage'
 import ProfilePage from './profile/ProfilePage'
-import ChatPage from './chat/ChatPage'
+import UsersListPage from './usersList/UsersListPage'
 
 export default function App() {
   return (

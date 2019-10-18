@@ -1,15 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import io from 'socket.io-client'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import GlobalStyles from './common/GlobalStyles'
+import SocketContext from './SocketContext'
 
 const rootElement = document.querySelector('#root')
+const socket = io.connect('http://localhost:3333')
 
 ReactDOM.render(
   <>
     <GlobalStyles />
-    <App />
+    <SocketContext.Provider value={socket}>
+      <App />
+    </SocketContext.Provider>
   </>,
   rootElement
 )

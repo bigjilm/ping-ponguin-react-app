@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import styled from 'styled-components/macro'
-import io from 'socket.io-client'
 import Page from '../common/Page'
 import MessageInputForm from './MessageInputForm'
-const socket = io.connect('http://localhost:3333')
+import SocketContext from '../SocketContext'
 
 export default function ChatPage() {
   const [messages, setMessages] = useState([])
+  const socket = useContext(SocketContext)
 
   useEffect(() => {
     socket.on('message', msg => {
