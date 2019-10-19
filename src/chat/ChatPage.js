@@ -3,13 +3,21 @@ import styled from 'styled-components/macro'
 import Page from '../common/Page'
 import MessageInputForm from './MessageInputForm'
 import SocketContext from '../SocketContext'
+import {
+  USER_CONNECTED,
+  USER_DISCONNECTED,
+  CHAT_START,
+  MESSAGE_SENT,
+  MESSAGE_RECEIVED,
+  TYPING,
+} from '../events'
 
 export default function ChatPage() {
   const [messages, setMessages] = useState([])
   const socket = useContext(SocketContext)
 
   useEffect(() => {
-    socket.on('message', msg => {
+    socket.on(MESSAGE_RECEIVED, msg => {
       setMessages([...messages, msg])
     })
   })
@@ -30,7 +38,7 @@ export default function ChatPage() {
   function sendSocketIO(event) {
     event.preventDefault()
     const message = event.currentTarget.textarea.value
-    socket.emit('example_message', message)
+    socket.emit(MESSAGE_SENT, message)
   }
 }
 
