@@ -9,11 +9,11 @@ UsersList.propTypes = {
   onListClick: PropTypes.func,
 }
 
-export default function UsersList({ users, onListClick }) {
+export default function UsersList({ users, currentUser, onListClick }) {
   return (
     <UsersListStyled onClick={onListClick}>
       {users.map(user => (
-        <UserCard key={user._id} {...user}></UserCard>
+        <UserCard key={user._id} {...user} currentUser={currentUser}></UserCard>
       ))}
       <Cushion />
     </UsersListStyled>

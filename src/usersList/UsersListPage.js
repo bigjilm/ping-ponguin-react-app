@@ -72,6 +72,7 @@ export default function UsersListPage({ currentUser }) {
     return (
       <UsersList
         users={usersFilteredByResidenceAndAbility}
+        currentUser={currentUser}
         onListClick={handleListClick}
       />
     )

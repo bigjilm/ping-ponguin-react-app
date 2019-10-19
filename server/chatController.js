@@ -19,6 +19,7 @@ const chatController = server => {
     })
 
     socket.on(CHAT_START, userIds => {
+      userIds.sort()
       Channel.find({ members: userIds }).then(channels => {
         if (channels.length > 1) {
           console.error('Error: More than one channel for a user couple')

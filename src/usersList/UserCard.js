@@ -1,22 +1,39 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { useHistory } from 'react-router'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
+import SocketContext from '../SocketContext'
+import {
+  USER_CONNECTED,
+  USER_DISCONNECTED,
+  CHAT_START,
+  MESSAGE_SENT,
+  MESSAGE_RECEIVED,
+  TYPING,
+} from '../events'
 
 UserCard.propTypes = {
+  _id: PropTypes.string,
   name: PropTypes.string,
   residence: PropTypes.string,
   abilityLeft: PropTypes.string,
   abilityRight: PropTypes.string,
   imageURL: PropTypes.string,
+  currentUser: PropTypes.object,
 }
 
 export default function UserCard({
+  _id,
   name,
   residence,
   abilityLeft,
   abilityRight,
   imageURL,
+  currentUser,
 }) {
+  const socket = useContext(SocketContext)
+  let history = useHistory()
+
   return (
     <UserCardStyled>
       <NameStyled>{name}</NameStyled>
@@ -27,8 +44,15 @@ export default function UserCard({
         <AbilityStyled>links: {abilityLeft}</AbilityStyled>
         <AbilityStyled>rechts: {abilityRight}</AbilityStyled>
       </div>
+      <ChatButtonStyled onClick={startChat}>Chat</ChatButtonStyled>
     </UserCardStyled>
   )
+
+  function startChat() {
+    // const sortedIds = [_id, currentUser._id].sort()
+    socket.emit(CHAT_START, [_id, currentUser._id])
+    history.push('/chat')
+  }
 }
 
 const UserCardStyled = styled.section`
@@ -38,7 +62,7 @@ const UserCardStyled = styled.section`
   grid-template-areas:
     'name image'
     'residence image'
-    'ability image';
+    'ability button';
   grid-gap: 10px;
   background-color: #c2d4d8;
   padding: 20px;
@@ -66,4 +90,8 @@ const ResidenceStyled = styled.span`
 const AbilityStyled = styled.div`
   grid-area: ability;
   margin-left: 20px;
+`
+
+const ChatButtonStyled = styled.button`
+  grid-area: button;
 `
