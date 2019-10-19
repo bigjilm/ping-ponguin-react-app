@@ -49,7 +49,6 @@ export default function UserCard({
   )
 
   function startChat() {
-    // const sortedIds = [_id, currentUser._id].sort()
     socket.emit(CHAT_START, [_id, currentUser._id])
     history.push('/chat')
   }
