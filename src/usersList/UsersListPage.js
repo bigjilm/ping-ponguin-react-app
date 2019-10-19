@@ -20,11 +20,17 @@ export default function UsersListPage({ currentUser }) {
   ])
 
   useEffect(() => {
-    getAllUsers().then(users => {
-      const filteredUsers = users.filter(user => user._id !== currentUser._id)
-      setUsers(filteredUsers)
-      setIsLoading(false)
-    })
+    const abortController = new AbortController()
+    const signal = abortController.signal
+
+    getAllUsers({ signal })
+      .then(users => {
+        const filteredUsers = users.filter(user => user._id !== currentUser._id)
+        setUsers(filteredUsers)
+        setIsLoading(false)
+      })
+      .catch(err => console.error(err))
+    return () => abortController.abort()
   }, [currentUser])
 
   return (

@@ -15,8 +15,11 @@ export default function App() {
   const token = getFromStorage('pingu')
 
   useEffect(() => {
+    const abortController = new AbortController()
+    const signal = abortController.signal
+
     if (token) {
-      verifyUserSession(token)
+      verifyUserSession(token, { signal })
         .then(res => {
           if (res.success)
             getUser(token)
@@ -27,6 +30,7 @@ export default function App() {
         })
         .catch(err => console.error(err))
     }
+    return () => abortController.abort()
   }, [token])
 
   return (
@@ -46,7 +50,7 @@ export default function App() {
             <UsersListPage currentUser={currentUser} />
           </Route>
           <Route exact path="/chat">
-            <ChatPage />
+            <ChatPage currentUser={currentUser} />
           </Route>
           <Route path="/profile">
             <ProfilePage
