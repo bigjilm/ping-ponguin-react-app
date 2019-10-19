@@ -1,3 +1,5 @@
+const mongoose = require('mongoose')
+const Channel = require('./models/Channel')
 const socket_io = require('socket.io')
 const {
   USER_CONNECTED,
@@ -15,6 +17,22 @@ const chatController = server => {
     socket.on(USER_DISCONNECTED, () => {
       console.log('User Disconnected')
     })
+
+    socket.on(CHAT_START, userIds => {
+      Channel.find({ members: userIds }).then(channels => {
+        if (channels.length > 1) {
+          console.error('Error: More than one channel for a user couple')
+        } else if (channels.length === 0) {
+          console.log('Chat started')
+          Channel.create({
+            members: userIds,
+          })
+        } else {
+          console.log('Channel found')
+        }
+      })
+    })
+
     socket.on(MESSAGE_SENT, msg => {
       console.log('message:', msg)
       io.emit(MESSAGE_RECEIVED, msg)
