@@ -66,7 +66,7 @@ export default function Profile({ user, onEditClick, onChangePasswordClick }) {
   function handleLogout() {
     const token = getFromStorage('pingu')
     logout(token)
-      .then(res => {
+      .then(() => {
         setToStorage('pingu', '')
         history.push('/')
       })

@@ -3,28 +3,20 @@ import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import ppLogo from '../assets/pp-logo.png'
 import { ButtonStyled, LoadingMessageStyled } from '../common/StyledElements'
-import { verifyUserSession } from '../utils/services'
 import { getFromStorage } from '../utils/storage'
 
-export default function WelcomePage() {
-  // add loading message
+export default function WelcomePage({ token }) {
   const [isLoading, setIsLoading] = useState(true)
   let history = useHistory()
 
   useEffect(() => {
     const token = getFromStorage('pingu')
     if (token) {
-      verifyUserSession(token)
-        .then(res => {
-          if (res.success) {
-            history.push('/users')
-          }
-        })
-        .catch(err => console.error(err))
+      history.push('/users')
     } else {
       setIsLoading(false)
     }
-  }, [history])
+  }, [token, history])
 
   return (
     <WelcomePageStyled>

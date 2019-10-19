@@ -5,7 +5,7 @@ import { getAllUsers } from '../utils/services'
 import Filter from './Filter'
 import UsersList from './UsersList'
 
-export default function UsersListPage() {
+export default function UsersListPage({ currentUser }) {
   const [isLoading, setIsLoading] = useState(true)
   const [users, setUsers] = useState([])
   const [isFilterVisible, setIsFilterVisible] = useState(false)
@@ -21,10 +21,11 @@ export default function UsersListPage() {
 
   useEffect(() => {
     getAllUsers().then(users => {
-      setUsers(users)
+      const filteredUsers = users.filter(user => user._id !== currentUser._id)
+      setUsers(filteredUsers)
       setIsLoading(false)
     })
-  }, [])
+  }, [currentUser])
 
   return (
     <Page

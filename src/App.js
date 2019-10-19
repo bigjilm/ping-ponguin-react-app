@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import ChatPage from './chat/ChatPage'
@@ -7,8 +7,28 @@ import SignUpPage from './login/SignUpPage'
 import WelcomePage from './login/WelcomePage'
 import ProfilePage from './profile/ProfilePage'
 import UsersListPage from './usersList/UsersListPage'
+import { getFromStorage } from './utils/storage'
+import { getUser, verifyUserSession } from './utils/services'
 
 export default function App() {
+  const [currentUser, setCurrentUser] = useState({})
+  const token = getFromStorage('pingu')
+
+  useEffect(() => {
+    if (token) {
+      verifyUserSession(token)
+        .then(res => {
+          if (res.success)
+            getUser(token)
+              .then(user => {
+                setCurrentUser(user)
+              })
+              .catch(err => console.error(err))
+        })
+        .catch(err => console.error(err))
+    }
+  }, [token])
+
   return (
     <Router>
       <AppStyled>
@@ -17,19 +37,22 @@ export default function App() {
             <WelcomePage />
           </Route>
           <Route exact path="/signin">
-            <SignInPage />
+            <SignInPage setCurrentUser={setCurrentUser} />
           </Route>
           <Route exact path="/signup">
             <SignUpPage />
           </Route>
           <Route exact path="/users">
-            <UsersListPage />
+            <UsersListPage currentUser={currentUser} />
           </Route>
           <Route exact path="/chat">
             <ChatPage />
           </Route>
           <Route path="/profile">
-            <ProfilePage />
+            <ProfilePage
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+            />
           </Route>
         </Switch>
       </AppStyled>

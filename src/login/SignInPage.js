@@ -8,7 +8,7 @@ import TextInput from '../common/TextInput'
 import { signIn } from '../utils/services'
 import { setToStorage } from '../utils/storage'
 
-export default function SignInPage() {
+export default function SignInPage({ setCurrentUser }) {
   const [alert, setAlert] = useState('')
   let history = useHistory()
 
@@ -45,6 +45,7 @@ export default function SignInPage() {
           throw new Error(res.message)
         }
         setToStorage('pingu', res.token)
+        setCurrentUser(data)
         form.reset()
         history.push('/users')
       })
