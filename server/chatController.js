@@ -36,13 +36,15 @@ const chatController = server => {
               })
                 .then(channel => {
                   currentChannel = channel._id
+                  socket.join(currentChannel)
+                  io.to(currentChannel).emit(CHANNEL_SET, currentChannel)
                 })
                 .catch(err => console.error(err))
             } else {
               currentChannel = channels[0]._id
+              socket.join(currentChannel)
+              io.to(currentChannel).emit(CHANNEL_SET, currentChannel)
             }
-            socket.join(currentChannel)
-            io.to(currentChannel).emit(CHANNEL_SET, currentChannel)
           }
         })
         .catch(err => console.error(err))
@@ -60,7 +62,7 @@ const chatController = server => {
         author: msg.author,
         channel: msg.channel,
       })
-        .then(msg => io.emit(MESSAGE_RECEIVED, msg))
+        .then(msg => io.to(msg.channel).emit(MESSAGE_RECEIVED, msg))
         .catch(err => console.error(err))
     })
   })
