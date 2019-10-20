@@ -13,7 +13,7 @@ const {
   TYPING,
 } = require('../src/events')
 
-const chatController = server => {
+function chatController(server) {
   const io = socket_io(server)
   io.on('connection', socket => {
     console.log(USER_CONNECTED, socket.id)

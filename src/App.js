@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import io from 'socket.io-client'
+import useSocket from 'use-socket.io-client'
 import SocketContext from './SocketContext'
 import ChatPage from './chat/ChatPage'
 import SignInPage from './login/SignInPage'
@@ -14,7 +14,7 @@ import { getUser, verifyUserSession } from './utils/services'
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState({})
-  const socket = io.connect('http://localhost:3333')
+  const [socket] = useSocket('http://localhost:3333')
   const token = getFromStorage('pingu')
 
   useEffect(() => {
