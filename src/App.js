@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
+import io from 'socket.io-client'
+import SocketContext from './SocketContext'
 import ChatPage from './chat/ChatPage'
 import SignInPage from './login/SignInPage'
 import SignUpPage from './login/SignUpPage'
@@ -12,6 +14,7 @@ import { getUser, verifyUserSession } from './utils/services'
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState({})
+  const socket = io.connect('http://localhost:3333')
   const token = getFromStorage('pingu')
 
   useEffect(() => {
@@ -33,33 +36,35 @@ export default function App() {
   }, [token])
 
   return (
-    <Router>
-      <AppStyled>
-        <Switch>
-          <Route exact path="/">
-            <WelcomePage />
-          </Route>
-          <Route exact path="/signin">
-            <SignInPage setCurrentUser={setCurrentUser} />
-          </Route>
-          <Route exact path="/signup">
-            <SignUpPage />
-          </Route>
-          <Route exact path="/users">
-            <UsersListPage currentUser={currentUser} />
-          </Route>
-          <Route exact path="/chat">
-            <ChatPage currentUser={currentUser} />
-          </Route>
-          <Route path="/profile">
-            <ProfilePage
-              currentUser={currentUser}
-              setCurrentUser={setCurrentUser}
-            />
-          </Route>
-        </Switch>
-      </AppStyled>
-    </Router>
+    <SocketContext.Provider value={socket}>
+      <Router>
+        <AppStyled>
+          <Switch>
+            <Route exact path="/">
+              <WelcomePage />
+            </Route>
+            <Route exact path="/signin">
+              <SignInPage setCurrentUser={setCurrentUser} />
+            </Route>
+            <Route exact path="/signup">
+              <SignUpPage />
+            </Route>
+            <Route exact path="/users">
+              <UsersListPage currentUser={currentUser} />
+            </Route>
+            <Route exact path="/chat">
+              <ChatPage currentUser={currentUser} />
+            </Route>
+            <Route path="/profile">
+              <ProfilePage
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+            </Route>
+          </Switch>
+        </AppStyled>
+      </Router>
+    </SocketContext.Provider>
   )
 }
 
