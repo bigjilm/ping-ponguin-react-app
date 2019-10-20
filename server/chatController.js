@@ -7,6 +7,7 @@ const {
   USER_DISCONNECTED,
   CHAT_START,
   CHANNEL_SET,
+  CHANNEL_LEAVE,
   MESSAGE_SENT,
   MESSAGE_RECEIVED,
   TYPING,
@@ -34,39 +35,34 @@ const chatController = server => {
                 members: userIds,
               })
                 .then(channel => {
-                  currentChannel = channel
+                  currentChannel = channel._id
                 })
                 .catch(err => console.error(err))
             } else {
-              currentChannel = channels[0]
+              currentChannel = channels[0]._id
             }
-            io.emit(CHANNEL_SET, currentChannel)
-            const nsp = io.of(currentChannel._id)
-            nsp.on(MESSAGE_SENT, msg => {
-              console.log('message:', msg)
-              Message.create({
-                body: msg.body,
-                author: msg.author,
-                channel: msg.channel,
-              })
-                .then(msg => io.emit(MESSAGE_RECEIVED, msg))
-                .catch(err => console.error(err))
-            })
+            socket.join(currentChannel)
+            io.to(currentChannel).emit(CHANNEL_SET, currentChannel)
           }
         })
         .catch(err => console.error(err))
     })
 
-    // socket.on(MESSAGE_SENT, msg => {
-    //   console.log('message:', msg)
-    //   Message.create({
-    //     body: msg.body,
-    //     author: msg.author,
-    //     channel: msg.channel,
-    //   })
-    //     .then(msg => io.emit(MESSAGE_RECEIVED, msg))
-    //     .catch(err => console.error(err))
-    // })
+    socket.on(CHANNEL_LEAVE, currentChannel => {
+      socket.leave(currentChannel)
+      console.log('Left channel', currentChannel)
+    })
+
+    socket.on(MESSAGE_SENT, msg => {
+      console.log('message:', msg)
+      Message.create({
+        body: msg.body,
+        author: msg.author,
+        channel: msg.channel,
+      })
+        .then(msg => io.emit(MESSAGE_RECEIVED, msg))
+        .catch(err => console.error(err))
+    })
   })
 }
 

@@ -7,8 +7,8 @@ import {
   USER_CONNECTED,
   USER_DISCONNECTED,
   CHAT_START,
-  CHAT_LEAVE,
   CHANNEL_SET,
+  CHANNEL_LEAVE,
   MESSAGE_SENT,
   MESSAGE_RECEIVED,
   TYPING,
@@ -16,36 +16,42 @@ import {
 import MessagesContainer from './MessagesContainer'
 
 export default function ChatPage({ currentUser }) {
-  const [channel, setChannel] = useState({})
+  const [currentChannel, setCurrentChannel] = useState('')
   const [messages, setMessages] = useState([])
   const socket = useContext(SocketContext)
 
   useEffect(() => {
     socket.on(CHANNEL_SET, channel => {
-      console.log(channel)
-      setChannel(channel)
+      console.log('channel set to', channel)
+      setCurrentChannel(channel)
     })
+    return () => socket.off(CHANNEL_SET)
+  }, [socket])
+
+  useEffect(() => {
     socket.on(MESSAGE_RECEIVED, msg => {
-      console.log(msg.channel)
       setMessages([...messages, msg])
     })
-  })
+    return () => {
+      socket.off(MESSAGE_RECEIVED)
+    }
+  }, [socket, messages])
 
   return (
     <Page title="Chat">
       <ChatContainerStyled>
         <MessagesContainer messages={messages} />
-        <MessageInputForm onSubmit={sendSocketIO} />
+        <MessageInputForm onSubmit={sendMessage} />
       </ChatContainerStyled>
     </Page>
   )
 
-  function sendSocketIO(event) {
+  function sendMessage(event) {
     event.preventDefault()
     const msg = {
       body: event.currentTarget.textarea.value,
       author: currentUser._id,
-      channel: channel._id,
+      channel: currentChannel,
     }
     socket.emit(MESSAGE_SENT, msg)
   }

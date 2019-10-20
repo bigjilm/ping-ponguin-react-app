@@ -22,7 +22,6 @@ export default function UsersListPage({ currentUser }) {
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
-
     getAllUsers({ signal })
       .then(users => {
         const filteredUsers = users.filter(user => user._id !== currentUser._id)

@@ -17,7 +17,6 @@ export default function App() {
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
-
     if (token) {
       verifyUserSession(token, { signal })
         .then(res => {
