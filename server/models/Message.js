@@ -6,14 +6,14 @@ const messageSchema = new Schema({
     type: String,
     required: true,
   },
-  channel: {
-    type: Schema.Types.ObjectId,
-    ref: 'Channel',
-    required: true,
-  },
   author: {
     type: Schema.Types.ObjectId,
     ref: 'User',
+    required: true,
+  },
+  channel: {
+    type: Schema.Types.ObjectId,
+    ref: 'Channel',
     required: true,
   },
 })

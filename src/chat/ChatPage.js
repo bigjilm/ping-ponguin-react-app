@@ -7,17 +7,26 @@ import {
   USER_CONNECTED,
   USER_DISCONNECTED,
   CHAT_START,
+  CHAT_LEAVE,
+  CHANNEL_SET,
   MESSAGE_SENT,
   MESSAGE_RECEIVED,
   TYPING,
 } from '../events'
+import MessagesContainer from './MessagesContainer'
 
-export default function ChatPage() {
+export default function ChatPage({ currentUser }) {
+  const [channel, setChannel] = useState({})
   const [messages, setMessages] = useState([])
   const socket = useContext(SocketContext)
 
   useEffect(() => {
+    socket.on(CHANNEL_SET, channel => {
+      console.log(channel)
+      setChannel(channel)
+    })
     socket.on(MESSAGE_RECEIVED, msg => {
+      console.log(msg.channel)
       setMessages([...messages, msg])
     })
   })
@@ -25,11 +34,7 @@ export default function ChatPage() {
   return (
     <Page title="Chat">
       <ChatContainerStyled>
-        <MessagesContainerStyled>
-          {messages.map((message, index) => (
-            <div key={index}>{message}</div>
-          ))}
-        </MessagesContainerStyled>
+        <MessagesContainer messages={messages} />
         <MessageInputForm onSubmit={sendSocketIO} />
       </ChatContainerStyled>
     </Page>
@@ -37,8 +42,12 @@ export default function ChatPage() {
 
   function sendSocketIO(event) {
     event.preventDefault()
-    const message = event.currentTarget.textarea.value
-    socket.emit(MESSAGE_SENT, message)
+    const msg = {
+      body: event.currentTarget.textarea.value,
+      author: currentUser._id,
+      channel: channel._id,
+    }
+    socket.emit(MESSAGE_SENT, msg)
   }
 }
 
@@ -48,5 +57,3 @@ const ChatContainerStyled = styled.div`
   height: 100%;
   background-color: #c2d4d8;
 `
-
-const MessagesContainerStyled = styled.div``
