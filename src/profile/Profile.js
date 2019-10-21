@@ -64,10 +64,10 @@ export default function Profile({ user, onEditClick, onChangePasswordClick }) {
   )
 
   function handleLogout() {
-    const token = getFromStorage('pingu')
+    const token = getFromStorage('pingu-session')
     logout(token)
       .then(() => {
-        setToStorage('pingu', '')
+        setToStorage('pingu-session', '')
         history.push('/')
       })
       .catch(err => console.error(err))

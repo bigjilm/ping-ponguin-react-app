@@ -10,7 +10,7 @@ export default function WelcomePage({ token }) {
   let history = useHistory()
 
   useEffect(() => {
-    const token = getFromStorage('pingu')
+    const token = getFromStorage('pingu-session')
     if (token) {
       history.push('/users')
     } else {

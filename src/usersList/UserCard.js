@@ -11,6 +11,7 @@ import {
   MESSAGE_RECEIVED,
   TYPING,
 } from '../events'
+import { setToStorage } from '../utils/storage'
 
 UserCard.propTypes = {
   _id: PropTypes.string,
@@ -50,6 +51,7 @@ export default function UserCard({
 
   function startChat() {
     socket.emit(CHAT_START, [_id, currentUser._id])
+    setToStorage('pingu-partner', _id)
     history.push('/chat')
   }
 }

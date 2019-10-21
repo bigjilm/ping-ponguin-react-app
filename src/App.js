@@ -15,7 +15,7 @@ import { getUser, verifyUserSession } from './utils/services'
 export default function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [socket] = useSocket('http://localhost:3333')
-  const token = getFromStorage('pingu')
+  const token = getFromStorage('pingu-session')
 
   useEffect(() => {
     const abortController = new AbortController()

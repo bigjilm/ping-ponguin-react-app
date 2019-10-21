@@ -44,7 +44,7 @@ export default function SignInPage({ setCurrentUser }) {
         if (!res.success) {
           throw new Error(res.message)
         }
-        setToStorage('pingu', res.token)
+        setToStorage('pingu-session', res.token)
         setCurrentUser(data)
         form.reset()
         history.push('/users')

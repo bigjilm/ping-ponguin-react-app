@@ -15,6 +15,7 @@ import {
   TYPING,
 } from '../events'
 import MessagesContainer from './MessagesContainer'
+import { getFromStorage, setToStorage } from '../utils/storage'
 
 ChatPage.propTypes = {
   currentUser: PropTypes.object,
@@ -24,6 +25,11 @@ export default function ChatPage({ currentUser }) {
   const [currentChannel, setCurrentChannel] = useState('')
   const [messages, setMessages] = useState([])
   const socket = useContext(SocketContext)
+
+  useEffect(() => {
+    const currentChatPartner = getFromStorage('pingu-partner')
+    socket.emit(CHAT_START, [currentChatPartner, currentUser._id])
+  }, [socket, currentUser._id])
 
   useEffect(() => {
     socket.on(CHANNEL_SET, ({ channel, messages }) => {
