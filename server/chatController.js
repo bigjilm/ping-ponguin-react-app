@@ -29,21 +29,18 @@ function chatController(server) {
           if (channels.length > 1) {
             console.error('Error: More than one channel for a user couple')
           } else {
-            let currentChannel
             if (channels.length === 0) {
               Channel.create({
                 members: userIds,
               })
                 .then(channel => {
-                  currentChannel = channel._id
-                  socket.join(currentChannel)
-                  io.to(currentChannel).emit(CHANNEL_SET, currentChannel)
+                  const currentChannel = channel._id
+                  startChannel(currentChannel)
                 })
                 .catch(err => console.error(err))
             } else {
-              currentChannel = channels[0]._id
-              socket.join(currentChannel)
-              io.to(currentChannel).emit(CHANNEL_SET, currentChannel)
+              const currentChannel = channels[0]._id
+              startChannel(currentChannel)
             }
           }
         })
@@ -65,6 +62,11 @@ function chatController(server) {
         .then(msg => io.to(msg.channel).emit(MESSAGE_RECEIVED, msg))
         .catch(err => console.error(err))
     })
+
+    function startChannel(channel) {
+      socket.join(channel)
+      io.to(channel).emit(CHANNEL_SET, channel)
+    }
   })
 }
 
