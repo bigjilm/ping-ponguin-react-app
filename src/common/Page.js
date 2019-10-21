@@ -6,6 +6,8 @@ import Navigation from './Navigation'
 
 Page.propTypes = {
   title: PropTypes.string,
+  home: PropTypes.bool,
+  mainPadding: PropTypes.string,
   showFilterSymbol: PropTypes.bool,
   isFilterVisible: PropTypes.bool,
   onFilterClick: PropTypes.func,
@@ -15,6 +17,8 @@ Page.propTypes = {
 
 export default function Page({
   title,
+  home = false,
+  mainPadding = '30px',
   showFilterSymbol = false,
   isFilterVisible = false,
   onFilterClick,
@@ -25,11 +29,12 @@ export default function Page({
     <PageStyled showNavigation={showNavigation}>
       <Header
         title={title}
+        home={home}
         showFilterSymbol={showFilterSymbol}
         isFilterVisible={isFilterVisible}
         onFilterClick={onFilterClick}
       />
-      <MainStyled>{children}</MainStyled>
+      <MainStyled mainPadding={mainPadding}>{children}</MainStyled>
       {showNavigation && <Navigation />}
     </PageStyled>
   )
@@ -39,11 +44,12 @@ const PageStyled = styled.div`
   display: grid;
   grid-template-rows: ${props =>
     props.showNavigation ? '48px auto 48px' : '48px auto'};
-  background-color: #418ab3;
+  background-color: var(--skyBlue);
   overflow: auto;
+  height: 100%;
 `
 
 const MainStyled = styled.main`
-  padding: 30px 30px;
+  padding: ${props => props.mainPadding};
   overflow: auto;
 `

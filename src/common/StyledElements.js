@@ -10,7 +10,7 @@ export const ButtonStyled = styled.button`
   justify-self: center;
   width: 150px;
   height: 50px;
-  background-color: #c2d4d8;
+  background-color: var(--iceBlue);
   border: none;
 `
 

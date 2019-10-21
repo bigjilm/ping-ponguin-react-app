@@ -59,6 +59,6 @@ const InputStyled = styled.input`
   height: 30px;
 
   :focus {
-    border-color: #849237;
+    border-color: var(--plantGreen);
   }
 `

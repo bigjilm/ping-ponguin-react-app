@@ -5,6 +5,13 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
+  :root{
+    --iceBlue: #c2d4d8;
+    --skyBlue: #418ab3;
+    --anorakRed: #c8232a;
+    --plantGreen: #849237;
+  }
+
   body {
     margin: 0;
     font-family: sans-serif;

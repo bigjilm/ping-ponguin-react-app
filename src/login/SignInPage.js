@@ -8,7 +8,7 @@ import TextInput from '../common/TextInput'
 import { signIn } from '../utils/services'
 import { setToStorage } from '../utils/storage'
 
-export default function SignInPage() {
+export default function SignInPage({ setCurrentUser }) {
   const [alert, setAlert] = useState('')
   let history = useHistory()
 
@@ -44,7 +44,8 @@ export default function SignInPage() {
         if (!res.success) {
           throw new Error(res.message)
         }
-        setToStorage('pingu', res.token)
+        setToStorage('pingu-session', res.token)
+        setCurrentUser(data)
         form.reset()
         history.push('/users')
       })
@@ -69,10 +70,11 @@ const SignInPageStyled = styled.main`
   grid-auto-rows: min-content;
   justify-items: center;
   grid-gap: 40px;
-  background-color: #418ab3;
+  background-color: var(--skyBlue);
   overflow: auto;
   padding: 80px;
-  color: #c2d4d8;
+  color: var(--iceBlue);
+  height: 100%;
 `
 
 const HeadlineStyled = styled.h1`

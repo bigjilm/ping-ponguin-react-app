@@ -53,7 +53,7 @@ const FilterStyled = styled.div`
   grid-gap: 20px;
   height: 230px;
   width: 325px;
-  background-color: #418ab3;
+  background-color: var(--skyBlue);
   box-shadow: -7px 7px 6px 0 rgba(0, 0, 0, 0.5);
   border-bottom-left-radius: 20px;
   padding: 30px 20px;
@@ -77,7 +77,7 @@ const InputStyled = styled.input`
   height: 30px;
 
   :focus {
-    border-color: #849237;
+    border-color: var(--plantGreen);
   }
 `
 

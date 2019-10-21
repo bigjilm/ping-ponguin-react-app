@@ -1,8 +1,8 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-
 import styled from 'styled-components/macro'
 import homeIcon from '../assets/home-icon.svg'
+import chatIcon from '../assets/chat-icon.svg'
 import profileIcon from '../assets/profile-icon.svg'
 
 export default function Navigation() {
@@ -10,6 +10,9 @@ export default function Navigation() {
     <NavigationStyled>
       <NavLinkStyled exact to="/users">
         <IconStyled src={homeIcon} />
+      </NavLinkStyled>
+      <NavLinkStyled to="/chat">
+        <IconStyled src={chatIcon} />
       </NavLinkStyled>
       <NavLinkStyled to="/profile">
         <IconStyled src={profileIcon} />
@@ -21,7 +24,7 @@ export default function Navigation() {
 const NavigationStyled = styled.nav`
   display: grid;
   grid-auto-columns: 1fr;
-  border-top: 2px solid #418ab3;
+  border-top: 2px solid var(--skyBlue);
 `
 
 const IconStyled = styled.img`
@@ -32,9 +35,9 @@ const NavLinkStyled = styled(NavLink)`
   grid-row: 1;
   display: grid;
   place-items: center;
-  background-color: #c2d4d8;
+  background-color: var(--iceBlue);
 
   &.active {
-    background-color: #418ab3;
+    background-color: var(--skyBlue);
   }
 `

@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import * as serviceWorker from './serviceWorker'
 import GlobalStyles from './common/GlobalStyles'
+import * as serviceWorker from './serviceWorker'
 
 const rootElement = document.querySelector('#root')
 

@@ -6,6 +6,7 @@ import coffeeFilterIcon from '../assets/coffee-filter-icon.svg'
 
 Header.propTypes = {
   title: PropTypes.string,
+  home: PropTypes.bool,
   showFilterSymbol: PropTypes.bool,
   isFilterVisible: PropTypes.bool,
   onFilterClick: PropTypes.func,
@@ -13,6 +14,7 @@ Header.propTypes = {
 
 export default function Header({
   title,
+  home = false,
   showFilterSymbol = false,
   isFilterVisible = false,
   onFilterClick,
@@ -20,7 +22,7 @@ export default function Header({
   return (
     <HeaderStyled>
       <LogoStyled src={ppLogo} />
-      <TitleStyled>{title}</TitleStyled>
+      {home ? <H1Styled>{title}</H1Styled> : <H2Styled>{title}</H2Styled>}
       {showFilterSymbol && (
         <IconStyled
           isFilterVisible={isFilterVisible}
@@ -41,14 +43,21 @@ const HeaderStyled = styled.header`
   grid-template-columns: 48px auto 48px;
   place-items: center;
   grid-gap: 5px;
-  background-color: #c2d4d8;
+  background-color: var(--iceBlue);
   padding: 5px 5px 0 5px;
-  border-bottom: 2px solid #418ab3;
+  border-bottom: 2px solid var(--skyBlue);
 `
 
-const TitleStyled = styled.h1`
+const H1Styled = styled.h1`
   margin: 0;
-  color: #418ab3;
+  font-size: 2rem;
+  color: var(--skyBlue);
+`
+
+const H2Styled = styled.h2`
+  margin: 0;
+  font-size: 2rem;
+  color: var(--skyBlue);
 `
 
 const LogoStyled = styled.img`
@@ -57,6 +66,8 @@ const LogoStyled = styled.img`
 
 const IconStyled = styled.img`
   height: 40px;
-  outline: ${({ isFilterVisible }) => isFilterVisible && '10px #418ab3 solid'};
-  background-color: ${({ isFilterVisible }) => isFilterVisible && '#418ab3'};
+  outline: ${({ isFilterVisible }) =>
+    isFilterVisible && '10px var(--skyBlue) solid'};
+  background-color: ${({ isFilterVisible }) =>
+    isFilterVisible && 'var(--skyBlue)'};
 `

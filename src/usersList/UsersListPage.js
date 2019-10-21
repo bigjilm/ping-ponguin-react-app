@@ -5,7 +5,7 @@ import { getAllUsers } from '../utils/services'
 import Filter from './Filter'
 import UsersList from './UsersList'
 
-export default function UsersListPage() {
+export default function UsersListPage({ currentUser }) {
   const [isLoading, setIsLoading] = useState(true)
   const [users, setUsers] = useState([])
   const [isFilterVisible, setIsFilterVisible] = useState(false)
@@ -20,15 +20,22 @@ export default function UsersListPage() {
   ])
 
   useEffect(() => {
-    getAllUsers().then(users => {
-      setUsers(users)
-      setIsLoading(false)
-    })
-  }, [])
+    const abortController = new AbortController()
+    const signal = abortController.signal
+    getAllUsers({ signal })
+      .then(users => {
+        const filteredUsers = users.filter(user => user._id !== currentUser._id)
+        setUsers(filteredUsers)
+        setIsLoading(false)
+      })
+      .catch(err => console.error(err))
+    return () => abortController.abort()
+  }, [currentUser])
 
   return (
     <Page
       title="ping ponguin"
+      home={true}
       showFilterSymbol={true}
       isFilterVisible={isFilterVisible}
       onFilterClick={handleFilterClick}
@@ -71,6 +78,7 @@ export default function UsersListPage() {
     return (
       <UsersList
         users={usersFilteredByResidenceAndAbility}
+        currentUser={currentUser}
         onListClick={handleListClick}
       />
     )
