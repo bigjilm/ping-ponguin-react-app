@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
@@ -8,6 +8,12 @@ MessagesContainer.propTypes = {
 }
 
 export default function MessagesContainer({ messages, currentUser }) {
+  const endOfMessages = useRef(null)
+
+  useEffect(() => {
+    endOfMessages.current.scrollIntoView({ behavior: 'smooth' })
+  })
+
   return (
     <MessagesContainerStyled>
       {messages.map(msg => (
@@ -20,6 +26,7 @@ export default function MessagesContainer({ messages, currentUser }) {
           <p>{msg.body}</p>
         </MessageStyled>
       ))}
+      <EndOfMessagesStyled ref={endOfMessages}></EndOfMessagesStyled>
     </MessagesContainerStyled>
   )
 }
@@ -45,4 +52,8 @@ const MessageStyled = styled.div`
 
 const AuthorStyled = styled.span`
   font-size: 14px;
+`
+
+const EndOfMessagesStyled = styled.div`
+  height: 10px;
 `
