@@ -40,9 +40,12 @@ const MessagesContainerStyled = styled.div`
 `
 
 const MessageStyled = styled.div`
-  background-color: var(--iceBlue);
+  background-color: ${props =>
+    props.author === props.currentUser._id
+      ? 'var(--plantGreen)'
+      : 'var(--iceBlue)'};
   margin: ${props =>
-    props.author === props.currentUser._id ? '0 0 0 15px' : '0 15px 0 0'};
+    props.author === props.currentUser._id ? '0 0 0 25px' : '0 25px 0 0'};
   border-radius: ${props =>
     props.author === props.currentUser._id
       ? '10px 10px 0 10px'

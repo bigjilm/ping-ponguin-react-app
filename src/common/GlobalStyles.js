@@ -9,6 +9,7 @@ export default createGlobalStyle`
     --iceBlue: #c2d4d8;
     --skyBlue: #418ab3;
     --anorakRed: #c8232a;
+    --plantGreen: #849237;
   }
 
   body {
