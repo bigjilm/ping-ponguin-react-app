@@ -6,6 +6,7 @@ import Navigation from './Navigation'
 
 Page.propTypes = {
   title: PropTypes.string,
+  home: PropTypes.bool,
   showFilterSymbol: PropTypes.bool,
   isFilterVisible: PropTypes.bool,
   onFilterClick: PropTypes.func,
@@ -15,6 +16,7 @@ Page.propTypes = {
 
 export default function Page({
   title,
+  home = false,
   showFilterSymbol = false,
   isFilterVisible = false,
   onFilterClick,
@@ -25,6 +27,7 @@ export default function Page({
     <PageStyled showNavigation={showNavigation}>
       <Header
         title={title}
+        home={home}
         showFilterSymbol={showFilterSymbol}
         isFilterVisible={isFilterVisible}
         onFilterClick={onFilterClick}

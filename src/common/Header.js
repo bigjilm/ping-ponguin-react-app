@@ -6,6 +6,7 @@ import coffeeFilterIcon from '../assets/coffee-filter-icon.svg'
 
 Header.propTypes = {
   title: PropTypes.string,
+  home: PropTypes.bool,
   showFilterSymbol: PropTypes.bool,
   isFilterVisible: PropTypes.bool,
   onFilterClick: PropTypes.func,
@@ -13,6 +14,7 @@ Header.propTypes = {
 
 export default function Header({
   title,
+  home = false,
   showFilterSymbol = false,
   isFilterVisible = false,
   onFilterClick,
@@ -20,7 +22,7 @@ export default function Header({
   return (
     <HeaderStyled>
       <LogoStyled src={ppLogo} />
-      <TitleStyled>{title}</TitleStyled>
+      {home ? <H1Styled>{title}</H1Styled> : <H2Styled>{title}</H2Styled>}
       {showFilterSymbol && (
         <IconStyled
           isFilterVisible={isFilterVisible}
@@ -46,8 +48,15 @@ const HeaderStyled = styled.header`
   border-bottom: 2px solid #418ab3;
 `
 
-const TitleStyled = styled.h1`
+const H1Styled = styled.h1`
   margin: 0;
+  font-size: 2rem;
+  color: #418ab3;
+`
+
+const H2Styled = styled.h2`
+  margin: 0;
+  font-size: 2rem;
   color: #418ab3;
 `
 

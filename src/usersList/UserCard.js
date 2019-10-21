@@ -93,4 +93,8 @@ const AbilityStyled = styled.div`
 
 const ChatButtonStyled = styled.button`
   grid-area: button;
+  width: 150px;
+  height: 50px;
+  background-color: #418ab3;
+  border: none;
 `
