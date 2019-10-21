@@ -5,6 +5,8 @@ import styled from 'styled-components/macro'
 import { CHAT_START } from '../events'
 import SocketContext from '../SocketContext'
 import { setToStorage } from '../utils/storage'
+import leftWing from '../assets/leftWing.png'
+import rightWing from '../assets/rightWing.png'
 
 UserCard.propTypes = {
   _id: PropTypes.string,
@@ -35,8 +37,10 @@ export default function UserCard({
       <ResidenceStyled>Wohnort: {residence}</ResidenceStyled>
       <div>
         Spielstärke
-        <AbilityStyled>links: {abilityLeft}</AbilityStyled>
-        <AbilityStyled>rechts: {abilityRight}</AbilityStyled>
+        <AbilityStyled>links: {plotWings(abilityLeft, 'left')}</AbilityStyled>
+        <AbilityStyled>
+          rechts: {plotWings(abilityRight, 'right')}
+        </AbilityStyled>
       </div>
       <ChatButtonStyled onClick={startChat}>Chat</ChatButtonStyled>
     </UserCardStyled>
@@ -46,6 +50,14 @@ export default function UserCard({
     socket.emit(CHAT_START, [_id, currentUser._id])
     setToStorage('pingu-partner', _id)
     history.push('/chat')
+  }
+
+  function plotWings(ability, side) {
+    const abilityNumber = Number(ability)
+    const wing = side === 'left' ? leftWing : rightWing
+    for (let i = 0; i < abilityNumber; i++) {
+      return <WingStyled src={wing} />
+    }
   }
 }
 
@@ -86,9 +98,15 @@ const AbilityStyled = styled.div`
   margin-left: 20px;
 `
 
+const WingStyled = styled.img`
+  height: 20px;
+  background-color: var(--iceBlue);
+`
+
 const ChatButtonStyled = styled.button`
   grid-area: button;
-  width: 150px;
+  justify-self: center;
+  width: 70px;
   height: 50px;
   background-color: var(--skyBlue);
   border: none;
