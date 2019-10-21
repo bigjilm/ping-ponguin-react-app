@@ -21,9 +21,10 @@ export default function ChatPage({ currentUser }) {
   const socket = useContext(SocketContext)
 
   useEffect(() => {
-    socket.on(CHANNEL_SET, channel => {
+    socket.on(CHANNEL_SET, ({ channel, messages }) => {
       console.log('channel set to', channel)
       setCurrentChannel(channel)
+      setMessages(messages)
     })
     return () => socket.off(CHANNEL_SET)
   }, [socket])

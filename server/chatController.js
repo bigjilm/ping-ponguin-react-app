@@ -65,7 +65,12 @@ function chatController(server) {
 
     function startChannel(channel) {
       socket.join(channel)
-      io.to(channel).emit(CHANNEL_SET, channel)
+      Message.find({ channel: channel })
+        .then(messages => {
+          const channelData = { channel: channel, messages: messages }
+          io.to(channel).emit(CHANNEL_SET, channelData)
+        })
+        .catch()
     }
   })
 }
