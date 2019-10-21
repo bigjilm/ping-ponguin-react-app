@@ -35,13 +35,13 @@ export default function UserCard({
       <NameStyled>{name}</NameStyled>
       <ImageStyled src={imageURL}></ImageStyled>
       <ResidenceStyled>Wohnort: {residence}</ResidenceStyled>
-      <div>
+      <AbilityContainerStyled>
         Spielstärke
         <AbilityStyled>links: {plotWings(abilityLeft, 'left')}</AbilityStyled>
         <AbilityStyled>
           rechts: {plotWings(abilityRight, 'right')}
         </AbilityStyled>
-      </div>
+      </AbilityContainerStyled>
       <ChatButtonStyled onClick={startChat}>Chat</ChatButtonStyled>
     </UserCardStyled>
   )
@@ -55,9 +55,11 @@ export default function UserCard({
   function plotWings(ability, side) {
     const abilityNumber = Number(ability)
     const wing = side === 'left' ? leftWing : rightWing
+    const foo = []
     for (let i = 0; i < abilityNumber; i++) {
-      return <WingStyled src={wing} />
+      foo.push('bar')
     }
+    return foo.map(bar => <WingStyled src={wing} />)
   }
 }
 
@@ -77,8 +79,8 @@ const UserCardStyled = styled.section`
 const ImageStyled = styled.img`
   grid-area: image;
   justify-self: center;
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 120px;
   border-radius: 75px 75px 55.5px 55.5px;
   object-fit: cover;
 `
@@ -93,8 +95,16 @@ const ResidenceStyled = styled.span`
   grid-area: residence;
 `
 
-const AbilityStyled = styled.div`
+const AbilityContainerStyled = styled.div`
   grid-area: ability;
+  display: grid;
+  grid-gap: 5px;
+  grid-auto-rows: min-content;
+`
+
+const AbilityStyled = styled.div`
+  display: grid;
+  grid-template-columns: 50px repeat(5, 20px);
   margin-left: 20px;
 `
 
@@ -106,6 +116,7 @@ const WingStyled = styled.img`
 const ChatButtonStyled = styled.button`
   grid-area: button;
   justify-self: center;
+  align-self: center;
   width: 70px;
   height: 50px;
   background-color: var(--skyBlue);
