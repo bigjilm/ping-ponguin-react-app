@@ -79,7 +79,9 @@ export default function ChatPage({ currentUser }) {
 
 const ChatContainerStyled = styled.div`
   display: grid;
-  grid-template-rows: auto 48px;
+  grid-template-rows: auto 60px;
+  grid-gap: 15px;
   height: 100%;
   background-color: var(--skyBlue);
+  padding: 0 0 15px 0;
 `

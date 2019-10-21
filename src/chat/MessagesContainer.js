@@ -23,7 +23,7 @@ export default function MessagesContainer({ messages, currentUser }) {
           currentUser={currentUser}
         >
           <DateStyled>{msg.timestamp}</DateStyled>
-          <p>{msg.body}</p>
+          <MessageBodyStyled>{msg.body}</MessageBodyStyled>
         </MessageStyled>
       ))}
       <EndOfMessagesStyled ref={endOfMessages}></EndOfMessagesStyled>
@@ -53,8 +53,14 @@ const MessageStyled = styled.div`
   padding: 10px;
 `
 
+const MessageBodyStyled = styled.p`
+  width: 290px;
+  word-wrap: break-word;
+`
+
 const DateStyled = styled.span`
-  font-size: 12px;
+  font-size: 11px;
+  color: #333;
 `
 
 const EndOfMessagesStyled = styled.div`

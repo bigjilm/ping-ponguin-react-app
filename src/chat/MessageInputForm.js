@@ -17,6 +17,7 @@ export default function MessageInputForm({ onSubmit }) {
 const MessageInputFormStyled = styled.form`
   display: grid;
   grid-template-columns: auto 48px;
+  padding: 0 20px;
 `
 
 const MessageInputStyled = styled.textarea``
