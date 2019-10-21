@@ -43,21 +43,21 @@ const HeaderStyled = styled.header`
   grid-template-columns: 48px auto 48px;
   place-items: center;
   grid-gap: 5px;
-  background-color: #c2d4d8;
+  background-color: var(--iceBlue);
   padding: 5px 5px 0 5px;
-  border-bottom: 2px solid #418ab3;
+  border-bottom: 2px solid var(--skyBlue);
 `
 
 const H1Styled = styled.h1`
   margin: 0;
   font-size: 2rem;
-  color: #418ab3;
+  color: var(--skyBlue);
 `
 
 const H2Styled = styled.h2`
   margin: 0;
   font-size: 2rem;
-  color: #418ab3;
+  color: var(--skyBlue);
 `
 
 const LogoStyled = styled.img`
@@ -66,6 +66,8 @@ const LogoStyled = styled.img`
 
 const IconStyled = styled.img`
   height: 40px;
-  outline: ${({ isFilterVisible }) => isFilterVisible && '10px #418ab3 solid'};
-  background-color: ${({ isFilterVisible }) => isFilterVisible && '#418ab3'};
+  outline: ${({ isFilterVisible }) =>
+    isFilterVisible && '10px var(--skyBlue) solid'};
+  background-color: ${({ isFilterVisible }) =>
+    isFilterVisible && 'var(--skyBlue)'};
 `

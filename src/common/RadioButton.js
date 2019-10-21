@@ -43,7 +43,7 @@ const LabelStyled = styled.label`
   height: 30px;
   border-radius: 5px;
   background-color: ${props =>
-    props.value === props.activeRadio ? '#849237' : '#c2d4d8'};
+    props.value === props.activeRadio ? '#849237' : 'var(--iceBlue)'};
 `
 
 const RadioButtonStyled = styled.input`

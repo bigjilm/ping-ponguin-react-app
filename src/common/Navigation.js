@@ -24,7 +24,7 @@ export default function Navigation() {
 const NavigationStyled = styled.nav`
   display: grid;
   grid-auto-columns: 1fr;
-  border-top: 2px solid #418ab3;
+  border-top: 2px solid var(--skyBlue);
 `
 
 const IconStyled = styled.img`
@@ -35,9 +35,9 @@ const NavLinkStyled = styled(NavLink)`
   grid-row: 1;
   display: grid;
   place-items: center;
-  background-color: #c2d4d8;
+  background-color: var(--iceBlue);
 
   &.active {
-    background-color: #418ab3;
+    background-color: var(--skyBlue);
   }
 `

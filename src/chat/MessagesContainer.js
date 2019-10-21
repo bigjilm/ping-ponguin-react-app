@@ -33,7 +33,7 @@ const MessagesContainerStyled = styled.div`
 `
 
 const MessageStyled = styled.div`
-  background-color: #c2d4d8;
+  background-color: var(--iceBlue);
   margin: ${props =>
     props.author === props.currentUser._id ? '0 0 0 15px' : '0 15px 0 0'};
   border-radius: ${props =>

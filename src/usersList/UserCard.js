@@ -63,7 +63,7 @@ const UserCardStyled = styled.section`
     'residence image'
     'ability button';
   grid-gap: 10px;
-  background-color: #c2d4d8;
+  background-color: var(--iceBlue);
   padding: 20px;
 `
 
@@ -95,6 +95,6 @@ const ChatButtonStyled = styled.button`
   grid-area: button;
   width: 150px;
   height: 50px;
-  background-color: #418ab3;
+  background-color: var(--skyBlue);
   border: none;
 `

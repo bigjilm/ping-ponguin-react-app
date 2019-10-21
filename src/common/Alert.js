@@ -26,5 +26,5 @@ export default function Alert({ target, children }) {
 const AlertStyled = styled.span`
   font-size: 14px;
   font-weight: bold;
-  color: #c8232a;
+  color: var(--anorakRed);
 `

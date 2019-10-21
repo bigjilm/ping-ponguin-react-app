@@ -67,5 +67,5 @@ const ChatContainerStyled = styled.div`
   display: grid;
   grid-template-rows: auto 48px;
   height: 100%;
-  background-color: #418ab3;
+  background-color: var(--skyBlue);
 `

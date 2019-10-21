@@ -46,10 +46,10 @@ const WelcomePageStyled = styled.main`
   grid-auto-rows: min-content;
   justify-items: center;
   grid-gap: 50px;
-  background-color: #418ab3;
+  background-color: var(--skyBlue);
   overflow: auto;
   padding: 80px;
-  color: #c2d4d8;
+  color: var(--iceBlue);
   height: 100%;
 `
 
