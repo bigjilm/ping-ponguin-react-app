@@ -96,8 +96,6 @@ const KeyStyled = styled.h3`
 `
 
 const ValueStyled = styled.div`
-  /* width: 80vw;
-  word-wrap: break-word; */
   word-break: break-all;
 `
 
