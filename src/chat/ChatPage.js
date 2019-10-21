@@ -29,14 +29,15 @@ export default function ChatPage({ currentUser }) {
     socket.on(CHANNEL_SET, ({ channel, messages }) => {
       console.log('channel set to', channel)
       setCurrentChannel(channel)
-      setMessages(messages)
+      const messagesFormatted = messages.map(msg => formatMessageDate(msg))
+      setMessages(messagesFormatted)
     })
     return () => socket.off(CHANNEL_SET)
   }, [socket])
 
   useEffect(() => {
     socket.on(MESSAGE_RECEIVED, msg => {
-      setMessages([...messages, msg])
+      setMessages([...messages, formatMessageDate(msg)])
     })
     return () => {
       socket.off(MESSAGE_RECEIVED)
@@ -60,6 +61,18 @@ export default function ChatPage({ currentUser }) {
       channel: currentChannel,
     }
     socket.emit(MESSAGE_SENT, msg)
+  }
+
+  function formatMessageDate(msg) {
+    const date = new Date(msg.timestamp)
+    const dateFormatted = date.toLocaleDateString('de-DE', {
+      day: '2-digit',
+      month: '2-digit',
+      year: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+    })
+    return { ...msg, timestamp: dateFormatted }
   }
 }
 
