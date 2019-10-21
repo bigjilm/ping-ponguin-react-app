@@ -52,12 +52,14 @@ const H1Styled = styled.h1`
   margin: 0;
   font-size: 2rem;
   color: var(--skyBlue);
+  font-family: 'MetroBlack LT Two', Helvetica, sans-serif;
 `
 
 const H2Styled = styled.h2`
   margin: 0;
   font-size: 2rem;
   color: var(--skyBlue);
+  font-family: 'MetroBlack LT Two', Helvetica, sans-serif;
 `
 
 const LogoStyled = styled.img`
