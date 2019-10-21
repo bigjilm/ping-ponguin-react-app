@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Page from '../common/Page'
 import MessageInputForm from './MessageInputForm'
@@ -14,6 +15,10 @@ import {
   TYPING,
 } from '../events'
 import MessagesContainer from './MessagesContainer'
+
+ChatPage.propTypes = {
+  currentUser: PropTypes.object,
+}
 
 export default function ChatPage({ currentUser }) {
   const [currentChannel, setCurrentChannel] = useState('')
@@ -39,9 +44,9 @@ export default function ChatPage({ currentUser }) {
   }, [socket, messages])
 
   return (
-    <Page title="Chat">
+    <Page title="Chat" mainPadding="0">
       <ChatContainerStyled>
-        <MessagesContainer messages={messages} />
+        <MessagesContainer messages={messages} currentUser={currentUser} />
         <MessageInputForm onSubmit={sendMessage} />
       </ChatContainerStyled>
     </Page>
@@ -62,5 +67,5 @@ const ChatContainerStyled = styled.div`
   display: grid;
   grid-template-rows: auto 48px;
   height: 100%;
-  background-color: #c2d4d8;
+  background-color: #418ab3;
 `

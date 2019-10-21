@@ -7,6 +7,7 @@ import Navigation from './Navigation'
 Page.propTypes = {
   title: PropTypes.string,
   home: PropTypes.bool,
+  mainPadding: PropTypes.string,
   showFilterSymbol: PropTypes.bool,
   isFilterVisible: PropTypes.bool,
   onFilterClick: PropTypes.func,
@@ -17,6 +18,7 @@ Page.propTypes = {
 export default function Page({
   title,
   home = false,
+  mainPadding = '30px',
   showFilterSymbol = false,
   isFilterVisible = false,
   onFilterClick,
@@ -32,7 +34,7 @@ export default function Page({
         isFilterVisible={isFilterVisible}
         onFilterClick={onFilterClick}
       />
-      <MainStyled>{children}</MainStyled>
+      <MainStyled mainPadding={mainPadding}>{children}</MainStyled>
       {showNavigation && <Navigation />}
     </PageStyled>
   )
@@ -48,6 +50,6 @@ const PageStyled = styled.div`
 `
 
 const MainStyled = styled.main`
-  padding: 30px 30px;
+  padding: ${props => props.mainPadding};
   overflow: auto;
 `
