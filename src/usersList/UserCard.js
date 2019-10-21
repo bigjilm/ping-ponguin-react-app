@@ -61,9 +61,9 @@ export default function UserCard({
     const wing = side === 'left' ? leftWing : rightWing
     const foo = []
     for (let i = 0; i < abilityNumber; i++) {
-      foo.push('bar')
+      foo.push(i)
     }
-    return foo.map(bar => <WingStyled src={wing} />)
+    return foo.map(bar => <WingStyled key={bar} src={wing} />)
   }
 }
 
