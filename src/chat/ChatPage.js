@@ -1,21 +1,17 @@
-import React, { useEffect, useState, useContext } from 'react'
 import PropTypes from 'prop-types'
+import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
 import Page from '../common/Page'
-import MessageInputForm from './MessageInputForm'
-import SocketContext from '../SocketContext'
 import {
-  USER_CONNECTED,
-  USER_DISCONNECTED,
-  CHAT_START,
   CHANNEL_SET,
-  CHANNEL_LEAVE,
-  MESSAGE_SENT,
+  CHAT_START,
   MESSAGE_RECEIVED,
-  TYPING,
+  MESSAGE_SENT,
 } from '../events'
+import SocketContext from '../SocketContext'
+import { getFromStorage } from '../utils/storage'
+import MessageInputForm from './MessageInputForm'
 import MessagesContainer from './MessagesContainer'
-import { getFromStorage, setToStorage } from '../utils/storage'
 
 ChatPage.propTypes = {
   currentUser: PropTypes.object,

@@ -1,4 +1,3 @@
-const mongoose = require('mongoose')
 const Channel = require('./models/Channel')
 const Message = require('./models/Message')
 const socket_io = require('socket.io')
@@ -10,7 +9,6 @@ const {
   CHANNEL_LEAVE,
   MESSAGE_SENT,
   MESSAGE_RECEIVED,
-  TYPING,
 } = require('../src/events')
 
 function chatController(server) {

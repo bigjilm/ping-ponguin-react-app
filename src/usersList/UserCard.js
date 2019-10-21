@@ -1,16 +1,9 @@
+import PropTypes from 'prop-types'
 import React, { useContext } from 'react'
 import { useHistory } from 'react-router'
-import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
+import { CHAT_START } from '../events'
 import SocketContext from '../SocketContext'
-import {
-  USER_CONNECTED,
-  USER_DISCONNECTED,
-  CHAT_START,
-  MESSAGE_SENT,
-  MESSAGE_RECEIVED,
-  TYPING,
-} from '../events'
 import { setToStorage } from '../utils/storage'
 
 UserCard.propTypes = {
