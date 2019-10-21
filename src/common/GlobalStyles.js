@@ -14,12 +14,12 @@ export default createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: 'Chalkboard', sans-serif;
+    font-family: 'Chalkboard', 'Helvetica', sans-serif;
     font-size: 16px;
   }
 
   input, button, textarea {
-    font-family: 'Chalkboard', sans-serif;
+    font-family: 'Chalkboard', 'Helvetica', sans-serif;
     font-size: 1em;
   }
 `

@@ -107,7 +107,6 @@ const ValueStyled = styled.div`
 
 const ResidenceStyled = styled.div`
   grid-area: residence;
-  /* word-wrap: break-word; */
   word-break: break-all;
 `
 
@@ -133,8 +132,10 @@ const ChatButtonStyled = styled.button`
   grid-area: button;
   justify-self: center;
   align-self: center;
-  width: 70px;
-  height: 50px;
+  width: 30px;
+  height: 90px;
   background-color: var(--skyBlue);
   border: none;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
 `
