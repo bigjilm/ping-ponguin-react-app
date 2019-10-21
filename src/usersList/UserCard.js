@@ -34,9 +34,13 @@ export default function UserCard({
     <UserCardStyled>
       <NameStyled>{name}</NameStyled>
       <ImageStyled src={imageURL}></ImageStyled>
-      <ResidenceStyled>Wohnort: {residence}</ResidenceStyled>
+
+      <ResidenceStyled>
+        <KeyStyled>Wohnort:</KeyStyled>
+        <ValueStyled>{residence}</ValueStyled>
+      </ResidenceStyled>
       <AbilityContainerStyled>
-        Spielstärke
+        <KeyStyled>Spielstärke</KeyStyled>
         <AbilityStyled>links: {plotWings(abilityLeft, 'left')}</AbilityStyled>
         <AbilityStyled>
           rechts: {plotWings(abilityRight, 'right')}
@@ -89,10 +93,22 @@ const NameStyled = styled.span`
   grid-area: name;
   font-size: 1.5em;
   font-weight: bold;
+  word-break: break-all;
 `
 
-const ResidenceStyled = styled.span`
+const KeyStyled = styled.h3`
+  margin: 0;
+  font-size: 1rem;
+`
+
+const ValueStyled = styled.div`
+  word-break: break-all;
+`
+
+const ResidenceStyled = styled.div`
   grid-area: residence;
+  /* word-wrap: break-word; */
+  word-break: break-all;
 `
 
 const AbilityContainerStyled = styled.div`

@@ -95,7 +95,11 @@ const KeyStyled = styled.h3`
   margin: 0;
 `
 
-const ValueStyled = styled.span``
+const ValueStyled = styled.div`
+  /* width: 80vw;
+  word-wrap: break-word; */
+  word-break: break-all;
+`
 
 const ImageStyled = styled.img`
   height: 150px;
