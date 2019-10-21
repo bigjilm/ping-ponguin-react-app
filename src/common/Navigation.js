@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import homeIcon from '../assets/home-icon.svg'
+import iglooIcon from '../assets/igloo-icon.png'
 import chatIcon from '../assets/chat-icon.svg'
 import profileIcon from '../assets/profile-icon.svg'
 
@@ -9,7 +9,7 @@ export default function Navigation() {
   return (
     <NavigationStyled>
       <NavLinkStyled exact to="/users">
-        <IconStyled src={homeIcon} />
+        <IconStyled src={iglooIcon} />
       </NavLinkStyled>
       <NavLinkStyled to="/chat">
         <IconStyled src={chatIcon} />
