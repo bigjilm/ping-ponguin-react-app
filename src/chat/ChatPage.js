@@ -61,6 +61,7 @@ export default function ChatPage({ currentUser }) {
       channel: currentChannel,
     }
     socket.emit(MESSAGE_SENT, msg)
+    event.currentTarget.reset()
   }
 
   function formatMessageDate(msg) {
