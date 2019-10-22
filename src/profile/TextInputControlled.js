@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components/macro'
 import Alert from '../common/Alert'
+import { InputStyled } from '../common/StyledElements'
 
 TextInputControlled.propTypes = {
   labelName: PropTypes.string,
@@ -52,13 +53,4 @@ const LabelStyled = styled.label`
   grid-auto-rows: auto;
   grid-gap: 10px;
   font-weight: bold;
-`
-
-const InputStyled = styled.input`
-  width: 315px;
-  height: 30px;
-
-  :focus {
-    border-color: var(--plantGreen);
-  }
 `

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
@@ -17,6 +17,10 @@ export default function EditProfileForm({ user, onChange }) {
   const [missingInputs, setMissingInputs] = useState([])
   const [alert, setAlert] = useState('')
   let history = useHistory()
+
+  useEffect(() => {
+    document.querySelector('input').focus()
+  }, [])
 
   return (
     <FormStyled onSubmit={handleSubmit}>
