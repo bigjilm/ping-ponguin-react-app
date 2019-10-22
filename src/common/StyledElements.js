@@ -6,6 +6,18 @@ export const FormStyled = styled.form`
   grid-gap: 50px;
 `
 
+export const InputStyled = styled.input`
+  border-style: solid;
+  border-color: var(--iceBlue);
+  width: 84vw;
+  height: 30px;
+  padding: 0 5px;
+
+  :focus {
+    border-color: var(--plantGreen);
+  }
+`
+
 export const ButtonStyled = styled.button`
   justify-self: center;
   width: 150px;

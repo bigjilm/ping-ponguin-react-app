@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import ppLogo from '../assets/pp-logo.png'
@@ -11,6 +11,10 @@ import { setToStorage } from '../utils/storage'
 export default function SignInPage({ setCurrentUser }) {
   const [alert, setAlert] = useState('')
   let history = useHistory()
+
+  useEffect(() => {
+    document.querySelector('input').focus()
+  }, [])
 
   return (
     <SignInPageStyled title="ping ponguin">
@@ -79,6 +83,7 @@ const SignInPageStyled = styled.main`
 
 const HeadlineStyled = styled.h1`
   margin: 0;
+  font-family: 'MetroBlack LT Two', Helvetica, sans-serif;
 `
 
 const LogoStyled = styled.img`
