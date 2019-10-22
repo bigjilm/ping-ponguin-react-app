@@ -55,6 +55,7 @@ const WelcomePageStyled = styled.main`
 
 const HeadlineStyled = styled.h1`
   margin: 0;
+  font-family: 'MetroBlack LT Two', Helvetica, sans-serif;
 `
 
 const WelcomeButtonsStyled = styled.div`
