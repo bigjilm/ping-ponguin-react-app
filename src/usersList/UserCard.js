@@ -45,7 +45,9 @@ export default function UserCard({
           rechts: {spreadWings(abilityRight, 'right')}
         </AbilityStyled>
       </AbilityContainerStyled>
-      <ChatButtonStyled onClick={startChat}>Chat</ChatButtonStyled>
+      <ChatButtonStyled onClick={startChat}>
+        <ButtonTextStyled>Chat</ButtonTextStyled>
+      </ChatButtonStyled>
     </UserCardStyled>
   )
 
@@ -124,12 +126,17 @@ const AbilityStyled = styled.div`
 
 const ChatButtonStyled = styled.button`
   grid-area: button;
+  display: grid;
+  place-items: center;
   justify-self: center;
-  align-self: center;
-  width: 30px;
-  height: 90px;
   background-color: var(--skyBlue);
   border: none;
+  padding: 5px;
+`
+
+//fix: Button tag in Chrome does not support writing mode
+const ButtonTextStyled = styled.p`
+  margin: 0;
   writing-mode: vertical-rl;
   text-orientation: upright;
 `
