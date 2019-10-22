@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import sendIcon from '../assets/send-icon.svg'
+import { SendPlane2 } from 'styled-icons/remix-line/'
 
 export default function MessageInputForm({ onSubmit }) {
   return (
     <MessageInputFormStyled onSubmit={onSubmit}>
       <MessageInputStyled name="textarea" />
       <SendLabelStyled>
-        <IconStyled src={sendIcon} />
+        <SendIconStyled size="40" title="Send Button" />
         <SubmitInputStyled type="submit" />
       </SendLabelStyled>
     </MessageInputFormStyled>
@@ -27,9 +27,7 @@ const SendLabelStyled = styled.label`
   place-items: center;
 `
 
-const IconStyled = styled.img`
-  height: 40px;
-`
+const SendIconStyled = styled(SendPlane2)``
 
 const SubmitInputStyled = styled.input`
   display: none;
