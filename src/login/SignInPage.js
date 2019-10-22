@@ -3,7 +3,7 @@ import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import ppLogo from '../assets/pp-logo.png'
 import Alert from '../common/Alert'
-import { ButtonStyled } from '../common/StyledElements'
+import { ButtonStyled, BackButtonStyled } from '../common/StyledElements'
 import TextInput from '../common/TextInput'
 import { signIn } from '../utils/services'
 import { setToStorage } from '../utils/storage'
@@ -33,8 +33,15 @@ export default function SignInPage({ setCurrentUser }) {
           type="password"
         />
         {alert && <Alert>{alert}</Alert>}
-        <ButtonStyled>Sign in</ButtonStyled>
+        <ButtonStyled style={{ marginTop: '10px' }}>Sign in</ButtonStyled>
       </SignInFormStyled>
+      <BackButtonStyled
+        onClick={() => {
+          history.push('/')
+        }}
+      >
+        zurück
+      </BackButtonStyled>
     </SignInPageStyled>
   )
 
@@ -73,7 +80,7 @@ const SignInPageStyled = styled.main`
   display: grid;
   grid-auto-rows: min-content;
   justify-items: center;
-  grid-gap: 40px;
+  grid-gap: 20px;
   background-color: var(--skyBlue);
   overflow: auto;
   padding: 80px;

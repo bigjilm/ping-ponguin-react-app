@@ -1,8 +1,13 @@
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
+import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import Alert from '../common/Alert'
-import { ButtonStyled } from '../common/StyledElements'
+import {
+  ButtonStyled,
+  BackButtonStyled,
+  GridContainer,
+} from '../common/StyledElements'
 import TextInput from '../common/TextInput'
 import { editPassword } from '../utils/services'
 
@@ -13,27 +18,37 @@ PasswordForm.propTypes = {
 
 export default function PasswordForm({ userId, onSubmit }) {
   const [alert, setAlert] = useState('')
+  let history = useHistory()
 
   return (
-    <PasswordFormStyled onSubmit={handleSubmit}>
-      <TextInput
-        labelName="Altes Passwort"
-        name="oldPassword"
-        type="password"
-      />
-      <TextInput
-        labelName="Neues Passwort"
-        name="newPassword"
-        type="password"
-      />
-      <TextInput
-        labelName="Nochmal neues Passwort"
-        name="newPasswordRepeat"
-        type="password"
-      />
-      {alert && <Alert>{alert}</Alert>}
-      <ButtonStyled>Speichern</ButtonStyled>
-    </PasswordFormStyled>
+    <GridContainer>
+      <PasswordFormStyled onSubmit={handleSubmit}>
+        <TextInput
+          labelName="Altes Passwort"
+          name="oldPassword"
+          type="password"
+        />
+        <TextInput
+          labelName="Neues Passwort"
+          name="newPassword"
+          type="password"
+        />
+        <TextInput
+          labelName="Nochmal neues Passwort"
+          name="newPasswordRepeat"
+          type="password"
+        />
+        {alert && <Alert>{alert}</Alert>}
+        <ButtonStyled>Speichern</ButtonStyled>
+      </PasswordFormStyled>
+      <BackButtonStyled
+        onClick={() => {
+          history.push('/profile')
+        }}
+      >
+        zurück
+      </BackButtonStyled>
+    </GridContainer>
   )
 
   function handleSubmit(event) {

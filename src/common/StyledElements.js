@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 export const FormStyled = styled.form`
   display: grid;
   grid-auto-rows: min-content;
-  grid-gap: 50px;
+  grid-gap: 40px;
 `
 
 export const InputStyled = styled.input`
@@ -33,4 +33,20 @@ export const Cushion = styled.div`
   height: 40px;
 `
 
+export const GridContainer = styled.div`
+  display: grid;
+  grid-auto-rows: min-content;
+  grid-gap: 20px;
+  justify-items: center;
+`
+
 export const LoadingMessageStyled = styled.div``
+
+export const BackButtonStyled = styled.button`
+  text-decoration: underline;
+  color: var(--iceBlue);
+  background: none;
+  border: none;
+  height: 30px;
+  width: 100px;
+`
