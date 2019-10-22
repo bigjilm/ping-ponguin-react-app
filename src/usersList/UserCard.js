@@ -5,6 +5,7 @@ import styled from 'styled-components/macro'
 import { CHAT_START } from '../events'
 import SocketContext from '../SocketContext'
 import { setToStorage } from '../utils/storage'
+import spreadWings from '../utils/spreadWings'
 
 UserCard.propTypes = {
   _id: PropTypes.string,
@@ -32,13 +33,21 @@ export default function UserCard({
     <UserCardStyled>
       <NameStyled>{name}</NameStyled>
       <ImageStyled src={imageURL}></ImageStyled>
-      <ResidenceStyled>Wohnort: {residence}</ResidenceStyled>
-      <div>
-        Spielstärke
-        <AbilityStyled>links: {abilityLeft}</AbilityStyled>
-        <AbilityStyled>rechts: {abilityRight}</AbilityStyled>
-      </div>
-      <ChatButtonStyled onClick={startChat}>Chat</ChatButtonStyled>
+
+      <ResidenceStyled>
+        <KeyStyled>Wohnort:</KeyStyled>
+        <ValueStyled>{residence}</ValueStyled>
+      </ResidenceStyled>
+      <AbilityContainerStyled>
+        <KeyStyled>Spielstärke</KeyStyled>
+        <AbilityStyled>links: {spreadWings(abilityLeft, 'left')}</AbilityStyled>
+        <AbilityStyled>
+          rechts: {spreadWings(abilityRight, 'right')}
+        </AbilityStyled>
+      </AbilityContainerStyled>
+      <ChatButtonStyled onClick={startChat}>
+        <ButtonTextStyled>Chat</ButtonTextStyled>
+      </ChatButtonStyled>
     </UserCardStyled>
   )
 
@@ -47,6 +56,16 @@ export default function UserCard({
     setToStorage('pingu-partner', _id)
     history.push('/chat')
   }
+
+  // function spreadWings(ability, side) {
+  //   const abilityNumber = Number(ability)
+  //   const wing = side === 'left' ? leftWing : rightWing
+  //   const foo = []
+  //   for (let i = 0; i < abilityNumber; i++) {
+  //     foo.push(i)
+  //   }
+  //   return foo.map(bar => <WingStyled key={bar} src={wing} />)
+  // }
 }
 
 const UserCardStyled = styled.section`
@@ -65,8 +84,8 @@ const UserCardStyled = styled.section`
 const ImageStyled = styled.img`
   grid-area: image;
   justify-self: center;
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 120px;
   border-radius: 75px 75px 55.5px 55.5px;
   object-fit: cover;
 `
@@ -75,21 +94,49 @@ const NameStyled = styled.span`
   grid-area: name;
   font-size: 1.5em;
   font-weight: bold;
+  width: 40vw;
+  overflow-wrap: break-word;
 `
 
-const ResidenceStyled = styled.span`
+const KeyStyled = styled.h3`
+  margin: 0;
+  font-size: 1rem;
+`
+
+const ValueStyled = styled.div``
+
+const ResidenceStyled = styled.div`
   grid-area: residence;
+  width: 40vw;
+  overflow-wrap: break-word;
+`
+
+const AbilityContainerStyled = styled.div`
+  grid-area: ability;
+  display: grid;
+  grid-gap: 5px;
+  grid-auto-rows: min-content;
 `
 
 const AbilityStyled = styled.div`
-  grid-area: ability;
+  display: grid;
+  grid-template-columns: 55px repeat(5, 20px);
   margin-left: 20px;
 `
 
 const ChatButtonStyled = styled.button`
   grid-area: button;
-  width: 150px;
-  height: 50px;
+  display: grid;
+  place-items: center;
+  justify-self: center;
   background-color: var(--skyBlue);
   border: none;
+  padding: 5px;
+`
+
+//fix: Button tag in Chrome does not support writing mode
+const ButtonTextStyled = styled.p`
+  margin: 0;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
 `

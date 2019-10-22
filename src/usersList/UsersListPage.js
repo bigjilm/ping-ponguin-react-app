@@ -36,6 +36,7 @@ export default function UsersListPage({ currentUser }) {
     <Page
       title="ping ponguin"
       home={true}
+      mainPadding="15px"
       showFilterSymbol={true}
       isFilterVisible={isFilterVisible}
       onFilterClick={handleFilterClick}

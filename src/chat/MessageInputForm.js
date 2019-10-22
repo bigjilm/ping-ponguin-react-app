@@ -28,7 +28,7 @@ const SendLabelStyled = styled.label`
 `
 
 const IconStyled = styled.img`
-  height: 30px;
+  height: 40px;
 `
 
 const SubmitInputStyled = styled.input`
