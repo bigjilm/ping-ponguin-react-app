@@ -92,7 +92,8 @@ const KeyStyled = styled.h3`
 `
 
 const ValueStyled = styled.div`
-  word-break: break-all;
+  overflow-wrap: break-word;
+  width: 75vw;
 `
 
 const ImageStyled = styled.img`

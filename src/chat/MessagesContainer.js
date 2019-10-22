@@ -55,12 +55,12 @@ const MessageStyled = styled.div`
 
 const MessageBodyStyled = styled.p`
   margin: 0;
-  word-break: break-all;
+  overflow-wrap: break-word;
+  width: 75vw;
 `
 
 const DateStyled = styled.span`
   font-size: 10px;
-  /* color: #333; */
 `
 
 const EndOfMessagesStyled = styled.div`

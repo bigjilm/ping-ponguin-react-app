@@ -94,7 +94,8 @@ const NameStyled = styled.span`
   grid-area: name;
   font-size: 1.5em;
   font-weight: bold;
-  word-break: break-all;
+  width: 40vw;
+  overflow-wrap: break-word;
 `
 
 const KeyStyled = styled.h3`
@@ -102,13 +103,12 @@ const KeyStyled = styled.h3`
   font-size: 1rem;
 `
 
-const ValueStyled = styled.div`
-  word-break: break-all;
-`
+const ValueStyled = styled.div``
 
 const ResidenceStyled = styled.div`
   grid-area: residence;
-  word-break: break-all;
+  width: 40vw;
+  overflow-wrap: break-word;
 `
 
 const AbilityContainerStyled = styled.div`
