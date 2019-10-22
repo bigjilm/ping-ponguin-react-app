@@ -5,8 +5,7 @@ import styled from 'styled-components/macro'
 import { CHAT_START } from '../events'
 import SocketContext from '../SocketContext'
 import { setToStorage } from '../utils/storage'
-import leftWing from '../assets/leftWing.png'
-import rightWing from '../assets/rightWing.png'
+import spreadWings from '../utils/spreadWings'
 
 UserCard.propTypes = {
   _id: PropTypes.string,
@@ -41,9 +40,9 @@ export default function UserCard({
       </ResidenceStyled>
       <AbilityContainerStyled>
         <KeyStyled>Spielstärke</KeyStyled>
-        <AbilityStyled>links: {plotWings(abilityLeft, 'left')}</AbilityStyled>
+        <AbilityStyled>links: {spreadWings(abilityLeft, 'left')}</AbilityStyled>
         <AbilityStyled>
-          rechts: {plotWings(abilityRight, 'right')}
+          rechts: {spreadWings(abilityRight, 'right')}
         </AbilityStyled>
       </AbilityContainerStyled>
       <ChatButtonStyled onClick={startChat}>Chat</ChatButtonStyled>
@@ -56,15 +55,15 @@ export default function UserCard({
     history.push('/chat')
   }
 
-  function plotWings(ability, side) {
-    const abilityNumber = Number(ability)
-    const wing = side === 'left' ? leftWing : rightWing
-    const foo = []
-    for (let i = 0; i < abilityNumber; i++) {
-      foo.push(i)
-    }
-    return foo.map(bar => <WingStyled key={bar} src={wing} />)
-  }
+  // function spreadWings(ability, side) {
+  //   const abilityNumber = Number(ability)
+  //   const wing = side === 'left' ? leftWing : rightWing
+  //   const foo = []
+  //   for (let i = 0; i < abilityNumber; i++) {
+  //     foo.push(i)
+  //   }
+  //   return foo.map(bar => <WingStyled key={bar} src={wing} />)
+  // }
 }
 
 const UserCardStyled = styled.section`
@@ -119,13 +118,8 @@ const AbilityContainerStyled = styled.div`
 
 const AbilityStyled = styled.div`
   display: grid;
-  grid-template-columns: 50px repeat(5, 20px);
+  grid-template-columns: 55px repeat(5, 20px);
   margin-left: 20px;
-`
-
-const WingStyled = styled.img`
-  height: 20px;
-  background-color: var(--iceBlue);
 `
 
 const ChatButtonStyled = styled.button`

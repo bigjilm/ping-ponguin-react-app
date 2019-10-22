@@ -1,10 +1,10 @@
-import React from 'react'
 import PropTypes from 'prop-types'
+import React from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
-import RadioButtonGroupStateless from './RadioButtonGroupStateless'
-import { Cushion, ButtonStyled } from '../common/StyledElements'
+import { ButtonStyled, Cushion } from '../common/StyledElements'
 import { logout } from '../utils/services'
+import spreadWings from '../utils/spreadWings'
 import { getFromStorage, setToStorage } from '../utils/storage'
 
 Profile.propTypes = {
@@ -35,16 +35,12 @@ export default function Profile({ user, onEditClick, onChangePasswordClick }) {
       </PropStyled>
       <PropStyled>
         <KeyStyled>Spielstärke</KeyStyled>
-        <RadioButtonGroupStateless
-          name="abilityLeft"
-          activeRadio={user.abilityLeft}
-          disabled
-        />
-        <RadioButtonGroupStateless
-          name="abilityRight"
-          activeRadio={user.abilityRight}
-          disabled
-        />
+        <AbilityStyled>
+          links: {spreadWings(user.abilityLeft, 'left')}
+        </AbilityStyled>
+        <AbilityStyled>
+          rechts: {spreadWings(user.abilityRight, 'right')}
+        </AbilityStyled>
       </PropStyled>
       <PropStyled>
         <KeyStyled>E-Mail-Adresse</KeyStyled>
@@ -83,7 +79,7 @@ const ProfileStyled = styled.div`
 const ButtonContainerStyled = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
 `
 
 const PropStyled = styled.div`
@@ -104,4 +100,10 @@ const ImageStyled = styled.img`
   width: 150px;
   border-radius: 75px 75px 55.5px 55.5px;
   object-fit: cover;
+`
+
+const AbilityStyled = styled.div`
+  display: grid;
+  grid-template-columns: 55px repeat(5, 20px);
+  margin-left: 20px;
 `
