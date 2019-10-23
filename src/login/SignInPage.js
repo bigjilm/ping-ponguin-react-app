@@ -71,13 +71,13 @@ export default function SignInPage({
         history.push('/users')
       })
       .catch(err => {
-        if (err.message === 'Error: email must not be blank') {
+        if (err.message === 'Email must not be blank') {
           setAlert('Bitte gib deine E-Mail-Adresse ein')
-        } else if (err.message === 'Error: password must not be blank') {
+        } else if (err.message === 'Password must not be blank') {
           setAlert('Bitte gib dein Passwort ein')
-        } else if (err.message === 'Error: invalid email') {
+        } else if (err.message === 'Invalid email') {
           setAlert('Zu dieser E-Mail-Adresse existiert kein Konto')
-        } else if (err.message === 'Error: wrong password') {
+        } else if (err.message === 'Wrong password') {
           setAlert('Das Passwort ist falsch')
         } else {
           console.error(err)
