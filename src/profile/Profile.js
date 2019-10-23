@@ -20,7 +20,7 @@ export default function Profile({ user, onEditClick, onChangePasswordClick }) {
     <ProfileStyled>
       <ButtonContainerStyled>
         <ButtonStyled onClick={onEditClick}>Bearbeiten</ButtonStyled>
-        <ButtonStyled onClick={handleLogout}>Logout</ButtonStyled>
+        <ButtonStyled onClick={handleLogout}>Ausloggen</ButtonStyled>
       </ButtonContainerStyled>
       <PropStyled>
         <ImageStyled src={user.imageURL} />

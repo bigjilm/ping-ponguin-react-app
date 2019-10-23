@@ -75,7 +75,7 @@ export default function SignUpPage() {
             missingInputs={missingInputs}
           />
           {alert && <Alert>{alert}</Alert>}
-          <ButtonStyled>Profil Erstellen</ButtonStyled>
+          <ButtonStyled>Profil erstellen</ButtonStyled>
         </FormStyled>
         <BackButtonStyled
           onClick={() => {

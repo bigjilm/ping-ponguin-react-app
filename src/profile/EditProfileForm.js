@@ -102,7 +102,6 @@ export default function EditProfileForm({ user, onChange }) {
     const form = event.currentTarget
     editProfile(user)
       .then(res => {
-        console.log(res)
         if (!res.success) {
           throw new Error(res.message)
         }

@@ -33,7 +33,7 @@ export default function SignInPage({ setCurrentUser }) {
           type="password"
         />
         {alert && <Alert>{alert}</Alert>}
-        <ButtonStyled style={{ marginTop: '10px' }}>Sign in</ButtonStyled>
+        <ButtonStyled style={{ marginTop: '10px' }}>Einloggen</ButtonStyled>
       </SignInFormStyled>
       <BackButtonStyled
         onClick={() => {
