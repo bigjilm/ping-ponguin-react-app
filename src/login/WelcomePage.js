@@ -25,8 +25,8 @@ export default function WelcomePage({ token }) {
       {isLoading && <LoadingMessageStyled>Loading...</LoadingMessageStyled>}
       {isLoading || (
         <WelcomeButtonsStyled>
-          <ButtonStyled onClick={handleSignInClick}>Sign in</ButtonStyled>
-          <ButtonStyled onClick={handleSignUpClick}>Sign up</ButtonStyled>
+          <ButtonStyled onClick={handleSignInClick}>Einloggen</ButtonStyled>
+          <ButtonStyled onClick={handleSignUpClick}>Registrieren</ButtonStyled>
         </WelcomeButtonsStyled>
       )}
     </WelcomePageStyled>

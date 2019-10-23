@@ -3,23 +3,33 @@ import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import ppLogo from '../assets/pp-logo.png'
 import Alert from '../common/Alert'
-import { ButtonStyled } from '../common/StyledElements'
+import { ButtonStyled, BackButtonStyled } from '../common/StyledElements'
 import TextInput from '../common/TextInput'
 import { signIn } from '../utils/services'
 import { setToStorage } from '../utils/storage'
 
-export default function SignInPage({ setCurrentUser }) {
+export default function SignInPage({
+  setCurrentUser,
+  justSignedUp,
+  setJustSignedUp,
+}) {
   const [alert, setAlert] = useState('')
   let history = useHistory()
 
   useEffect(() => {
     document.querySelector('input').focus()
-  }, [])
+    return () => setJustSignedUp(false)
+  }, [setJustSignedUp])
 
   return (
     <SignInPageStyled title="ping ponguin">
       <HeadlineStyled>ping ponguin</HeadlineStyled>
       <LogoStyled src={ppLogo} />
+      {justSignedUp && (
+        <SignUpMessageStyled>
+          Du kannst dich jetzt einloggen
+        </SignUpMessageStyled>
+      )}
       <SignInFormStyled onSubmit={handleSignIn}>
         <TextInput
           name="email"
@@ -33,8 +43,15 @@ export default function SignInPage({ setCurrentUser }) {
           type="password"
         />
         {alert && <Alert>{alert}</Alert>}
-        <ButtonStyled>Sign in</ButtonStyled>
+        <ButtonStyled style={{ marginTop: '10px' }}>Einloggen</ButtonStyled>
       </SignInFormStyled>
+      <BackButtonStyled
+        onClick={() => {
+          history.push('/')
+        }}
+      >
+        zurück
+      </BackButtonStyled>
     </SignInPageStyled>
   )
 
@@ -73,7 +90,7 @@ const SignInPageStyled = styled.main`
   display: grid;
   grid-auto-rows: min-content;
   justify-items: center;
-  grid-gap: 40px;
+  grid-gap: 20px;
   background-color: var(--skyBlue);
   overflow: auto;
   padding: 80px;
@@ -88,6 +105,11 @@ const HeadlineStyled = styled.h1`
 
 const LogoStyled = styled.img`
   height: 100px;
+`
+
+const SignUpMessageStyled = styled.span`
+  text-align: center;
+  color: var(--iceBlue);
 `
 
 const SignInFormStyled = styled.form`

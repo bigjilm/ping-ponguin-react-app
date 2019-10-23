@@ -3,12 +3,18 @@ import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import Alert from '../common/Alert'
 import Page from '../common/Page'
-import { ButtonStyled, FormStyled, Cushion } from '../common/StyledElements'
+import {
+  ButtonStyled,
+  FormStyled,
+  Cushion,
+  BackButtonStyled,
+  GridContainer,
+} from '../common/StyledElements'
 import TextInput from '../common/TextInput'
 import { signUp } from '../utils/services'
 import RadioButtonGroup from './RadioButtonGroup'
 
-export default function SignUpPage() {
+export default function SignUpPage({ setJustSignedUp }) {
   const [missingInputs, setMissingInputs] = useState([])
   const [alert, setAlert] = useState('')
   let history = useHistory()
@@ -19,58 +25,67 @@ export default function SignUpPage() {
 
   return (
     <Page title="Profil erstellen" showNavigation={false}>
-      <FormStyled onSubmit={handleSignUp}>
-        <TextInput
-          labelName="Name"
-          name="name"
-          placeholder="Gib hier deinen Namen ein"
-          maxLength={20}
-          missingInputs={missingInputs}
-        />
-        <TextInput
-          labelName="Wohnort"
-          name="residence"
-          placeholder="Gib hier deinen Wohnort ein"
-          maxLength={50}
-          missingInputs={missingInputs}
-        />
-        <ContainerStyled>
-          Spielstärke
-          <StyledParagraph>
-            Schätze deine Spielstärke auf einer Skala von 1 (Blinge) bis 5
-            (Profi) ein.
-          </StyledParagraph>
-          <RadioButtonGroup
-            name="abilityLeft"
+      <GridContainer>
+        <FormStyled onSubmit={handleSignUp}>
+          <TextInput
+            labelName="Name"
+            name="name"
+            placeholder="Gib hier deinen Namen ein"
+            maxLength={20}
             missingInputs={missingInputs}
-          ></RadioButtonGroup>
-          <RadioButtonGroup
-            name="abilityRight"
+          />
+          <TextInput
+            labelName="Wohnort"
+            name="residence"
+            placeholder="Gib hier deinen Wohnort ein"
+            maxLength={50}
             missingInputs={missingInputs}
-          ></RadioButtonGroup>
-        </ContainerStyled>
-        <TextInput
-          labelName="Bild per URL einfügen (optional)"
-          name="imageURL"
-          placeholder="Gib hier die URL deines Bildes ein"
-        />
-        <TextInput
-          labelName="E-Mail"
-          name="email"
-          placeholder="Gib hier deine E-Mail-Adresse ein"
-          missingInputs={missingInputs}
-        />
-        <TextInput
-          labelName="Passwort"
-          name="password"
-          type="password"
-          placeholder="Gib hier ein Passwort ein"
-          missingInputs={missingInputs}
-        />
-        {alert && <Alert>{alert}</Alert>}
-        <ButtonStyled>Profil Erstellen</ButtonStyled>
+          />
+          <AbilityContainerStyled>
+            Spielstärke
+            <StyledParagraph>
+              Schätze deine Spielstärke auf einer Skala von 1 (Blinge) bis 5
+              (Profi) ein.
+            </StyledParagraph>
+            <RadioButtonGroup
+              name="abilityLeft"
+              missingInputs={missingInputs}
+            ></RadioButtonGroup>
+            <RadioButtonGroup
+              name="abilityRight"
+              missingInputs={missingInputs}
+            ></RadioButtonGroup>
+          </AbilityContainerStyled>
+          <TextInput
+            labelName="Bild per URL einfügen (optional)"
+            name="imageURL"
+            placeholder="Gib hier die URL deines Bildes ein"
+          />
+          <TextInput
+            labelName="E-Mail"
+            name="email"
+            placeholder="Gib hier deine E-Mail-Adresse ein"
+            missingInputs={missingInputs}
+          />
+          <TextInput
+            labelName="Passwort"
+            name="password"
+            type="password"
+            placeholder="Gib hier ein Passwort ein"
+            missingInputs={missingInputs}
+          />
+          {alert && <Alert>{alert}</Alert>}
+          <ButtonStyled>Profil erstellen</ButtonStyled>
+        </FormStyled>
+        <BackButtonStyled
+          onClick={() => {
+            history.push('/')
+          }}
+        >
+          zurück
+        </BackButtonStyled>
         <Cushion />
-      </FormStyled>
+      </GridContainer>
     </Page>
   )
 
@@ -90,6 +105,7 @@ export default function SignUpPage() {
           throw new Error(res.message)
         }
         form.reset()
+        setJustSignedUp(true)
         history.push('/signin')
       })
       .catch(err => {
@@ -105,7 +121,7 @@ export default function SignUpPage() {
   }
 }
 
-const ContainerStyled = styled.div`
+const AbilityContainerStyled = styled.div`
   display: grid;
   grid-auto-rows: auto;
   grid-gap: 20px;

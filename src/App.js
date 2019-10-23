@@ -14,6 +14,7 @@ import { getUser, verifyUserSession } from './utils/services'
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState({})
+  const [justSignedUp, setJustSignedUp] = useState(false)
   const [socket] = useSocket('http://localhost:3333')
   const token = getFromStorage('pingu-session')
 
@@ -44,10 +45,14 @@ export default function App() {
               <WelcomePage />
             </Route>
             <Route exact path="/signin">
-              <SignInPage setCurrentUser={setCurrentUser} />
+              <SignInPage
+                setCurrentUser={setCurrentUser}
+                justSignedUp={justSignedUp}
+                setJustSignedUp={setJustSignedUp}
+              />
             </Route>
             <Route exact path="/signup">
-              <SignUpPage />
+              <SignUpPage setJustSignedUp={setJustSignedUp} />
             </Route>
             <Route exact path="/users">
               <UsersListPage currentUser={currentUser} />
