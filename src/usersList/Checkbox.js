@@ -25,9 +25,9 @@ export default function Checkbox({ value, activeCheckboxes, onChange }) {
 const LabelStyled = styled.label`
   display: grid;
   place-items: center;
+  border-radius: 5px;
   width: 40px;
   height: 30px;
-  border-radius: 5px;
   background-color: ${({ activeCheckboxes, value }) =>
     activeCheckboxes.includes(value) ? 'var(--plantGreen)' : 'var(--iceBlue)'};
 `

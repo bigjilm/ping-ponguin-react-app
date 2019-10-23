@@ -91,11 +91,11 @@ const SignInPageStyled = styled.main`
   grid-auto-rows: min-content;
   justify-items: center;
   grid-gap: 20px;
-  background-color: var(--skyBlue);
   overflow: auto;
-  padding: 80px;
-  color: var(--iceBlue);
   height: 100%;
+  padding: 80px;
+  background-color: var(--skyBlue);
+  color: var(--iceBlue);
 `
 
 const HeadlineStyled = styled.h1`
@@ -116,6 +116,6 @@ const SignInFormStyled = styled.form`
   display: grid;
   grid-auto-rows: min-content;
   grid-gap: 30px;
-  padding: 0px 30px;
   overflow: auto;
+  padding: 0px 30px;
 `

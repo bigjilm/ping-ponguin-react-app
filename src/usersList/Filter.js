@@ -51,12 +51,12 @@ const FilterStyled = styled.div`
   display: grid;
   grid-auto-rows: min-content;
   grid-gap: 20px;
-  height: 230px;
-  width: 325px;
-  background-color: var(--skyBlue);
   box-shadow: -7px 7px 6px 0 rgba(0, 0, 0, 0.5);
   border-bottom-left-radius: 20px;
+  height: 230px;
+  width: 325px;
   padding: 30px 20px;
+  background-color: var(--skyBlue);
 `
 
 const HeadlineStyled = styled.h3`

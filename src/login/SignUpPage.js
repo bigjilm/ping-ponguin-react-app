@@ -129,7 +129,7 @@ const AbilityContainerStyled = styled.div`
 `
 
 const StyledParagraph = styled.p`
+  margin: 0;
   font-size: 14px;
   font-weight: normal;
-  margin: 0;
 `

@@ -42,8 +42,8 @@ const IconStyled = styled.img`
 `
 
 const ChatIconStyled = styled(Chat3)`
-  color: black;
   font-weight: bold;
+  color: black;
 `
 
 const ProfileIconStyled = styled(AccountCircle)`

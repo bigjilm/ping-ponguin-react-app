@@ -7,6 +7,7 @@ import coffeeFilterIcon from '../assets/coffee-filter-icon.svg'
 Header.propTypes = {
   title: PropTypes.string,
   home: PropTypes.bool,
+  chatPartnerImage: PropTypes.string,
   showFilterSymbol: PropTypes.bool,
   isFilterVisible: PropTypes.bool,
   onFilterClick: PropTypes.func,
@@ -15,6 +16,7 @@ Header.propTypes = {
 export default function Header({
   title,
   home = false,
+  chatPartnerImage = '',
   showFilterSymbol = false,
   isFilterVisible = false,
   onFilterClick,
@@ -23,6 +25,7 @@ export default function Header({
     <HeaderStyled>
       <LogoStyled src={ppLogo} />
       {home ? <H1Styled>{title}</H1Styled> : <H2Styled>{title}</H2Styled>}
+      {chatPartnerImage && <ChatPartnerImageStyled src={chatPartnerImage} />}
       {showFilterSymbol && (
         <IconStyled
           isFilterVisible={isFilterVisible}
@@ -43,23 +46,27 @@ const HeaderStyled = styled.header`
   grid-template-columns: 48px auto 48px;
   place-items: center;
   grid-gap: 5px;
-  background-color: var(--iceBlue);
-  padding: 0 5px;
   border-bottom: 2px solid var(--skyBlue);
+  padding: 0 5px;
+  background-color: var(--iceBlue);
 `
 
 const H1Styled = styled.h1`
   margin: 0;
   font-size: 2rem;
-  color: var(--skyBlue);
   font-family: 'MetroBlack LT Two', Helvetica, sans-serif;
+  color: var(--skyBlue);
 `
 
 const H2Styled = styled.h2`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 68vw;
   margin: 0;
   font-size: 2rem;
-  color: var(--skyBlue);
   font-family: 'MetroBlack LT Two', Helvetica, sans-serif;
+  color: var(--skyBlue);
 `
 
 const LogoStyled = styled.img`
@@ -72,4 +79,11 @@ const IconStyled = styled.img`
     isFilterVisible && '10px var(--skyBlue) solid'};
   background-color: ${({ isFilterVisible }) =>
     isFilterVisible && 'var(--skyBlue)'};
+`
+
+const ChatPartnerImageStyled = styled.img`
+  object-fit: cover;
+  border-radius: 75px 75px 55.5px 55.5px;
+  height: 36px;
+  width: 36px;
 `

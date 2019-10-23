@@ -20,10 +20,10 @@ export const InputStyled = styled.input`
 
 export const ButtonStyled = styled.button`
   justify-self: center;
+  border: none;
   width: 150px;
   height: 50px;
   background-color: var(--iceBlue);
-  border: none;
 `
 
 //Das folgende Element ist zum Erzeugen eines Abstands zur Unterkante,
@@ -43,10 +43,10 @@ export const GridContainer = styled.div`
 export const LoadingMessageStyled = styled.div``
 
 export const BackButtonStyled = styled.button`
-  text-decoration: underline;
-  color: var(--iceBlue);
-  background: none;
   border: none;
   height: 30px;
   width: 100px;
+  background: none;
+  text-decoration: underline;
+  color: var(--iceBlue);
 `
