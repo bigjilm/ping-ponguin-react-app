@@ -46,27 +46,27 @@ const HeaderStyled = styled.header`
   grid-template-columns: 48px auto 48px;
   place-items: center;
   grid-gap: 5px;
-  background-color: var(--iceBlue);
-  padding: 0 5px;
   border-bottom: 2px solid var(--skyBlue);
+  padding: 0 5px;
+  background-color: var(--iceBlue);
 `
 
 const H1Styled = styled.h1`
   margin: 0;
   font-size: 2rem;
-  color: var(--skyBlue);
   font-family: 'MetroBlack LT Two', Helvetica, sans-serif;
+  color: var(--skyBlue);
 `
 
 const H2Styled = styled.h2`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 68vw;
   margin: 0;
   font-size: 2rem;
-  color: var(--skyBlue);
   font-family: 'MetroBlack LT Two', Helvetica, sans-serif;
-  max-width: 68vw;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: var(--skyBlue);
 `
 
 const LogoStyled = styled.img`
@@ -82,8 +82,8 @@ const IconStyled = styled.img`
 `
 
 const ChatPartnerImageStyled = styled.img`
+  object-fit: cover;
+  border-radius: 75px 75px 55.5px 55.5px;
   height: 36px;
   width: 36px;
-  border-radius: 75px 75px 55.5px 55.5px;
-  object-fit: cover;
 `

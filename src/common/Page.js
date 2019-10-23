@@ -47,12 +47,12 @@ const PageStyled = styled.div`
   display: grid;
   grid-template-rows: ${props =>
     props.showNavigation ? '48px auto 48px' : '48px auto'};
-  background-color: var(--skyBlue);
   overflow: auto;
   height: 100%;
+  background-color: var(--skyBlue);
 `
 
 const MainStyled = styled.main`
-  padding: ${props => props.mainPadding};
   overflow: auto;
+  padding: ${props => props.mainPadding};
 `

@@ -84,10 +84,10 @@ export default function Profile({
 }
 
 const ProfileStyled = styled.div`
+  position: relative;
   display: grid;
   grid-auto-rows: min-content;
   grid-gap: 30px;
-  position: relative;
 `
 
 const ScrollElement = styled.div`
@@ -121,10 +121,10 @@ const ValueStyled = styled.div`
 `
 
 const ImageStyled = styled.img`
+  object-fit: cover;
+  border-radius: 75px 75px 55.5px 55.5px;
   height: 150px;
   width: 150px;
-  border-radius: 75px 75px 55.5px 55.5px;
-  object-fit: cover;
 `
 
 const AbilityStyled = styled.div`

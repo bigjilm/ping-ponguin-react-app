@@ -46,11 +46,11 @@ const WelcomePageStyled = styled.main`
   grid-auto-rows: min-content;
   justify-items: center;
   grid-gap: 50px;
-  background-color: var(--skyBlue);
   overflow: auto;
-  padding: 80px;
-  color: var(--iceBlue);
   height: 100%;
+  padding: 80px;
+  background-color: var(--skyBlue);
+  color: var(--iceBlue);
 `
 
 const HeadlineStyled = styled.h1`

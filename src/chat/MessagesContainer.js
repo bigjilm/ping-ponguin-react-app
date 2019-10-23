@@ -40,10 +40,6 @@ const MessagesContainerStyled = styled.div`
 `
 
 const MessageStyled = styled.div`
-  background-color: ${props =>
-    props.author === props.currentUser._id
-      ? 'var(--plantGreen)'
-      : 'var(--iceBlue)'};
   margin: ${props =>
     props.author === props.currentUser._id ? '0 0 0 25px' : '0 25px 0 0'};
   border-radius: ${props =>
@@ -51,12 +47,16 @@ const MessageStyled = styled.div`
       ? '10px 10px 0 10px'
       : '10px 10px 10px 0'};
   padding: 10px;
+  background-color: ${props =>
+    props.author === props.currentUser._id
+      ? 'var(--plantGreen)'
+      : 'var(--iceBlue)'};
 `
 
 const MessageBodyStyled = styled.p`
-  margin: 0;
   overflow-wrap: break-word;
   width: 75vw;
+  margin: 0;
 `
 
 const DateStyled = styled.span`

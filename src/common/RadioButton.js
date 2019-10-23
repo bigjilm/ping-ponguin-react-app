@@ -39,9 +39,9 @@ const LabelStyled = styled.label`
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 5px;
   width: 40px;
   height: 30px;
-  border-radius: 5px;
   background-color: ${props =>
     props.value === props.activeRadio ? 'var(--plantGreen)' : 'var(--iceBlue)'};
 `

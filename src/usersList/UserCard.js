@@ -66,25 +66,25 @@ const UserCardStyled = styled.section`
     'residence image'
     'ability button';
   grid-gap: 10px;
-  background-color: var(--iceBlue);
   padding: 20px;
+  background-color: var(--iceBlue);
 `
 
 const ImageStyled = styled.img`
   grid-area: image;
   justify-self: center;
+  object-fit: cover;
   height: 120px;
   width: 120px;
   border-radius: 75px 75px 55.5px 55.5px;
-  object-fit: cover;
 `
 
 const NameStyled = styled.span`
   grid-area: name;
+  overflow-wrap: break-word;
+  width: 40vw;
   font-size: 1.5em;
   font-weight: bold;
-  width: 40vw;
-  overflow-wrap: break-word;
 `
 
 const KeyStyled = styled.h3`
@@ -96,8 +96,8 @@ const ValueStyled = styled.div``
 
 const ResidenceStyled = styled.div`
   grid-area: residence;
-  width: 40vw;
   overflow-wrap: break-word;
+  width: 40vw;
 `
 
 const AbilityContainerStyled = styled.div`
@@ -118,9 +118,9 @@ const ChatButtonStyled = styled.button`
   display: grid;
   place-items: center;
   justify-self: center;
-  background-color: var(--skyBlue);
   border: none;
   padding: 5px;
+  background-color: var(--skyBlue);
 `
 
 //fix: Button tag in Chrome does not support writing mode

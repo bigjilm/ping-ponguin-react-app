@@ -93,6 +93,6 @@ const ChatContainerStyled = styled.div`
   grid-template-rows: auto 60px;
   grid-gap: 15px;
   height: 100%;
-  background-color: var(--skyBlue);
   padding: 0 0 15px 0;
+  background-color: var(--skyBlue);
 `
