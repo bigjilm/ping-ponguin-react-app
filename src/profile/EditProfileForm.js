@@ -17,9 +17,10 @@ import { editProfile } from '../utils/services'
 EditProfileForm.propTypes = {
   user: PropTypes.object,
   onChange: PropTypes.func,
+  setEdited: PropTypes.func,
 }
 
-export default function EditProfileForm({ user, onChange }) {
+export default function EditProfileForm({ user, onChange, setEdited }) {
   const [missingInputs, setMissingInputs] = useState([])
   const [alert, setAlert] = useState('')
   let history = useHistory()
@@ -106,6 +107,7 @@ export default function EditProfileForm({ user, onChange }) {
           throw new Error(res.message)
         }
         form.reset()
+        setEdited(true)
         history.push('/profile')
       })
       .catch(err => {

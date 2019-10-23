@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router'
 import { Route } from 'react-router-dom'
 import Page from '../common/Page'
@@ -7,6 +7,7 @@ import PasswordForm from './PasswordForm'
 import Profile from './Profile'
 
 export default function ProfilePage({ currentUser, setCurrentUser }) {
+  const [edited, setEdited] = useState(false)
   let history = useHistory()
 
   return (
@@ -14,8 +15,9 @@ export default function ProfilePage({ currentUser, setCurrentUser }) {
       <Route exact path="/profile">
         <Profile
           user={currentUser}
-          onEditClick={() => history.push('/profile/edit')}
-          onChangePasswordClick={() => history.push('/profile/changePassword')}
+          onEditClick={handleEditClick}
+          onChangePasswordClick={handleChangePasswordClick}
+          edited={edited}
         />
       </Route>
       <Route exact path="/profile/edit">
@@ -24,14 +26,22 @@ export default function ProfilePage({ currentUser, setCurrentUser }) {
           onChange={changedProp =>
             setCurrentUser({ ...currentUser, ...changedProp })
           }
+          setEdited={setEdited}
         />
       </Route>
       <Route path="/profile/changePassword">
-        <PasswordForm
-          userId={currentUser._id}
-          onSubmit={() => history.push('/profile')}
-        />
+        <PasswordForm userId={currentUser._id} setEdited={setEdited} />
       </Route>
     </Page>
   )
+
+  function handleEditClick() {
+    setEdited(false)
+    history.push('/profile/edit')
+  }
+
+  function handleChangePasswordClick() {
+    setEdited(false)
+    history.push('/profile/changePassword')
+  }
 }

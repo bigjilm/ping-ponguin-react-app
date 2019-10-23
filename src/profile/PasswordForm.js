@@ -13,10 +13,10 @@ import { editPassword } from '../utils/services'
 
 PasswordForm.propTypes = {
   userId: PropTypes.string,
-  onSubmit: PropTypes.func,
+  setEdited: PropTypes.func,
 }
 
-export default function PasswordForm({ userId, onSubmit }) {
+export default function PasswordForm({ userId, setEdited }) {
   const [alert, setAlert] = useState('')
   let history = useHistory()
 
@@ -61,8 +61,8 @@ export default function PasswordForm({ userId, onSubmit }) {
         if (!res.success) {
           throw new Error(res.message)
         }
-        console.log(res)
-        onSubmit()
+        setEdited(true)
+        history.push('/profile')
       })
       .catch(err => {
         console.error(err)

@@ -11,9 +11,15 @@ Profile.propTypes = {
   user: PropTypes.object,
   onEditClick: PropTypes.func,
   onChangePasswordClick: PropTypes.func,
+  edited: PropTypes.bool,
 }
 
-export default function Profile({ user, onEditClick, onChangePasswordClick }) {
+export default function Profile({
+  user,
+  onEditClick,
+  onChangePasswordClick,
+  edited,
+}) {
   let history = useHistory()
 
   return (
@@ -22,6 +28,7 @@ export default function Profile({ user, onEditClick, onChangePasswordClick }) {
         <ButtonStyled onClick={onEditClick}>Bearbeiten</ButtonStyled>
         <ButtonStyled onClick={handleLogout}>Ausloggen</ButtonStyled>
       </ButtonContainerStyled>
+      {edited && <EditMessageStyled>Erfolgreich gespeichert</EditMessageStyled>}
       <PropStyled>
         <ImageStyled src={user.imageURL} />
       </PropStyled>
@@ -80,6 +87,10 @@ const ButtonContainerStyled = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+`
+const EditMessageStyled = styled.span`
+  text-align: center;
+  color: var(--iceBlue);
 `
 
 const PropStyled = styled.div`
