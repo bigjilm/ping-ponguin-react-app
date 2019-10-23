@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import { ButtonStyled, Cushion } from '../common/StyledElements'
@@ -20,10 +20,16 @@ export default function Profile({
   onChangePasswordClick,
   edited,
 }) {
+  const topOfPage = useRef(null)
   let history = useHistory()
+
+  useEffect(() => {
+    topOfPage.current.scrollIntoView()
+  }, [])
 
   return (
     <ProfileStyled>
+      <ScrollElement ref={topOfPage} />
       <ButtonContainerStyled>
         <ButtonStyled onClick={onEditClick}>Bearbeiten</ButtonStyled>
         <ButtonStyled onClick={handleLogout}>Ausloggen</ButtonStyled>
@@ -81,6 +87,12 @@ const ProfileStyled = styled.div`
   display: grid;
   grid-auto-rows: min-content;
   grid-gap: 30px;
+  position: relative;
+`
+
+const ScrollElement = styled.div`
+  position: absolute;
+  top: -30px;
 `
 
 const ButtonContainerStyled = styled.div`
