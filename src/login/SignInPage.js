@@ -8,18 +8,28 @@ import TextInput from '../common/TextInput'
 import { signIn } from '../utils/services'
 import { setToStorage } from '../utils/storage'
 
-export default function SignInPage({ setCurrentUser }) {
+export default function SignInPage({
+  setCurrentUser,
+  justSignedUp,
+  setJustSignedUp,
+}) {
   const [alert, setAlert] = useState('')
   let history = useHistory()
 
   useEffect(() => {
     document.querySelector('input').focus()
-  }, [])
+    return () => setJustSignedUp(false)
+  }, [setJustSignedUp])
 
   return (
     <SignInPageStyled title="ping ponguin">
       <HeadlineStyled>ping ponguin</HeadlineStyled>
       <LogoStyled src={ppLogo} />
+      {justSignedUp && (
+        <SignUpMessageStyled>
+          Du kannst dich jetzt einloggen
+        </SignUpMessageStyled>
+      )}
       <SignInFormStyled onSubmit={handleSignIn}>
         <TextInput
           name="email"
@@ -95,6 +105,11 @@ const HeadlineStyled = styled.h1`
 
 const LogoStyled = styled.img`
   height: 100px;
+`
+
+const SignUpMessageStyled = styled.span`
+  text-align: center;
+  color: var(--iceBlue);
 `
 
 const SignInFormStyled = styled.form`

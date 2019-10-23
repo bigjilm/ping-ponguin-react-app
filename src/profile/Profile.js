@@ -100,6 +100,7 @@ const ButtonContainerStyled = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `
+
 const EditMessageStyled = styled.span`
   text-align: center;
   color: var(--iceBlue);

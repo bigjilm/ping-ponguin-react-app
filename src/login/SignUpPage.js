@@ -14,7 +14,7 @@ import TextInput from '../common/TextInput'
 import { signUp } from '../utils/services'
 import RadioButtonGroup from './RadioButtonGroup'
 
-export default function SignUpPage() {
+export default function SignUpPage({ setJustSignedUp }) {
   const [missingInputs, setMissingInputs] = useState([])
   const [alert, setAlert] = useState('')
   let history = useHistory()
@@ -105,6 +105,7 @@ export default function SignUpPage() {
           throw new Error(res.message)
         }
         form.reset()
+        setJustSignedUp(true)
         history.push('/signin')
       })
       .catch(err => {
