@@ -10,13 +10,13 @@ router.post('/', (req, res) => {
   if (!email) {
     return res.json({
       success: false,
-      message: 'Error: email must not be blank',
+      message: 'Email must not be blank',
     })
   }
   if (!password) {
     return res.json({
       success: false,
-      message: 'Error: password must not be blank',
+      message: 'Password must not be blank',
     })
   }
 
@@ -27,14 +27,14 @@ router.post('/', (req, res) => {
       if (users.length !== 1) {
         return res.json({
           success: false,
-          message: 'Error: invalid email',
+          message: 'Invalid email',
         })
       } else {
         const user = users[0]
         if (!user.validPassword(password)) {
           return res.json({
             success: false,
-            message: 'Error: wrong password',
+            message: 'Wrong password',
           })
         } else {
           UserSession.create({

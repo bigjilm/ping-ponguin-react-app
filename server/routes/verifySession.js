@@ -15,12 +15,12 @@ router.get('/', (req, res) => {
       if (sessions.length !== 1) {
         return res.json({
           success: false,
-          message: 'Error: no session exists',
+          message: 'No session exists',
         })
       } else {
         return res.json({
           success: true,
-          message: 'You are logged in',
+          message: 'Logged in',
         })
       }
     })

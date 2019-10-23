@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     .then(() =>
       res.json({
         success: true,
-        message: 'You are logged out',
+        message: 'Logged out',
       })
     )
     .catch(err => res.status(400).json(err))

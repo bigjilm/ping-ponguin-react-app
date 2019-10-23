@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
       if (previousUsers.length > 0) {
         return res.json({
           success: false,
-          message: 'Error: account already exists',
+          message: 'Account already exists',
         })
       } else {
         const { password } = req.body
@@ -31,7 +31,7 @@ router.post('/', (req, res) => {
           .then(() => {
             res.json({
               success: true,
-              message: 'You are now signed up',
+              message: 'Signed up',
             })
           })
           .catch(err => {

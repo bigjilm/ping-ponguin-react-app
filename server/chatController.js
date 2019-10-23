@@ -25,7 +25,7 @@ function chatController(server) {
       Channel.find({ members: userIds })
         .then(channels => {
           if (channels.length > 1) {
-            console.error('Error: More than one channel for a user couple')
+            console.error('More than one channel for a user couple')
           } else {
             if (channels.length === 0) {
               Channel.create({
@@ -45,13 +45,13 @@ function chatController(server) {
         .catch(err => console.error(err))
     })
 
+    // leave channel not in use right now
     socket.on(CHANNEL_LEAVE, currentChannel => {
       socket.leave(currentChannel)
       console.log('Left channel', currentChannel)
     })
 
     socket.on(MESSAGE_SENT, msg => {
-      console.log('message:', msg)
       Message.create({
         body: msg.body,
         author: msg.author,

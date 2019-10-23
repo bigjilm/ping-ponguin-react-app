@@ -20,7 +20,7 @@ router.patch('/', (req, res) => {
             if (previousUsers.length > 0) {
               return res.json({
                 success: false,
-                message: 'Error: account already exists',
+                message: 'Account already exists',
               })
             }
           })
@@ -39,7 +39,7 @@ router.patch('/', (req, res) => {
         .then(() => {
           res.json({
             success: true,
-            message: 'Your profile has been edited',
+            message: 'Profile edited',
           })
         })
         .catch(err => res.status(400).json(err))
