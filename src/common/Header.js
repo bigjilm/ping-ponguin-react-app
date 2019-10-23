@@ -63,6 +63,10 @@ const H2Styled = styled.h2`
   font-size: 2rem;
   color: var(--skyBlue);
   font-family: 'MetroBlack LT Two', Helvetica, sans-serif;
+  max-width: 68vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 const LogoStyled = styled.img`
