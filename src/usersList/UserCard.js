@@ -32,8 +32,7 @@ export default function UserCard({
   return (
     <UserCardStyled>
       <NameStyled>{name}</NameStyled>
-      <ImageStyled src={imageURL}></ImageStyled>
-
+      <ImageStyled src={imageURL} />
       <ResidenceStyled>
         <KeyStyled>Wohnort:</KeyStyled>
         <ValueStyled>{residence}</ValueStyled>
@@ -56,16 +55,6 @@ export default function UserCard({
     setToStorage('pingu-partner', _id)
     history.push('/chat')
   }
-
-  // function spreadWings(ability, side) {
-  //   const abilityNumber = Number(ability)
-  //   const wing = side === 'left' ? leftWing : rightWing
-  //   const foo = []
-  //   for (let i = 0; i < abilityNumber; i++) {
-  //     foo.push(i)
-  //   }
-  //   return foo.map(bar => <WingStyled key={bar} src={wing} />)
-  // }
 }
 
 const UserCardStyled = styled.section`

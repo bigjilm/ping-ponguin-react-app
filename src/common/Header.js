@@ -7,6 +7,7 @@ import coffeeFilterIcon from '../assets/coffee-filter-icon.svg'
 Header.propTypes = {
   title: PropTypes.string,
   home: PropTypes.bool,
+  chatPartnerImage: PropTypes.string,
   showFilterSymbol: PropTypes.bool,
   isFilterVisible: PropTypes.bool,
   onFilterClick: PropTypes.func,
@@ -15,6 +16,7 @@ Header.propTypes = {
 export default function Header({
   title,
   home = false,
+  chatPartnerImage = '',
   showFilterSymbol = false,
   isFilterVisible = false,
   onFilterClick,
@@ -23,6 +25,7 @@ export default function Header({
     <HeaderStyled>
       <LogoStyled src={ppLogo} />
       {home ? <H1Styled>{title}</H1Styled> : <H2Styled>{title}</H2Styled>}
+      {chatPartnerImage && <ChatPartnerImageStyled src={chatPartnerImage} />}
       {showFilterSymbol && (
         <IconStyled
           isFilterVisible={isFilterVisible}
@@ -72,4 +75,11 @@ const IconStyled = styled.img`
     isFilterVisible && '10px var(--skyBlue) solid'};
   background-color: ${({ isFilterVisible }) =>
     isFilterVisible && 'var(--skyBlue)'};
+`
+
+const ChatPartnerImageStyled = styled.img`
+  height: 36px;
+  width: 36px;
+  border-radius: 75px 75px 55.5px 55.5px;
+  object-fit: cover;
 `

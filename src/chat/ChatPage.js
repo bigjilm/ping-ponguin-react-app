@@ -12,6 +12,7 @@ import SocketContext from '../SocketContext'
 import { getFromStorage } from '../utils/storage'
 import MessageInputForm from './MessageInputForm'
 import MessagesContainer from './MessagesContainer'
+import { getUserById } from '../utils/services'
 
 ChatPage.propTypes = {
   currentUser: PropTypes.object,
@@ -19,12 +20,16 @@ ChatPage.propTypes = {
 
 export default function ChatPage({ currentUser }) {
   const [currentChannel, setCurrentChannel] = useState('')
+  const [currentChatPartner, setCurrentChatPartner] = useState({})
   const [messages, setMessages] = useState([])
   const socket = useContext(SocketContext)
 
   useEffect(() => {
-    const currentChatPartner = getFromStorage('pingu-partner')
-    socket.emit(CHAT_START, [currentChatPartner, currentUser._id])
+    const currentChatPartnerToken = getFromStorage('pingu-partner')
+    getUserById(currentChatPartnerToken)
+      .then(user => setCurrentChatPartner(user))
+      .catch(err => console.error(err))
+    socket.emit(CHAT_START, [currentChatPartnerToken, currentUser._id])
   }, [socket, currentUser._id])
 
   useEffect(() => {
@@ -47,7 +52,11 @@ export default function ChatPage({ currentUser }) {
   }, [socket, messages])
 
   return (
-    <Page title="Chat" mainPadding="0">
+    <Page
+      title={currentChatPartner.name}
+      mainPadding="0"
+      chatPartnerImage={currentChatPartner.imageURL}
+    >
       <ChatContainerStyled>
         <MessagesContainer messages={messages} currentUser={currentUser} />
         <MessageInputForm onSubmit={sendMessage} />

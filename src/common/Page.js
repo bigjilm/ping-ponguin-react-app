@@ -8,6 +8,7 @@ Page.propTypes = {
   title: PropTypes.string,
   home: PropTypes.bool,
   mainPadding: PropTypes.string,
+  chatPartnerImage: PropTypes.string,
   showFilterSymbol: PropTypes.bool,
   isFilterVisible: PropTypes.bool,
   onFilterClick: PropTypes.func,
@@ -19,6 +20,7 @@ export default function Page({
   title,
   home = false,
   mainPadding = '30px',
+  chatPartnerImage,
   showFilterSymbol = false,
   isFilterVisible = false,
   onFilterClick,
@@ -30,6 +32,7 @@ export default function Page({
       <Header
         title={title}
         home={home}
+        chatPartnerImage={chatPartnerImage}
         showFilterSymbol={showFilterSymbol}
         isFilterVisible={isFilterVisible}
         onFilterClick={onFilterClick}
