@@ -12,7 +12,7 @@ Page.propTypes = {
   showFilterSymbol: PropTypes.bool,
   isFilterVisible: PropTypes.bool,
   onFilterClick: PropTypes.func,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   showNavigation: PropTypes.bool,
 }
 

@@ -4,7 +4,7 @@ import styled from 'styled-components/macro'
 
 MessagesContainer.propTypes = {
   messages: PropTypes.array,
-  currentUser: PropTypes.object,
+  currentUser: PropTypes.object.isRequired,
 }
 
 export default function MessagesContainer({ messages, currentUser }) {

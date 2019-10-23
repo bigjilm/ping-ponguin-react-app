@@ -3,29 +3,26 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
 RadioButton.propTypes = {
-  value: PropTypes.string,
-  name: PropTypes.string,
+  labelName: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   activeRadio: PropTypes.string,
-  onClick: PropTypes.func,
-  disabled: PropTypes.bool,
+  onClick: PropTypes.func.isRequired,
 }
 
 export default function RadioButton({
-  value,
+  labelName,
   name,
   activeRadio = '',
   onClick,
-  disabled = false,
 }) {
   return (
-    <LabelStyled value={value} activeRadio={activeRadio}>
-      {value}
+    <LabelStyled value={labelName} activeRadio={activeRadio}>
+      {labelName}
       <RadioButtonStyled
         type="radio"
         name={name}
-        value={value}
+        value={labelName}
         onClick={handleClick}
-        disabled={disabled}
       />
     </LabelStyled>
   )

@@ -15,7 +15,7 @@ import MessagesContainer from './MessagesContainer'
 import { getUserById } from '../utils/services'
 
 ChatPage.propTypes = {
-  currentUser: PropTypes.object,
+  currentUser: PropTypes.object.isRequired,
 }
 
 export default function ChatPage({ currentUser }) {

@@ -5,13 +5,13 @@ import CheckboxGroup from './CheckboxGroup'
 
 Filter.propTypes = {
   residenceFilterValue: PropTypes.string,
-  onChangeResidenceFilterValue: PropTypes.func,
-  abilityFilterValues: PropTypes.array,
-  onChangeAbilityFilterValues: PropTypes.func,
+  onChangeResidenceFilterValue: PropTypes.func.isRequired,
+  abilityFilterValues: PropTypes.array.isRequired,
+  onChangeAbilityFilterValues: PropTypes.func.isRequired,
 }
 
 export default function Filter({
-  residenceFilterValue,
+  residenceFilterValue = '',
   onChangeResidenceFilterValue,
   abilityFilterValues,
   onChangeAbilityFilterValues,

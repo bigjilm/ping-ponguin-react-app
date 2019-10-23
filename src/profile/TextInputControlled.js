@@ -6,12 +6,12 @@ import { InputStyled } from '../common/StyledElements'
 
 TextInputControlled.propTypes = {
   labelName: PropTypes.string,
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   type: PropTypes.string,
   maxLength: PropTypes.number,
   missingInputs: PropTypes.arrayOf(PropTypes.string),
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
 }
 
 export default function TextInputControlled({
