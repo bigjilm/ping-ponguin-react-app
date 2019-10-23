@@ -2,8 +2,12 @@ export function getAllUsers() {
   return fetchUsers()
 }
 
-export function getUser(token) {
-  return fetchUsers({ path: '/getUser?token=' + token })
+export function getUserById(token) {
+  return fetchUsers({ path: '/getUserById?token=' + token })
+}
+
+export function getUserBySession(token) {
+  return fetchUsers({ path: '/getUserBySession?token=' + token })
 }
 
 export function signIn(data) {

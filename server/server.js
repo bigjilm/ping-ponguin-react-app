@@ -17,7 +17,8 @@ app.set('json spaces', 2)
 
 //routes
 app.use('/getAllUsers', require('./routes/getAllUsers'))
-app.use('/getUser', require('./routes/getUser'))
+app.use('/getUserById', require('./routes/getUserById'))
+app.use('/getUserBySession', require('./routes/getUserBySession'))
 app.use('/signup', require('./routes/signup'))
 app.use('/signin', require('./routes/signin'))
 app.use('/verifySession', require('./routes/verifySession'))

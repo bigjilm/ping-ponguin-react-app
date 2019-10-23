@@ -10,7 +10,7 @@ import WelcomePage from './login/WelcomePage'
 import ProfilePage from './profile/ProfilePage'
 import UsersListPage from './usersList/UsersListPage'
 import { getFromStorage } from './utils/storage'
-import { getUser, verifyUserSession } from './utils/services'
+import { getUserBySession, verifyUserSession } from './utils/services'
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState({})
@@ -25,7 +25,7 @@ export default function App() {
       verifyUserSession(token, { signal })
         .then(res => {
           if (res.success)
-            getUser(token)
+            getUserBySession(token)
               .then(user => {
                 setCurrentUser(user)
               })
