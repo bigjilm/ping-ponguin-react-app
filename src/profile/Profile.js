@@ -26,7 +26,6 @@ export default function Profile({
   let history = useHistory()
 
   useEffect(() => {
-    console.log(user)
     topOfPage.current.scrollIntoView()
   }, [user])
 

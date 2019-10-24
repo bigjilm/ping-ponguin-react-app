@@ -37,7 +37,7 @@ export default function App() {
         .catch(err => console.error(err))
     }
     return () => abortController.abort()
-  }, [])
+  }, [isLoggedIn])
 
   return (
     <SocketContext.Provider value={socket}>
