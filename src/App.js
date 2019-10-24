@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import useSocket from 'use-socket.io-client'
-import SocketContext from './SocketContext'
 import ChatPage from './chat/ChatPage'
 import SignInPage from './login/SignInPage'
 import SignUpPage from './login/SignUpPage'
-import WelcomePage from './login/WelcomePage'
 import ProfilePage from './profile/ProfilePage'
+import SocketContext from './SocketContext'
 import UsersListPage from './usersList/UsersListPage'
-import { getFromStorage } from './utils/storage'
 import { getUserBySession, verifyUserSession } from './utils/services'
+import { getFromStorage } from './utils/storage'
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState({})
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [justSignedUp, setJustSignedUp] = useState(false)
   const [socket] = useSocket('http://localhost:3333')
-  const token = getFromStorage('pingu-session')
 
   useEffect(() => {
+    const token = getFromStorage('pingu-session')
     const abortController = new AbortController()
     const signal = abortController.signal
     if (token) {
@@ -28,13 +28,16 @@ export default function App() {
             getUserBySession(token)
               .then(user => {
                 setCurrentUser(user)
+                setIsLoggedIn(true)
               })
-              .catch(err => console.error(err))
+              .catch(err => {
+                console.error(err)
+              })
         })
         .catch(err => console.error(err))
     }
     return () => abortController.abort()
-  }, [token])
+  }, [isLoggedIn])
 
   return (
     <SocketContext.Provider value={socket}>
@@ -42,11 +45,9 @@ export default function App() {
         <AppStyled>
           <Switch>
             <Route exact path="/">
-              <WelcomePage />
-            </Route>
-            <Route exact path="/signin">
               <SignInPage
-                setCurrentUser={setCurrentUser}
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
                 justSignedUp={justSignedUp}
                 setJustSignedUp={setJustSignedUp}
               />
@@ -64,6 +65,7 @@ export default function App() {
               <ProfilePage
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
+                setIsLoggedIn={setIsLoggedIn}
               />
             </Route>
           </Switch>

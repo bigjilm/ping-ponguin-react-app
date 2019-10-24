@@ -6,10 +6,11 @@ import { Cushion } from '../common/StyledElements'
 
 UsersList.propTypes = {
   users: PropTypes.array,
-  onListClick: PropTypes.func,
+  currentUser: PropTypes.object.isRequired,
+  onListClick: PropTypes.func.isRequired,
 }
 
-export default function UsersList({ users, currentUser, onListClick }) {
+export default function UsersList({ users = [], currentUser, onListClick }) {
   return (
     <UsersListStyled onClick={onListClick}>
       {users.map(user => (

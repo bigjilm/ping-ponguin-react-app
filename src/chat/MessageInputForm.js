@@ -4,7 +4,7 @@ import styled from 'styled-components/macro'
 import { SendPlane2 } from 'styled-icons/remix-line/'
 
 MessageInputForm.propTypes = {
-  onSubmit: PropTypes.func,
+  onSubmit: PropTypes.func.isRequired,
 }
 
 export default function MessageInputForm({ onSubmit }) {

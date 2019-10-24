@@ -111,8 +111,7 @@ export default function EditProfileForm({ user, onChange, setEdited }) {
         history.push('/profile')
       })
       .catch(err => {
-        console.error(err)
-        if (err.message === 'Error: account already exists') {
+        if (err.message === 'Account already exists') {
           setAlert('Zu dieser E-Mail-Adresse existiert bereits ein Konto')
         } else if (err.message.startsWith('User validation failed')) {
           setMissingInputs(Object.keys(err.errors))

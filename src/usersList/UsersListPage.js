@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 import Page from '../common/Page'
 import { LoadingMessageStyled } from '../common/StyledElements'
 import { getAllUsers } from '../utils/services'
 import Filter from './Filter'
 import UsersList from './UsersList'
+
+UsersListPage.propTypes = {
+  currentUser: PropTypes.object.isRequired,
+}
 
 export default function UsersListPage({ currentUser }) {
   const [isLoading, setIsLoading] = useState(true)

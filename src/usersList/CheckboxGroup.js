@@ -4,8 +4,8 @@ import styled from 'styled-components/macro'
 import Checkbox from './Checkbox'
 
 CheckboxGroup.propTypes = {
-  activeCheckboxes: PropTypes.array,
-  setActiveCheckboxes: PropTypes.func,
+  activeCheckboxes: PropTypes.array.isRequired,
+  setActiveCheckboxes: PropTypes.func.isRequired,
 }
 
 export default function CheckboxGroup({

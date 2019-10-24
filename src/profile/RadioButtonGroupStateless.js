@@ -5,11 +5,10 @@ import Alert from '../common/Alert'
 import RadioButton from '../common/RadioButton'
 
 RadioButtonGroup.propTypes = {
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   value: PropTypes.string,
   missingInputs: PropTypes.arrayOf(PropTypes.string),
-  onClick: PropTypes.func,
-  disabled: PropTypes.bool,
+  onClick: PropTypes.func.isRequired,
 }
 
 export default function RadioButtonGroup({
@@ -17,23 +16,21 @@ export default function RadioButtonGroup({
   activeRadio = '',
   missingInputs = [],
   onClick,
-  disabled = false,
 }) {
-  const values = ['1', '2', '3', '4', '5']
+  const labelNames = ['1', '2', '3', '4', '5']
 
   return (
     <RadioButtonGroupStyled>
       <HeadlineStyled>
         {name === 'abilityLeft' ? 'links' : 'rechts'}
       </HeadlineStyled>
-      {values.map(value => (
+      {labelNames.map(labelName => (
         <RadioButton
-          key={value}
-          value={value}
+          key={labelName}
+          labelName={labelName}
           name={name}
           activeRadio={activeRadio}
           onClick={handleClick}
-          disabled={disabled}
         />
       ))}
       {missingInputs.includes(name) && (

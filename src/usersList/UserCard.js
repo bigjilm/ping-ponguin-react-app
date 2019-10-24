@@ -8,13 +8,13 @@ import { setToStorage } from '../utils/storage'
 import spreadWings from '../utils/spreadWings'
 
 UserCard.propTypes = {
-  _id: PropTypes.string,
-  name: PropTypes.string,
-  residence: PropTypes.string,
-  abilityLeft: PropTypes.string,
-  abilityRight: PropTypes.string,
-  imageURL: PropTypes.string,
-  currentUser: PropTypes.object,
+  _id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  residence: PropTypes.string.isRequired,
+  abilityLeft: PropTypes.string.isRequired,
+  abilityRight: PropTypes.string.isRequired,
+  imageURL: PropTypes.string.isRequired,
+  currentUser: PropTypes.object.isRequired,
 }
 
 export default function UserCard({

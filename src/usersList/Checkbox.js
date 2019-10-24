@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
 Checkbox.propTypes = {
-  value: PropTypes.string,
-  activeCheckboxes: PropTypes.array,
-  onChange: PropTypes.func,
+  value: PropTypes.string.isRequired,
+  activeCheckboxes: PropTypes.array.isRequired,
+  onChange: PropTypes.func.isRequired,
 }
 
 export default function Checkbox({ value, activeCheckboxes, onChange }) {

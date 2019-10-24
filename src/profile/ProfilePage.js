@@ -5,8 +5,19 @@ import Page from '../common/Page'
 import EditProfileForm from './EditProfileForm'
 import PasswordForm from './PasswordForm'
 import Profile from './Profile'
+import PropTypes from 'prop-types'
 
-export default function ProfilePage({ currentUser, setCurrentUser }) {
+ProfilePage.propTypes = {
+  currentUser: PropTypes.object.isRequired,
+  setCurrentUser: PropTypes.func.isRequired,
+  setIsLoggedIn: PropTypes.func.isRequired,
+}
+
+export default function ProfilePage({
+  currentUser,
+  setCurrentUser,
+  setIsLoggedIn,
+}) {
   const [edited, setEdited] = useState(false)
   let history = useHistory()
 
@@ -15,6 +26,7 @@ export default function ProfilePage({ currentUser, setCurrentUser }) {
       <Route exact path="/profile">
         <Profile
           user={currentUser}
+          setIsLoggedIn={setIsLoggedIn}
           onEditClick={handleEditClick}
           onChangePasswordClick={handleChangePasswordClick}
           edited={edited}

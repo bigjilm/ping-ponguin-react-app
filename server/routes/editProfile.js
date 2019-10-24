@@ -14,33 +14,31 @@ router.patch('/', (req, res) => {
 
   User.findById(id)
     .then(user => {
-      if (!(user.email === email)) {
-        User.find({ email: email })
-          .then(previousUsers => {
-            if (previousUsers.length > 0) {
+      User.find({ email: email })
+        .then(previousUsers => {
+          if (previousUsers.length > 0) {
+            if (!(user.email === email)) {
               return res.json({
                 success: false,
                 message: 'Account already exists',
               })
             }
-          })
-          .catch(err => res.status(400).json(err))
-      }
-
-      user.name = name
-      user.residence = residence
-      user.abilityLeft = abilityLeft
-      user.abilityRight = abilityRight
-      user.imageURL = imageURL
-      user.email = email
-
-      user
-        .save()
-        .then(() => {
-          res.json({
-            success: true,
-            message: 'Profile edited',
-          })
+          }
+          user.name = name
+          user.residence = residence
+          user.abilityLeft = abilityLeft
+          user.abilityRight = abilityRight
+          user.imageURL = imageURL
+          user.email = email
+          user
+            .save()
+            .then(() => {
+              res.json({
+                success: true,
+                message: 'Profile edited',
+              })
+            })
+            .catch(err => res.status(400).json(err))
         })
         .catch(err => res.status(400).json(err))
     })
