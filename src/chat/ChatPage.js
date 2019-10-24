@@ -34,7 +34,6 @@ export default function ChatPage({ currentUser }) {
 
   useEffect(() => {
     socket.on(CHANNEL_SET, ({ channel, messages }) => {
-      console.log('channel set to', channel)
       setCurrentChannel(channel)
       const messagesFormatted = messages.map(msg => formatMessageDate(msg))
       setMessages(messagesFormatted)

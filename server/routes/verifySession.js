@@ -4,9 +4,6 @@ const UserSession = require('../models/UserSession')
 router.get('/', (req, res) => {
   const { token } = req.query
 
-  //sends server error when token does not have the same length as _id. Why???
-  //https://github.com/Automattic/mongoose/issues/1959
-  //Check length or just leave it throwing the server error???
   UserSession.find({
     _id: token,
     isDeleted: false,

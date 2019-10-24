@@ -1,18 +1,23 @@
+import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import Alert from '../common/Alert'
 import Page from '../common/Page'
 import {
-  ButtonStyled,
-  FormStyled,
-  Cushion,
   BackButtonStyled,
+  ButtonStyled,
+  Cushion,
+  FormStyled,
   GridContainer,
 } from '../common/StyledElements'
 import TextInput from '../common/TextInput'
 import { signUp } from '../utils/services'
 import RadioButtonGroup from './RadioButtonGroup'
+
+SignUpPage.propTypes = {
+  setJustSignedUp: PropTypes.func.isRequired,
+}
 
 export default function SignUpPage({ setJustSignedUp }) {
   const [missingInputs, setMissingInputs] = useState([])

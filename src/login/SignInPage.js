@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
 import ppLogo from '../assets/pp-logo.png'
@@ -8,18 +9,35 @@ import TextInput from '../common/TextInput'
 import { signIn } from '../utils/services'
 import { setToStorage } from '../utils/storage'
 
+SignInPage.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  setIsLoggedIn: PropTypes.func.isRequired,
+  justSignedUp: PropTypes.bool,
+  setJustSignedUp: PropTypes.func.isRequired,
+}
+
 export default function SignInPage({
-  setCurrentUser,
-  justSignedUp,
+  isLoggedIn,
+  setIsLoggedIn,
+  justSignedUp = false,
   setJustSignedUp,
 }) {
   const [alert, setAlert] = useState('')
   let history = useHistory()
 
   useEffect(() => {
-    document.querySelector('input').focus()
+    if (isLoggedIn) {
+      history.push('/users')
+    }
+  }, [isLoggedIn, history])
+
+  useEffect(() => {
     return () => setJustSignedUp(false)
   }, [setJustSignedUp])
+
+  useEffect(() => {
+    document.querySelector('input').focus()
+  }, [])
 
   return (
     <SignInPageStyled title="ping ponguin">
@@ -47,10 +65,10 @@ export default function SignInPage({
       </SignInFormStyled>
       <BackButtonStyled
         onClick={() => {
-          history.push('/')
+          history.push('/signup')
         }}
       >
-        zurück
+        Registrieren
       </BackButtonStyled>
     </SignInPageStyled>
   )
@@ -66,7 +84,7 @@ export default function SignInPage({
           throw new Error(res.message)
         }
         setToStorage('pingu-session', res.token)
-        setCurrentUser(data)
+        setIsLoggedIn(true)
         form.reset()
         history.push('/users')
       })

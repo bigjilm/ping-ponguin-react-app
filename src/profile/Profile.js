@@ -8,24 +8,27 @@ import spreadWings from '../utils/spreadWings'
 import { getFromStorage, setToStorage } from '../utils/storage'
 
 Profile.propTypes = {
-  user: PropTypes.object,
-  onEditClick: PropTypes.func,
-  onChangePasswordClick: PropTypes.func,
+  user: PropTypes.object.isRequired,
+  setIsLoggedIn: PropTypes.func.isRequired,
+  onEditClick: PropTypes.func.isRequired,
+  onChangePasswordClick: PropTypes.func.isRequired,
   edited: PropTypes.bool,
 }
 
 export default function Profile({
   user,
+  setIsLoggedIn,
   onEditClick,
   onChangePasswordClick,
-  edited,
+  edited = false,
 }) {
   const topOfPage = useRef(null)
   let history = useHistory()
 
   useEffect(() => {
+    console.log(user)
     topOfPage.current.scrollIntoView()
-  }, [])
+  }, [user])
 
   return (
     <ProfileStyled>
@@ -77,6 +80,7 @@ export default function Profile({
     logout(token)
       .then(() => {
         setToStorage('pingu-session', '')
+        setIsLoggedIn(false)
         history.push('/')
       })
       .catch(err => console.error(err))
