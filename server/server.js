@@ -26,6 +26,7 @@ app.use('/logout', require('./routes/logout'))
 app.use('/editProfile', require('./routes/editProfile'))
 app.use('/editPassword', require('./routes/editPassword'))
 app.use('/getChannels', require('./routes/getChannels'))
+app.use('/getMessages', require('./routes/getMessages'))
 
 //mongoose
 const mongoose = require('mongoose')

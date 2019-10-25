@@ -30,5 +30,8 @@ export default function ChatList({ currentUser }) {
 }
 
 const ChatListStyled = styled.ul`
-  padding: 0;
+  display: grid;
+  grid-gap: 10px;
+  margin: 0;
+  padding: 10px;
 `

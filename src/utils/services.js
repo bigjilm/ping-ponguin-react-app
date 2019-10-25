@@ -52,6 +52,12 @@ export function getChannels(userId) {
   }).then(res => handleError(res))
 }
 
+export function getMessages(channelId) {
+  return fetch('getMessages?channelId=' + channelId, {
+    method: 'GET',
+  }).then(res => handleError(res))
+}
+
 function fetchUsers({ path = '/getAllUsers/', method = 'GET', data } = {}) {
   return fetch(path, {
     method,
