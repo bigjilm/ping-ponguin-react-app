@@ -25,6 +25,7 @@ app.use('/verifySession', require('./routes/verifySession'))
 app.use('/logout', require('./routes/logout'))
 app.use('/editProfile', require('./routes/editProfile'))
 app.use('/editPassword', require('./routes/editPassword'))
+app.use('/getChannels', require('./routes/getChannels'))
 
 //mongoose
 const mongoose = require('mongoose')
