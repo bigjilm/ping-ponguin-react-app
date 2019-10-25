@@ -13,6 +13,7 @@ import { getFromStorage } from '../utils/storage'
 import MessageInputForm from './MessageInputForm'
 import MessagesContainer from './MessagesContainer'
 import { getUserById } from '../utils/services'
+import ChatList from './ChatList'
 
 ChatPage.propTypes = {
   currentUser: PropTypes.object.isRequired,
@@ -56,10 +57,11 @@ export default function ChatPage({ currentUser }) {
       mainPadding="0"
       chatPartnerImage={currentChatPartner.imageURL}
     >
-      <ChatContainerStyled>
+      <ChatList currentUser={currentUser} />
+      {/* <ChatContainerStyled>
         <MessagesContainer messages={messages} currentUser={currentUser} />
         <MessageInputForm onSubmit={sendMessage} />
-      </ChatContainerStyled>
+      </ChatContainerStyled> */}
     </Page>
   )
 
