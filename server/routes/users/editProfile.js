@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const User = require('../models/User')
+const User = require('../../models/User')
 
 router.patch('/', (req, res) => {
   const { id } = req.query

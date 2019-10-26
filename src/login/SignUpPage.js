@@ -10,7 +10,7 @@ import {
   Cushion,
   FormStyled,
   GridContainer,
-} from '../common/StyledElements'
+} from '../common/styledElements'
 import TextInput from '../common/TextInput'
 import { signUp } from '../utils/services'
 import RadioButtonGroup from './RadioButtonGroup'
@@ -105,7 +105,6 @@ export default function SignUpPage({ setJustSignedUp }) {
     }
     signUp(newUser)
       .then(res => {
-        console.log(res)
         if (!res.success) {
           throw new Error(res.message)
         }
@@ -114,7 +113,6 @@ export default function SignUpPage({ setJustSignedUp }) {
         history.push('/signin')
       })
       .catch(err => {
-        console.log(err.message)
         if (err.message === 'Error: account already exists') {
           setAlert('Zu dieser E-Mail-Adresse existiert bereits ein Konto')
         } else if (err.message.startsWith('User validation failed')) {

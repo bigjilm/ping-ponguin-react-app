@@ -8,7 +8,7 @@ import {
   Cushion,
   BackButtonStyled,
   GridContainer,
-} from '../common/StyledElements'
+} from '../common/styledElements'
 import TextInputControlled from './TextInputControlled'
 import RadioButtonGroupStateless from './RadioButtonGroupStateless'
 import Alert from '../common/Alert'

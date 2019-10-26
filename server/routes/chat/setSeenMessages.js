@@ -1,11 +1,17 @@
 const router = require('express').Router()
-const Message = require('../models/Message')
+const Message = require('../../models/Message')
 
 router.get('/', (req, res) => {
   const { channelId } = req.query
+  console.log(channelId)
   Message.find({ channel: channelId })
     .then(messages => {
-      res.json(messages)
+      console.log(messages)
+      messages.seen = true
+      res.json({
+        success: true,
+        message: 'All messages set to seen',
+      })
     })
     .catch(err => res.status(404).json(err))
 })

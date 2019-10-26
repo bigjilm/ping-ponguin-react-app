@@ -1,14 +1,25 @@
 import React, { useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
+import { setSeenMessages } from '../utils/services'
 
 MessagesContainer.propTypes = {
   messages: PropTypes.array,
   currentUser: PropTypes.object.isRequired,
 }
 
-export default function MessagesContainer({ messages, currentUser }) {
+export default function MessagesContainer({
+  messages,
+  currentChannel,
+  currentUser,
+}) {
   const endOfMessages = useRef(null)
+
+  useEffect(() => {
+    setSeenMessages(currentChannel._id)
+      .then(messages => console.log('msgs', messages))
+      .catch(err => console.error('err', err))
+  }, [currentChannel._id])
 
   useEffect(() => {
     endOfMessages.current.scrollIntoView({ behavior: 'smooth' })

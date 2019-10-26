@@ -58,6 +58,15 @@ export function getMessages(channelId) {
   }).then(res => handleError(res))
 }
 
+export function setSeenMessages(channelId) {
+  return fetch('setSeenMessages?channelId=' + channelId, {
+    method: 'GET',
+  }).then(res => {
+    console.log(res)
+    handleError(res)
+  })
+}
+
 function fetchUsers({ path = '/getAllUsers/', method = 'GET', data } = {}) {
   return fetch(path, {
     method,

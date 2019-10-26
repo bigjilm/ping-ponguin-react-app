@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components/macro'
 import Alert from '../common/Alert'
-import { InputStyled } from '../common/StyledElements'
+import { InputStyled } from '../common/styledElements'
 
 TextInputControlled.propTypes = {
   labelName: PropTypes.string,

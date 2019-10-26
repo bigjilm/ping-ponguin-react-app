@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const Channel = require('../models/Channel')
+const Channel = require('../../models/Channel')
 
 router.get('/', (req, res) => {
   const { userId } = req.query

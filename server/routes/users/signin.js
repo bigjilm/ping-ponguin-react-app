@@ -1,6 +1,6 @@
 const router = require('express').Router()
-const User = require('../models/User')
-const UserSession = require('../models/UserSession')
+const User = require('../../models/User')
+const UserSession = require('../../models/UserSession')
 
 router.post('/', (req, res) => {
   const { password } = req.body

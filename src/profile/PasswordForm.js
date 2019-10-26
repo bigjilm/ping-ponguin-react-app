@@ -7,7 +7,7 @@ import {
   ButtonStyled,
   BackButtonStyled,
   GridContainer,
-} from '../common/StyledElements'
+} from '../common/styledElements'
 import TextInput from '../common/TextInput'
 import { editPassword } from '../utils/services'
 

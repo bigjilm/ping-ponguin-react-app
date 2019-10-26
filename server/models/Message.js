@@ -17,6 +17,11 @@ const messageSchema = new Schema(
       ref: 'Channel',
       required: true,
     },
+    seen: {
+      type: Boolean,
+      default: false,
+      required: true,
+    },
   },
   { toJSON: { virtuals: true } }
 )

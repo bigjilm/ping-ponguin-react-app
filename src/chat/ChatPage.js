@@ -63,7 +63,11 @@ export default function ChatPage({ currentUser }) {
     >
       {currentChannel ? (
         <ChatContainerStyled>
-          <MessagesContainer messages={messages} currentUser={currentUser} />
+          <MessagesContainer
+            messages={messages}
+            currentChannel={currentChannel}
+            currentUser={currentUser}
+          />
           <MessageInputForm onSubmit={sendMessage} />
         </ChatContainerStyled>
       ) : (

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const UserSession = require('../models/UserSession')
+const UserSession = require('../../models/UserSession')
 
 router.get('/', (req, res) => {
   const { token } = req.query
