@@ -10,7 +10,7 @@ export default function ChannelPreview({
   currentUser,
   setCurrentChannel,
 }) {
-  const [chatPartner, setChatPartner] = useState([])
+  const [chatPartner, setChatPartner] = useState({})
   const [lastMessage, setLastMessage] = useState('')
   const socket = useContext(SocketContext)
 
@@ -19,26 +19,33 @@ export default function ChannelPreview({
     const signal = abortController.signal
     const chatPartnerId = channel.members.filter(
       member => member !== currentUser._id
-    )
-    getUserById(chatPartnerId, { signal })
-      .then(user => setChatPartner(user))
-      .catch(err => console.error(err))
+    )[0]
+    console.log(chatPartnerId)
+    if (chatPartnerId) {
+      getUserById(chatPartnerId, { signal })
+        .then(setChatPartner)
+        .catch(err => console.error(err))
 
-    getMessages(channel._id, { signal })
-      .then(messages => {
-        let lastMsg = messages[messages.length - 1]
-        lastMsg || (lastMsg = '')
-        setLastMessage(lastMsg)
-      })
-      .catch(err => console.error(err))
+      getMessages(channel._id, { signal })
+        .then(messages => {
+          let lastMsg = messages[messages.length - 1]
+          lastMsg || (lastMsg = '')
+          setLastMessage(lastMsg)
+        })
+        .catch(err => console.error(err))
+    } else {
+      setChatPartner({ name: 'Dieses Konto wurde gelöscht' })
+    }
     return () => abortController.abort()
   }, [currentUser._id, channel])
 
   return (
     <ChannelPreviewStyled onClick={handleClick}>
       <PartnerImageStyled src={chatPartner.imageURL} />
-      <PartnerNameStyled>{chatPartner.name}</PartnerNameStyled>
-      <LassMessageStyled>{lastMessage.body}</LassMessageStyled>
+      <PartnerNameStyled chatPartner={chatPartner}>
+        {chatPartner.name}
+      </PartnerNameStyled>
+      <LastMessageStyled>{lastMessage.body}</LastMessageStyled>
     </ChannelPreviewStyled>
   )
 
@@ -59,6 +66,7 @@ const ChannelPreviewStyled = styled.li`
   grid-row-gap: 10px;
   padding: 10px;
   background-color: var(--iceBlue);
+  user-select: none;
 `
 
 const PartnerImageStyled = styled.img`
@@ -72,9 +80,11 @@ const PartnerImageStyled = styled.img`
 const PartnerNameStyled = styled.h3`
   grid-area: name;
   margin: 0;
+  font-size: ${props => !props.chatPartner._id && '14px'};
+  font-weight: ${props => !props.chatPartner._id && 'normal'};
 `
 
-const LassMessageStyled = styled.div`
+const LastMessageStyled = styled.span`
   grid-area: message;
   overflow: hidden;
   white-space: nowrap;
