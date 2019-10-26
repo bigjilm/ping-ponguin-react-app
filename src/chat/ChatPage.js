@@ -28,8 +28,8 @@ export default function ChatPage({ currentUser }) {
   useEffect(() => {
     const currentChatPartnerToken = getFromStorage('pingu-partner')
     getUserById(currentChatPartnerToken)
-      .then(user => setCurrentChatPartner(user))
-      .catch(err => console.error(err))
+      .then(setCurrentChatPartner)
+      .catch(() => setCurrentChatPartner({}))
     socket.emit(CHAT_START, [currentChatPartnerToken, currentUser._id])
   }, [socket, currentUser._id, currentChannel])
 
@@ -53,7 +53,7 @@ export default function ChatPage({ currentUser }) {
 
   return (
     <Page
-      title={currentChatPartner.name}
+      title={currentChatPartner.name || 'Chat'}
       mainPadding="0"
       chatPartnerImage={currentChatPartner.imageURL}
       setCurrentChannel={setCurrentChannel}

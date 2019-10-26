@@ -20,26 +20,27 @@ export default function ChannelPreview({
     const chatPartnerId = channel.members.filter(
       member => member !== currentUser._id
     )[0]
-    console.log(chatPartnerId)
+
     if (chatPartnerId) {
       getUserById(chatPartnerId, { signal })
         .then(setChatPartner)
         .catch(err => console.error(err))
-
-      getMessages(channel._id, { signal })
-        .then(messages => {
-          let lastMsg = messages[messages.length - 1]
-          lastMsg || (lastMsg = '')
-          setLastMessage(lastMsg)
-        })
-        .catch(err => console.error(err))
     } else {
       setChatPartner({ name: 'Dieses Konto wurde gelöscht' })
     }
+
+    getMessages(channel._id, { signal })
+      .then(messages => {
+        let lastMsg = messages[messages.length - 1]
+        lastMsg || (lastMsg = '')
+        setLastMessage(lastMsg)
+      })
+      .catch(err => console.error(err))
+
     return () => abortController.abort()
   }, [currentUser._id, channel])
 
-  return (
+  return lastMessage ? (
     <ChannelPreviewStyled onClick={handleClick}>
       <PartnerImageStyled src={chatPartner.imageURL} />
       <PartnerNameStyled chatPartner={chatPartner}>
@@ -47,7 +48,7 @@ export default function ChannelPreview({
       </PartnerNameStyled>
       <LastMessageStyled>{lastMessage.body}</LastMessageStyled>
     </ChannelPreviewStyled>
-  )
+  ) : null
 
   function handleClick() {
     socket.emit(CHAT_START, [chatPartner._id, currentUser._id])
@@ -82,6 +83,7 @@ const PartnerNameStyled = styled.h3`
   margin: 0;
   font-size: ${props => !props.chatPartner._id && '14px'};
   font-weight: ${props => !props.chatPartner._id && 'normal'};
+  font-style: ${props => !props.chatPartner._id && 'italic'};
 `
 
 const LastMessageStyled = styled.span`
