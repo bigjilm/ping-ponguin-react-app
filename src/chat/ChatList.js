@@ -6,10 +6,10 @@ import ChannelPreview from './ChannelPreview'
 
 ChatList.propTypes = {
   currentUser: PropTypes.object.isRequired,
-  setCurrentChannel: PropTypes.func.isRequired,
+  setCurrentChannelId: PropTypes.func.isRequired,
 }
 
-export default function ChatList({ currentUser, setCurrentChannel }) {
+export default function ChatList({ currentUser, setCurrentChannelId }) {
   const [userChannels, setUserChannels] = useState([])
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function ChatList({ currentUser, setCurrentChannel }) {
           key={channel._id}
           channel={channel}
           currentUser={currentUser}
-          setCurrentChannel={setCurrentChannel}
+          setCurrentChannelId={setCurrentChannelId}
         >
           {channel._id}
         </ChannelPreview>

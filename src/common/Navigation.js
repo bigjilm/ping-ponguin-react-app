@@ -7,16 +7,16 @@ import IglooIcon from '../assets/igloo-icon.png'
 import { setToStorage } from '../utils/storage'
 
 Navigation.propTypes = {
-  setCurrentChannel: PropTypes.func,
+  setCurrentChannelId: PropTypes.func,
 }
 
-export default function Navigation({ setCurrentChannel }) {
+export default function Navigation({ setCurrentChannelId }) {
   return (
     <NavigationStyled>
       <NavLinkStyled exact to="/users">
         <IconStyled src={IglooIcon} />
       </NavLinkStyled>
-      {typeof setCurrentChannel === 'function' ? (
+      {typeof setCurrentChannelId === 'function' ? (
         <NavLinkStyled to="/chat" onClick={handleClick}>
           <ChatIconStyled size="32" title="Chat Button" />
         </NavLinkStyled>
@@ -32,7 +32,7 @@ export default function Navigation({ setCurrentChannel }) {
   )
 
   function handleClick() {
-    setCurrentChannel('')
+    setCurrentChannelId('')
     setToStorage('pingu-partner', '')
   }
 }

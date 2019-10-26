@@ -20,7 +20,7 @@ ChatPage.propTypes = {
 }
 
 export default function ChatPage({ currentUser }) {
-  const [currentChannel, setCurrentChannel] = useState('')
+  const [currentChannelId, setCurrentChannelId] = useState('')
   const [currentChatPartner, setCurrentChatPartner] = useState({})
   const [messages, setMessages] = useState([])
   const socket = useContext(SocketContext)
@@ -34,11 +34,11 @@ export default function ChatPage({ currentUser }) {
       .catch(() => setCurrentChatPartner({}))
     socket.emit(CHAT_START, [currentChatPartnerToken, currentUser._id])
     return () => abortController.abort()
-  }, [socket, currentUser._id, currentChannel])
+  }, [socket, currentUser._id, currentChannelId])
 
   useEffect(() => {
     socket.on(CHANNEL_SET, ({ channel, messages }) => {
-      setCurrentChannel(channel)
+      setCurrentChannelId(channel)
       const messagesFormatted = messages.map(msg => formatMessageDate(msg))
       setMessages(messagesFormatted)
     })
@@ -59,13 +59,13 @@ export default function ChatPage({ currentUser }) {
       title={currentChatPartner.name || 'Chat'}
       mainPadding="0"
       chatPartnerImage={currentChatPartner.imageURL}
-      setCurrentChannel={setCurrentChannel}
+      setCurrentChannelId={setCurrentChannelId}
     >
-      {currentChannel ? (
+      {currentChannelId ? (
         <ChatContainerStyled>
           <MessagesContainer
             messages={messages}
-            currentChannel={currentChannel}
+            currentChannelId={currentChannelId}
             currentUser={currentUser}
           />
           <MessageInputForm onSubmit={sendMessage} />
@@ -73,7 +73,7 @@ export default function ChatPage({ currentUser }) {
       ) : (
         <ChatList
           currentUser={currentUser}
-          setCurrentChannel={setCurrentChannel}
+          setCurrentChannelId={setCurrentChannelId}
         />
       )}
     </Page>
@@ -84,7 +84,7 @@ export default function ChatPage({ currentUser }) {
     const msg = {
       body: event.currentTarget.textarea.value,
       author: currentUser._id,
-      channel: currentChannel,
+      channel: currentChannelId,
     }
     socket.emit(MESSAGE_SENT, msg)
     event.currentTarget.reset()

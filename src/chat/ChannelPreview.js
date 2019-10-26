@@ -9,13 +9,13 @@ import { CHAT_START } from '../events'
 ChannelPreview.propTypes = {
   channel: PropTypes.object.isRequired,
   currentUser: PropTypes.object.isRequired,
-  setCurrentChannel: PropTypes.func.isRequired,
+  setCurrentChannelId: PropTypes.func.isRequired,
 }
 
 export default function ChannelPreview({
   channel,
   currentUser,
-  setCurrentChannel,
+  setCurrentChannelId,
 }) {
   const [chatPartner, setChatPartner] = useState({})
   const [lastMessage, setLastMessage] = useState('')
@@ -60,7 +60,7 @@ export default function ChannelPreview({
   function handleClick() {
     socket.emit(CHAT_START, [chatPartner._id, currentUser._id])
     setToStorage('pingu-partner', chatPartner._id)
-    setCurrentChannel(channel._id)
+    setCurrentChannelId(channel._id)
   }
 }
 

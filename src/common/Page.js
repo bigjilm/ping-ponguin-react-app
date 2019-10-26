@@ -13,7 +13,7 @@ Page.propTypes = {
   isFilterVisible: PropTypes.bool,
   showNavigation: PropTypes.bool,
   onFilterClick: PropTypes.func,
-  setCurrentChannel: PropTypes.func,
+  setCurrentChannelId: PropTypes.func,
   children: PropTypes.node.isRequired,
 }
 
@@ -26,7 +26,7 @@ export default function Page({
   isFilterVisible = false,
   showNavigation = true,
   onFilterClick,
-  setCurrentChannel,
+  setCurrentChannelId,
   children,
 }) {
   return (
@@ -40,7 +40,7 @@ export default function Page({
         onFilterClick={onFilterClick}
       />
       <MainStyled mainPadding={mainPadding}>{children}</MainStyled>
-      {showNavigation && <Navigation setCurrentChannel={setCurrentChannel} />}
+      {showNavigation && <Navigation setCurrentChannelId={setCurrentChannelId} />}
     </PageStyled>
   )
 }

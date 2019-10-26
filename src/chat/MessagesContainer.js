@@ -10,16 +10,17 @@ MessagesContainer.propTypes = {
 
 export default function MessagesContainer({
   messages,
-  currentChannel,
+  currentChannelId,
   currentUser,
 }) {
   const endOfMessages = useRef(null)
 
   useEffect(() => {
-    setSeenMessages(currentChannel._id)
+    console.log(currentChannelId)
+    setSeenMessages(currentChannelId)
       .then(messages => console.log('msgs', messages))
       .catch(err => console.error('err', err))
-  }, [currentChannel._id])
+  }, [currentChannelId])
 
   useEffect(() => {
     endOfMessages.current.scrollIntoView({ behavior: 'smooth' })
