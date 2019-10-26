@@ -13,6 +13,7 @@ import { getFromStorage } from '../utils/storage'
 import MessageInputForm from './MessageInputForm'
 import MessagesContainer from './MessagesContainer'
 import { getUserById } from '../utils/services'
+import ChatList from './ChatList'
 
 ChatPage.propTypes = {
   currentUser: PropTypes.object.isRequired,
@@ -25,12 +26,15 @@ export default function ChatPage({ currentUser }) {
   const socket = useContext(SocketContext)
 
   useEffect(() => {
+    const abortController = new AbortController()
+    const signal = abortController.signal
     const currentChatPartnerToken = getFromStorage('pingu-partner')
-    getUserById(currentChatPartnerToken)
-      .then(user => setCurrentChatPartner(user))
-      .catch(err => console.error(err))
+    getUserById(currentChatPartnerToken, { signal })
+      .then(setCurrentChatPartner)
+      .catch(() => setCurrentChatPartner({}))
     socket.emit(CHAT_START, [currentChatPartnerToken, currentUser._id])
-  }, [socket, currentUser._id])
+    return () => abortController.abort()
+  }, [socket, currentUser._id, currentChannel])
 
   useEffect(() => {
     socket.on(CHANNEL_SET, ({ channel, messages }) => {
@@ -52,14 +56,22 @@ export default function ChatPage({ currentUser }) {
 
   return (
     <Page
-      title={currentChatPartner.name}
+      title={currentChatPartner.name || 'Chat'}
       mainPadding="0"
       chatPartnerImage={currentChatPartner.imageURL}
+      setCurrentChannel={setCurrentChannel}
     >
-      <ChatContainerStyled>
-        <MessagesContainer messages={messages} currentUser={currentUser} />
-        <MessageInputForm onSubmit={sendMessage} />
-      </ChatContainerStyled>
+      {currentChannel ? (
+        <ChatContainerStyled>
+          <MessagesContainer messages={messages} currentUser={currentUser} />
+          <MessageInputForm onSubmit={sendMessage} />
+        </ChatContainerStyled>
+      ) : (
+        <ChatList
+          currentUser={currentUser}
+          setCurrentChannel={setCurrentChannel}
+        />
+      )}
     </Page>
   )
 

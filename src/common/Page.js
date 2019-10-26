@@ -1,5 +1,5 @@
-import React from 'react'
 import PropTypes from 'prop-types'
+import React from 'react'
 import styled from 'styled-components/macro'
 import Header from './Header'
 import Navigation from './Navigation'
@@ -11,9 +11,10 @@ Page.propTypes = {
   chatPartnerImage: PropTypes.string,
   showFilterSymbol: PropTypes.bool,
   isFilterVisible: PropTypes.bool,
-  onFilterClick: PropTypes.func,
-  children: PropTypes.node.isRequired,
   showNavigation: PropTypes.bool,
+  onFilterClick: PropTypes.func,
+  setCurrentChannel: PropTypes.func,
+  children: PropTypes.node.isRequired,
 }
 
 export default function Page({
@@ -23,9 +24,10 @@ export default function Page({
   chatPartnerImage,
   showFilterSymbol = false,
   isFilterVisible = false,
-  onFilterClick,
-  children,
   showNavigation = true,
+  onFilterClick,
+  setCurrentChannel,
+  children,
 }) {
   return (
     <PageStyled showNavigation={showNavigation}>
@@ -38,7 +40,7 @@ export default function Page({
         onFilterClick={onFilterClick}
       />
       <MainStyled mainPadding={mainPadding}>{children}</MainStyled>
-      {showNavigation && <Navigation />}
+      {showNavigation && <Navigation setCurrentChannel={setCurrentChannel} />}
     </PageStyled>
   )
 }

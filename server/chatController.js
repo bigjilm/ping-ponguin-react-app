@@ -6,7 +6,6 @@ const {
   USER_DISCONNECTED,
   CHAT_START,
   CHANNEL_SET,
-  CHANNEL_LEAVE,
   MESSAGE_SENT,
   MESSAGE_RECEIVED,
 } = require('../src/events')
@@ -43,12 +42,6 @@ function chatController(server) {
           }
         })
         .catch(err => console.error(err))
-    })
-
-    // leave channel not in use right now
-    socket.on(CHANNEL_LEAVE, currentChannel => {
-      socket.leave(currentChannel)
-      console.log('Left channel', currentChannel)
     })
 
     socket.on(MESSAGE_SENT, msg => {

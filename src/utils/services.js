@@ -46,6 +46,18 @@ export function editPassword(id, data) {
   })
 }
 
+export function getChannels(userId) {
+  return fetch('getChannels?userId=' + userId, {
+    method: 'GET',
+  }).then(res => handleError(res))
+}
+
+export function getMessages(channelId) {
+  return fetch('getMessages?channelId=' + channelId, {
+    method: 'GET',
+  }).then(res => handleError(res))
+}
+
 function fetchUsers({ path = '/getAllUsers/', method = 'GET', data } = {}) {
   return fetch(path, {
     method,
