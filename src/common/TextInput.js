@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Alert from './Alert'
-import { InputStyled } from './StyledElements'
+import { InputStyled } from './styledElements'
 
 TextInput.propTypes = {
   labelName: PropTypes.string,

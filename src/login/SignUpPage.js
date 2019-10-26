@@ -10,7 +10,7 @@ import {
   Cushion,
   FormStyled,
   GridContainer,
-} from '../common/StyledElements'
+} from '../common/styledElements'
 import TextInput from '../common/TextInput'
 import { signUp } from '../utils/services'
 import RadioButtonGroup from './RadioButtonGroup'

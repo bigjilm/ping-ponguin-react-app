@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Page from '../common/Page'
-import { LoadingMessageStyled } from '../common/StyledElements'
+import { LoadingMessageStyled } from '../common/styledElements'
 import { getAllUsers } from '../utils/services'
 import Filter from './Filter'
 import UsersList from './UsersList'
