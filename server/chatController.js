@@ -44,12 +44,6 @@ function chatController(server) {
         .catch(err => console.error(err))
     })
 
-    // not in use right now
-    // socket.on(CHANNEL_LEAVE, currentChannel => {
-    //   socket.leave(currentChannel)
-    //   console.log('Left channel', currentChannel)
-    // })
-
     socket.on(MESSAGE_SENT, msg => {
       Message.create({
         body: msg.body,
