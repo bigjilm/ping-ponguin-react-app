@@ -27,7 +27,7 @@ app.use('/editProfile', require('./routes/users/editProfile'))
 app.use('/editPassword', require('./routes/users/editPassword'))
 app.use('/getChannels', require('./routes/chat/getChannels'))
 app.use('/getMessages', require('./routes/chat/getMessages'))
-app.use('/getMessages', require('./routes/chat/setSeenMessages'))
+app.use('/setSeenMessages', require('./routes/chat/setSeenMessages'))
 
 //mongoose
 const mongoose = require('mongoose')

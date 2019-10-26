@@ -3,7 +3,7 @@ const Message = require('../../models/Message')
 
 router.get('/', (req, res) => {
   const { channelId } = req.query
-  console.log(channelId)
+  console.log('channelId', channelId)
   Message.find({ channel: channelId })
     .then(messages => {
       console.log(messages)
