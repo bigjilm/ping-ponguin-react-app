@@ -31,7 +31,7 @@ export default function ChatPage({ currentUser }) {
       .then(user => setCurrentChatPartner(user))
       .catch(err => console.error(err))
     socket.emit(CHAT_START, [currentChatPartnerToken, currentUser._id])
-  }, [socket, currentUser._id])
+  }, [socket, currentUser._id, currentChannel])
 
   useEffect(() => {
     socket.on(CHANNEL_SET, ({ channel, messages }) => {
@@ -56,12 +56,19 @@ export default function ChatPage({ currentUser }) {
       title={currentChatPartner.name}
       mainPadding="0"
       chatPartnerImage={currentChatPartner.imageURL}
+      setCurrentChannel={setCurrentChannel}
     >
-      <ChatList currentUser={currentUser} />
-      {/* <ChatContainerStyled>
-        <MessagesContainer messages={messages} currentUser={currentUser} />
-        <MessageInputForm onSubmit={sendMessage} />
-      </ChatContainerStyled> */}
+      {currentChannel ? (
+        <ChatContainerStyled>
+          <MessagesContainer messages={messages} currentUser={currentUser} />
+          <MessageInputForm onSubmit={sendMessage} />
+        </ChatContainerStyled>
+      ) : (
+        <ChatList
+          currentUser={currentUser}
+          setCurrentChannel={setCurrentChannel}
+        />
+      )}
     </Page>
   )
 

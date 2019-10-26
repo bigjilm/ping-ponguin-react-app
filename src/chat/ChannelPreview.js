@@ -1,35 +1,52 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import styled from 'styled-components/macro'
 import { getUserById, getMessages } from '../utils/services'
+import SocketContext from '../SocketContext'
+import { setToStorage } from '../utils/storage'
+import { CHAT_START } from '../events'
 
-export default function ChannelPreview({ channel, currentUser }) {
+export default function ChannelPreview({
+  channel,
+  currentUser,
+  setCurrentChannel,
+}) {
   const [chatPartner, setChatPartner] = useState([])
   const [lastMessage, setLastMessage] = useState('')
+  const socket = useContext(SocketContext)
 
   useEffect(() => {
+    const abortController = new AbortController()
+    const signal = abortController.signal
     const chatPartnerId = channel.members.filter(
       member => member !== currentUser._id
     )
-    getUserById(chatPartnerId)
+    getUserById(chatPartnerId, { signal })
       .then(user => setChatPartner(user))
       .catch(err => console.error(err))
 
-    getMessages(channel._id)
+    getMessages(channel._id, { signal })
       .then(messages => {
         let lastMsg = messages[messages.length - 1]
         lastMsg || (lastMsg = '')
         setLastMessage(lastMsg)
       })
-      .catch()
+      .catch(err => console.error(err))
+    return () => abortController.abort()
   }, [currentUser._id, channel])
 
   return (
-    <ChannelPreviewStyled>
+    <ChannelPreviewStyled onClick={handleClick}>
       <PartnerImageStyled src={chatPartner.imageURL} />
       <PartnerNameStyled>{chatPartner.name}</PartnerNameStyled>
       <LassMessageStyled>{lastMessage.body}</LassMessageStyled>
     </ChannelPreviewStyled>
   )
+
+  function handleClick() {
+    socket.emit(CHAT_START, [chatPartner._id, currentUser._id])
+    setToStorage('pingu-partner', chatPartner._id)
+    setCurrentChannel(channel._id)
+  }
 }
 
 const ChannelPreviewStyled = styled.li`

@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
-import { getChannels, getUserById } from '../utils/services'
+import { getChannels } from '../utils/services'
 import ChannelPreview from './ChannelPreview'
 
-export default function ChatList({ currentUser }) {
+export default function ChatList({ currentUser, setCurrentChannel }) {
   const [userChannels, setUserChannels] = useState([])
 
   useEffect(() => {
-    getChannels(currentUser._id)
+    const abortController = new AbortController()
+    const signal = abortController.signal
+    getChannels(currentUser._id, { signal })
       .then(channels => {
         setUserChannels(channels)
       })
       .catch(err => console.error(err))
+    return () => abortController.abort()
   }, [currentUser._id])
 
   return (
@@ -21,6 +24,7 @@ export default function ChatList({ currentUser }) {
           key={channel._id}
           channel={channel}
           currentUser={currentUser}
+          setCurrentChannel={setCurrentChannel}
         >
           {channel._id}
         </ChannelPreview>
