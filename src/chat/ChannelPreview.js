@@ -1,9 +1,16 @@
 import React, { useEffect, useState, useContext } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import { getUserById, getMessages } from '../utils/services'
 import SocketContext from '../SocketContext'
 import { setToStorage } from '../utils/storage'
 import { CHAT_START } from '../events'
+
+ChannelPreview.propTypes = {
+  channel: PropTypes.object.isRequired,
+  currentUser: PropTypes.object.isRequired,
+  setCurrentChannel: PropTypes.func.isRequired,
+}
 
 export default function ChannelPreview({
   channel,

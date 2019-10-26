@@ -26,11 +26,14 @@ export default function ChatPage({ currentUser }) {
   const socket = useContext(SocketContext)
 
   useEffect(() => {
+    const abortController = new AbortController()
+    const signal = abortController.signal
     const currentChatPartnerToken = getFromStorage('pingu-partner')
-    getUserById(currentChatPartnerToken)
+    getUserById(currentChatPartnerToken, { signal })
       .then(setCurrentChatPartner)
       .catch(() => setCurrentChatPartner({}))
     socket.emit(CHAT_START, [currentChatPartnerToken, currentUser._id])
+    return () => abortController.abort()
   }, [socket, currentUser._id, currentChannel])
 
   useEffect(() => {
