@@ -5,6 +5,7 @@ import { setSeenMessages } from '../utils/services'
 
 MessagesContainer.propTypes = {
   messages: PropTypes.array,
+  currentChannelId: PropTypes.string.isRequired,
   currentUser: PropTypes.object.isRequired,
 }
 
@@ -16,11 +17,10 @@ export default function MessagesContainer({
   const endOfMessages = useRef(null)
 
   useEffect(() => {
-    console.log(currentChannelId)
-    setSeenMessages(currentChannelId)
-      .then(messages => console.log('msgs', messages))
+    setSeenMessages(currentChannelId, currentUser._id)
+      .then(res => console.log('res', res))
       .catch(err => console.error('err', err))
-  }, [currentChannelId])
+  }, [currentChannelId, currentUser])
 
   useEffect(() => {
     endOfMessages.current.scrollIntoView({ behavior: 'smooth' })

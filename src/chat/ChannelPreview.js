@@ -27,7 +27,6 @@ export default function ChannelPreview({
     const chatPartnerId = channel.members.filter(
       member => member !== currentUser._id
     )[0]
-
     if (chatPartnerId) {
       getUserById(chatPartnerId, { signal })
         .then(setChatPartner)
@@ -35,7 +34,6 @@ export default function ChannelPreview({
     } else {
       setChatPartner({ name: 'Dieses Konto wurde gelöscht' })
     }
-
     getMessages(channel._id, { signal })
       .then(messages => {
         let lastMsg = messages[messages.length - 1]
@@ -43,7 +41,6 @@ export default function ChannelPreview({
         setLastMessage(lastMsg)
       })
       .catch(err => console.error(err))
-
     return () => abortController.abort()
   }, [currentUser._id, channel])
 

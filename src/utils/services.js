@@ -58,9 +58,13 @@ export function getMessages(channelId) {
   }).then(res => handleError(res))
 }
 
-export function setSeenMessages(channelId) {
+export function setSeenMessages(channelId, currentUserId) {
   return fetch('setSeenMessages?channelId=' + channelId, {
-    method: 'GET',
+    method: 'PATCH',
+    body: JSON.stringify({ currentUserId: currentUserId }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
   }).then(res => {
     console.log(res)
     handleError(res)

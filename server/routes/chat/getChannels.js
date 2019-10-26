@@ -5,9 +5,13 @@ router.get('/', (req, res) => {
   const { userId } = req.query
   Channel.find({ members: userId })
     .then(channels => {
+      console.log('HERE 1')
       res.json(channels)
     })
-    .catch(err => res.status(404).json(err))
+    .catch(err => {
+      console.log('HERE 2')
+      res.status(404).json(err)
+    })
 })
 
 module.exports = router
