@@ -11,7 +11,7 @@ router.post('/', (req, res) => {
     email: email,
   })
     .then(previousUsers => {
-      if (previousUsers.length > 0) {
+      if (previousUsers.length) {
         return res.json({
           success: false,
           message: 'Account already exists',
