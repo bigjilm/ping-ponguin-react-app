@@ -13,6 +13,7 @@ Page.propTypes = {
   isFilterVisible: PropTypes.bool,
   showNavigation: PropTypes.bool,
   onFilterClick: PropTypes.func,
+  setCurrentChannel: PropTypes.func,
   children: PropTypes.node.isRequired,
 }
 

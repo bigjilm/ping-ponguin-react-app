@@ -1,9 +1,14 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import { Chat3, AccountCircle } from 'styled-icons/remix-line/'
 import IglooIcon from '../assets/igloo-icon.png'
 import { setToStorage } from '../utils/storage'
+
+Navigation.propTypes = {
+  setCurrentChannel: PropTypes.func,
+}
 
 export default function Navigation({ setCurrentChannel }) {
   return (
@@ -11,9 +16,15 @@ export default function Navigation({ setCurrentChannel }) {
       <NavLinkStyled exact to="/users">
         <IconStyled src={IglooIcon} />
       </NavLinkStyled>
-      <NavLinkStyled to="/chat" onClick={handleClick}>
-        <ChatIconStyled size="32" title="Chat Button" />
-      </NavLinkStyled>
+      {typeof setCurrentChannel === 'function' ? (
+        <NavLinkStyled to="/chat" onClick={handleClick}>
+          <ChatIconStyled size="32" title="Chat Button" />
+        </NavLinkStyled>
+      ) : (
+        <NavLinkStyled to="/chat">
+          <ChatIconStyled size="32" title="Chat Button" />
+        </NavLinkStyled>
+      )}
       <NavLinkStyled to="/profile">
         <ProfileIconStyled size="32" title="Profile Button" />
       </NavLinkStyled>
