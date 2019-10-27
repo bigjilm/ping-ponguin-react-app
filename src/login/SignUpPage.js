@@ -101,7 +101,6 @@ export default function SignUpPage({ setJustSignedUp }) {
     }
     signUp(newUser)
       .then(res => {
-        console.log(res)
         if (!res.success) {
           throw new Error(res.message)
         }
@@ -110,7 +109,6 @@ export default function SignUpPage({ setJustSignedUp }) {
         history.push('/')
       })
       .catch(err => {
-        console.log(err.message)
         if (err.message === 'Error: account already exists') {
           setAlert('Zu dieser E-Mail-Adresse existiert bereits ein Konto')
         } else if (err.message.startsWith('User validation failed')) {

@@ -13,7 +13,6 @@ export default function ChatList({ currentUser, setCurrentChannel }) {
   const [userChannels, setUserChannels] = useState([])
 
   useEffect(() => {
-    console.log(currentUser._id)
     const abortController = new AbortController()
     const signal = abortController.signal
     getChannels(currentUser._id, { signal })
