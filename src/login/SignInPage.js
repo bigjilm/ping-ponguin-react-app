@@ -49,17 +49,8 @@ export default function SignInPage({
         </SignUpMessageStyled>
       )}
       <SignInFormStyled onSubmit={handleSignIn}>
-        <TextInput
-          name="email"
-          labelName="E-Mail-Adresse"
-          placeholder="Gib hier deine E-Mail-Adresse ein"
-        />
-        <TextInput
-          name="password"
-          labelName="Passwort"
-          placeholder="Gib hier dein Passwort ein"
-          type="password"
-        />
+        <TextInput name="email" labelName="E-Mail-Adresse" />
+        <TextInput name="password" labelName="Passwort" type="password" />
         {alert && <Alert>{alert}</Alert>}
         <ButtonStyled style={{ marginTop: '10px' }}>Einloggen</ButtonStyled>
       </SignInFormStyled>
