@@ -31,13 +31,13 @@ function chatController(server) {
                 members: userIds,
               })
                 .then(channel => {
-                  const currentChannel = channel._id
-                  startChannel(currentChannel)
+                  const currentChannelId = channel._id
+                  startChannel(currentChannelId)
                 })
                 .catch(err => console.error(err))
             } else {
-              const currentChannel = channels[0]._id
-              startChannel(currentChannel)
+              const currentChannelId = channels[0]._id
+              startChannel(currentChannelId)
             }
           }
         })
@@ -54,14 +54,14 @@ function chatController(server) {
         .catch(err => console.error(err))
     })
 
-    function startChannel(channel) {
-      socket.join(channel)
-      Message.find({ channel: channel })
+    function startChannel(channelId) {
+      socket.join(channelId)
+      Message.find({ channel: channelId })
         .then(messages => {
-          const channelData = { channel: channel, messages: messages }
-          io.to(channel).emit(CHANNEL_SET, channelData)
+          const channelData = { channel: channelId, messages: messages }
+          io.to(channelId).emit(CHANNEL_SET, channelData)
         })
-        .catch()
+        .catch(console.error)
     }
   })
 }

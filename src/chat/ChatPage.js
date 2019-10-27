@@ -25,6 +25,8 @@ export default function ChatPage({ currentUser }) {
   const [messages, setMessages] = useState([])
   const socket = useContext(SocketContext)
 
+  const activeChats = [{ channel: { members: [], messages: [] } }]
+
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
@@ -74,6 +76,7 @@ export default function ChatPage({ currentUser }) {
         <ChatList
           currentUser={currentUser}
           setCurrentChannelId={setCurrentChannelId}
+          messages={messages}
         />
       )}
     </Page>

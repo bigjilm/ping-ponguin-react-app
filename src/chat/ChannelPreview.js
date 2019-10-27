@@ -10,15 +10,18 @@ ChannelPreview.propTypes = {
   channel: PropTypes.object.isRequired,
   currentUser: PropTypes.object.isRequired,
   setCurrentChannelId: PropTypes.func.isRequired,
+  messages: PropTypes.array,
 }
 
 export default function ChannelPreview({
   channel,
   currentUser,
   setCurrentChannelId,
+  messages,
 }) {
   const [chatPartner, setChatPartner] = useState({})
   const [lastMessage, setLastMessage] = useState('')
+  const [unreadMessagesCount, setUnreadMessagesCount] = useState(0)
   const socket = useContext(SocketContext)
 
   useEffect(() => {
@@ -34,15 +37,21 @@ export default function ChannelPreview({
     } else {
       setChatPartner({ name: 'Dieses Konto wurde gelöscht' })
     }
-    getMessages(channel._id, { signal })
-      .then(messages => {
-        let lastMsg = messages[messages.length - 1]
-        lastMsg || (lastMsg = '')
-        setLastMessage(lastMsg)
-      })
-      .catch(err => console.error(err))
+    console.log('1', messages)
+
+    // getMessages(channel._id, { signal })
+    //   .then(messages => {
+    //     let lastMsg = messages[messages.length - 1]
+    //     lastMsg || (lastMsg = '')
+    //     setLastMessage(lastMsg)
+    //     const unreadMessages = messages
+    //       .filter(message => message.author === chatPartnerId)
+    //       .filter(message => !message.seen)
+    //     console.log(chatPartnerId, unreadMessages)
+    //   })
+    //   .catch(err => console.error(err))
     return () => abortController.abort()
-  }, [currentUser._id, channel])
+  }, [currentUser._id, channel, messages])
 
   return lastMessage ? (
     <ChannelPreviewStyled onClick={handleClick}>
@@ -51,6 +60,7 @@ export default function ChannelPreview({
         {chatPartner.name}
       </PartnerNameStyled>
       <LastMessageStyled>{lastMessage.body}</LastMessageStyled>
+      <UnreadMessagesCountStyled />
     </ChannelPreviewStyled>
   ) : null
 
@@ -98,3 +108,5 @@ const LastMessageStyled = styled.span`
   max-width: 68vw;
   font-size: 14px;
 `
+
+const UnreadMessagesCountStyled = styled.div``
