@@ -65,10 +65,7 @@ export function setSeenMessages(channelId, currentUserId) {
     headers: {
       'Content-Type': 'application/json',
     },
-  }).then(res => {
-    console.log(res)
-    handleError(res)
-  })
+  }).then(handleError)
 }
 
 function fetchUsers({ path = '/getAllUsers/', method = 'GET', data } = {}) {

@@ -13,7 +13,7 @@ router.patch('/', (req, res) => {
           message.save().catch(err => res.status(404).json(err))
         })
     })
-    .then(
+    .then(() =>
       res.json({
         success: true,
         message: 'All messages set to seen',

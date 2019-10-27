@@ -20,7 +20,7 @@ export default function MessagesContainer({
     setSeenMessages(currentChannelId, currentUser._id)
       .then(res => console.log('res', res))
       .catch(err => console.error('err', err))
-  }, [currentChannelId, currentUser])
+  })
 
   useEffect(() => {
     endOfMessages.current.scrollIntoView({ behavior: 'smooth' })
