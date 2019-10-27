@@ -11,7 +11,7 @@ router.patch('/', (req, res) => {
   if (!(newPassword === newPasswordRepeat)) {
     res.json({
       success: false,
-      message: 'New passwords dont match',
+      message: 'Die neuen Passwörter stimmen nicht überein',
     })
   } else {
     if (newPassword) {
@@ -27,7 +27,7 @@ router.patch('/', (req, res) => {
       if (!user.validPassword(oldPassword)) {
         res.json({
           success: false,
-          message: 'Old password wrong',
+          message: 'Das alte Passwort stimmt nicht',
         })
       } else {
         user.password = newPasswordEncrypted
