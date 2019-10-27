@@ -60,7 +60,7 @@ export default function UserCard({
 const UserCardStyled = styled.section`
   display: grid;
   grid-template-rows: auto auto auto;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 175px 120px;
   grid-template-areas:
     'name image'
     'residence image'
@@ -82,7 +82,6 @@ const ImageStyled = styled.img`
 const NameStyled = styled.span`
   grid-area: name;
   overflow-wrap: break-word;
-  width: 40vw;
   font-size: 1.5em;
   font-weight: bold;
 `
@@ -97,7 +96,6 @@ const ValueStyled = styled.div``
 const ResidenceStyled = styled.div`
   grid-area: residence;
   overflow-wrap: break-word;
-  width: 40vw;
 `
 
 const AbilityContainerStyled = styled.div`
