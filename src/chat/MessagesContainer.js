@@ -19,6 +19,7 @@ export default function MessagesContainer({ messages, currentUser }) {
       {messages.map(msg => (
         <MessageStyled
           key={msg._id}
+          message={msg.body}
           author={msg.author}
           currentUser={currentUser}
         >
@@ -52,6 +53,8 @@ const MessageStyled = styled.div`
     props.author === props.currentUser._id
       ? 'var(--plantGreen)'
       : 'var(--iceBlue)'};
+  background-color: ${props =>
+    props.message.toLowerCase().includes('jannibär') && 'deeppink'};
 `
 
 const MessageBodyStyled = styled.p`
