@@ -108,10 +108,14 @@ export default function ProfileForm({ user, onChange, setEdited }) {
         history.push('/profile')
       })
       .catch(err => {
-        if (err.message.startsWith('User validation failed')) {
-          setMissingInputs(Object.keys(err.errors))
-        } else {
+        if (err.message.startsWith('Zu dieser E-Mail-Adresse')) {
           setAlert(err.message)
+          setMissingInputs([])
+        } else if (err.message.startsWith('User validation failed')) {
+          setMissingInputs(Object.keys(err.errors))
+          setAlert('')
+        } else {
+          console.error(err)
         }
       })
   }

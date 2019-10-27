@@ -109,13 +109,14 @@ export default function SignUpPage({ setJustSignedUp }) {
         history.push('/')
       })
       .catch(err => {
-        if (err.message.startsWith('User validation failed')) {
-          setMissingInputs(Object.keys(err.errors))
-        }
         if (err.message.startsWith('Zu dieser E-Mail-Adresse')) {
           setAlert(err.message)
-        } else {
+          setMissingInputs([])
+        } else if (err.message.startsWith('User validation failed')) {
+          setMissingInputs(Object.keys(err.errors))
           setAlert('')
+        } else {
+          console.error(err)
         }
       })
   }
