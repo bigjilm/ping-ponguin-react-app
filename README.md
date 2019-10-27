@@ -15,7 +15,7 @@ The app was built using [create-react-app](https://create-react-app.dev/) and a 
 - React
 - Node.js
 
-The chat was built with socket.io.
+The chat was built with [socket.io](https://socket.io/).
 
 ### Additional dependencies
 
@@ -40,9 +40,7 @@ The chat was built with socket.io.
 
 ## Usage
 
-To run the app, you need to clone the project. Then run `npm install` in the project directory.
-
-### Set up MongoDB
+To run the app, you need to clone the project. Then run `npm install` in the project directory. You need to setup a database, see [below](#mongo).
 
 ### Main scripts
 
@@ -67,3 +65,25 @@ npm run storybook
 ```
 
 Starts storybook. Currently only a small part of the app is in storybook.
+
+### <a name="mongo"></a> MongoDB and mock data
+
+You need to install MongoDB (or have it already installed) and it must be reachable under the default port [http://localhost:27017](http://localhost:27017).
+
+You need to setup a database with name "ping-ponguin". You can then either sign up users in the app yourself or you can set up a collection with name "users" and import mock data.
+
+You find mock data for users in _server/data/mockUsers.json_. You can import that file using a tool like [MongoDB Compass](https://www.mongodb.com/products/compass). You can then login with:
+
+- email: pingu@coldmail.gl
+- password: titanic
+
+## Acknowledgements
+
+Many Thanks
+
+- to the awesome team of neuefische!!!
+- to my fellow bootcampers!!!
+- to [Yagya](https://yagya.bandcamp.com/) and Erik Satie (and many others) for making such great music to code to.
+- to [Titanic-Magazin](https://www.titanic-magazin.de/) which I stole the ping ponguin logo from. (Please don't sue me!)
+
+Shout outs to all [depressed penguins](https://www.youtube.com/watch?v=zWH_9VRWn8Y). Keep it up!
