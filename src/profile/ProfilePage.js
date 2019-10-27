@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router'
 import { Route } from 'react-router-dom'
 import Page from '../common/Page'
-import EditProfileForm from './EditProfileForm'
+import ProfileForm from './ProfileForm'
 import PasswordForm from './PasswordForm'
 import Profile from './Profile'
 import PropTypes from 'prop-types'
@@ -33,7 +33,7 @@ export default function ProfilePage({
         />
       </Route>
       <Route exact path="/profile/edit">
-        <EditProfileForm
+        <ProfileForm
           user={currentUser}
           onChange={changedProp =>
             setCurrentUser({ ...currentUser, ...changedProp })

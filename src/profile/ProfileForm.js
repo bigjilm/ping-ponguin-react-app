@@ -14,13 +14,13 @@ import RadioButtonGroupStateless from './RadioButtonGroupStateless'
 import Alert from '../common/Alert'
 import { editProfile } from '../utils/services'
 
-EditProfileForm.propTypes = {
+ProfileForm.propTypes = {
   user: PropTypes.object,
   onChange: PropTypes.func,
   setEdited: PropTypes.func,
 }
 
-export default function EditProfileForm({ user, onChange, setEdited }) {
+export default function ProfileForm({ user, onChange, setEdited }) {
   const [missingInputs, setMissingInputs] = useState([])
   const [alert, setAlert] = useState('')
   let history = useHistory()
