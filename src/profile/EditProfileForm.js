@@ -36,7 +36,6 @@ export default function EditProfileForm({ user, onChange, setEdited }) {
           labelName="Name"
           name="name"
           value={user.name}
-          placeholder="Gib hier deinen Namen ein"
           maxLength={20}
           missingInputs={missingInputs}
           onChange={onChange}
@@ -45,7 +44,6 @@ export default function EditProfileForm({ user, onChange, setEdited }) {
           labelName="Wohnort"
           name="residence"
           value={user.residence}
-          placeholder="Gib hier deinen Wohnort ein"
           maxLength={50}
           missingInputs={missingInputs}
           onChange={onChange}
@@ -73,14 +71,13 @@ export default function EditProfileForm({ user, onChange, setEdited }) {
           labelName="Bild per URL einfügen (optional)"
           name="imageURL"
           value={user.imageURL}
-          placeholder="Gib hier die URL deines Bildes ein"
+          placeholder="z.B. https://images.com/yourimage.jpg"
           onChange={onChange}
         />
         <TextInputControlled
           labelName="E-Mail"
           name="email"
           value={user.email}
-          placeholder="Gib hier deine E-Mail-Adresse ein"
           missingInputs={missingInputs}
           onChange={onChange}
         />
