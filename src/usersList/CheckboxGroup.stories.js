@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CheckboxGroup from './CheckboxGroup'
 
 export default {
@@ -7,13 +7,24 @@ export default {
 }
 
 function Wrapper(storyFn) {
+  const [activeCheckboxes, setActiveCheckboxes] = useState([
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    'alle',
+  ])
   return (
     <div style={{ width: '375px', background: '#eee', padding: '10px' }}>
-      {storyFn()}
+      {storyFn({ activeCheckboxes, setActiveCheckboxes })}
     </div>
   )
 }
 
-export const checkboxGroup = () => (
-  <CheckboxGroup activeCheckboxes={['1', '3']} />
+export const checkboxGroup = ({ activeCheckboxes, setActiveCheckboxes }) => (
+  <CheckboxGroup
+    activeCheckboxes={activeCheckboxes}
+    setActiveCheckboxes={setActiveCheckboxes}
+  />
 )
