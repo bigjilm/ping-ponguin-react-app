@@ -14,13 +14,22 @@ export default function MessageInputForm({ onSubmit }) {
 
   return (
     <MessageInputFormStyled onSubmit={onSubmit}>
-      <MessageInputStyled name="textarea" />
+      <MessageInputStyled name="textarea" onKeyDown={submitOnEnter} />
       <SendLabelStyled>
         <SendIconStyled size="40" title="Send Button" />
         <SubmitInputStyled type="submit" />
       </SendLabelStyled>
     </MessageInputFormStyled>
   )
+
+  function submitOnEnter(event) {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.currentTarget.form.dispatchEvent(
+        new Event('submit', { cancelable: true })
+      )
+      event.preventDefault()
+    }
+  }
 }
 
 const MessageInputFormStyled = styled.form`
