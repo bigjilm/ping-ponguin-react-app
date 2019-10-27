@@ -40,7 +40,7 @@ The chat was built with [socket.io](https://socket.io/).
 
 ## Usage
 
-To run the app, you need to clone the project. Then run `npm install` in the project directory. You need to setup a database, see [below](#mongo).
+To run the app, you need to clone the project. Then run `npm install` in the project directory. And you need to setup a database, see [below](#mongo).
 
 ### Main scripts
 
@@ -49,7 +49,8 @@ npm start
 ```
 
 Runs the app in the development mode and the server with [nodemon](https://github.com/remy/nodemon).
-Open http://localhost:3000 to view it in the browser. The server runs on http://localhost:3333.
+
+Open http://localhost:3000 to view the app in the browser. The server runs on http://localhost:3333.
 
 The page and the server will reload if you make edits.
 You will also see any lint errors in the console.
@@ -86,4 +87,4 @@ Many Thanks
 - to [Yagya](https://yagya.bandcamp.com/) and Erik Satie (and many others) for making such great music to code to.
 - to [Titanic-Magazin](https://www.titanic-magazin.de/) which I stole the ping ponguin logo from. (Please don't sue me!)
 
-Shout outs to all [depressed penguins](https://www.youtube.com/watch?v=zWH_9VRWn8Y). Keep it up!
+Shout outs to all [depressed penguins](https://www.youtube.com/watch?v=zWH_9VRWn8Y).
