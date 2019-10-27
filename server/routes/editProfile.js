@@ -20,7 +20,7 @@ router.patch('/', (req, res) => {
             if (!(user.email === email)) {
               return res.json({
                 success: false,
-                message: 'Account already exists',
+                message: 'Zu dieser E-Mail-Adresse existiert bereits ein Konto',
               })
             }
           }

@@ -65,13 +65,10 @@ export default function PasswordForm({ userId, setEdited }) {
         history.push('/profile')
       })
       .catch(err => {
-        setAlert(err.message)
-        if (err.message === 'Old password wrong') {
-          setAlert('Dein altes Passwort stimmt nicht')
-        } else if (err.message === 'New passwords dont match') {
-          setAlert('Die neuen Passwörter stimmen nicht überein')
-        } else if (err.message.startsWith('User validation failed')) {
+        if (err.message.startsWith('User validation failed')) {
           setAlert('Das neue Passwort muss mindestens ein Zeichen lang sein')
+        } else {
+          setAlert(err.message)
         }
       })
   }

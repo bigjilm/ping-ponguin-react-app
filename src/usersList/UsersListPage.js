@@ -44,7 +44,7 @@ export default function UsersListPage({ currentUser }) {
       mainPadding="15px"
       showFilterSymbol={true}
       isFilterVisible={isFilterVisible}
-      onFilterClick={handleFilterClick}
+      onFilterClick={() => setIsFilterVisible(!isFilterVisible)}
     >
       <>
         {isFilterVisible && (
@@ -60,13 +60,6 @@ export default function UsersListPage({ currentUser }) {
       </>
     </Page>
   )
-  function handleFilterClick() {
-    setIsFilterVisible(!isFilterVisible)
-  }
-
-  function handleListClick() {
-    setIsFilterVisible(false)
-  }
 
   function withUsersList(users) {
     const usersFilteredByResidence = users.filter(
@@ -85,7 +78,7 @@ export default function UsersListPage({ currentUser }) {
       <UsersList
         users={usersFilteredByResidenceAndAbility}
         currentUser={currentUser}
-        onListClick={handleListClick}
+        onListClick={() => setIsFilterVisible(false)}
       />
     )
   }
