@@ -1,68 +1,90 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# ping ponguin
 
-## Available Scripts
+![](https://github.com/bigjilm/ping-ponguin-react-app/blob/master/src/assets/pp-logo.png)
 
-In the project directory, you can run:
+I developed **ping ponguin** as my final project during the [neuefische](https://www.neuefische.de) web developer bootcamp in fall 2019.
 
-### `npm start`
+With ping ponguin you can find people to play ping pong with. You can sign up with your email. If you're signed in, you can see a list of the other registered players. The list can be filtered by residence and ability. If you want to play with someone you can start a chat.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Tech stack
 
-The page will reload if you make edits.<br>
+The app was built using [create-react-app](https://create-react-app.dev/) and a MERN Stack:
+
+- MongoDB
+- Express
+- React
+- Node.js
+
+The chat was built with [socket.io](https://socket.io/).
+
+### Additional dependencies
+
+- bcrypt
+- cors
+- mongoose
+- prop-types
+- react-router-dom
+- react-scripts
+- styled-components
+- styled-icons
+- use-socket.io-client
+
+### Dev dependencies
+
+- cypress
+- eslint-plugin-cypress
+- nodemon
+- npm-run-all
+- storybook
+- storybook-react-router
+
+## Usage
+
+To run the app, you need to clone the project. Then run `npm install` in the project directory. And you need to setup a database, see [below](#mongo).
+
+### Main scripts
+
+```
+npm start
+```
+
+Runs the app in the development mode and the server with [nodemon](https://github.com/remy/nodemon).
+
+Open http://localhost:3000 to view the app in the browser. The server runs on http://localhost:3333.
+
+The page and the server will reload if you make edits.
 You will also see any lint errors in the console.
 
-### `npm test`
+```
+npm run cypress
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Opens [cypress](https://www.cypress.io/) for testing. Currently only a test for the sign in is implemented.
 
-### `npm run build`
+```
+npm run storybook
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Starts storybook. Currently only a small part of the app is in storybook.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### <a name="mongo"></a> MongoDB and mock data
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You need to install MongoDB (or have it already installed) and it must be reachable under the default port [http://localhost:27017](http://localhost:27017).
 
-### `npm run eject`
+You need to setup a database with name "ping-ponguin". You can then either sign up users in the app yourself or you can set up a collection with name "users" and import mock data.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+You find mock data for users in _server/data/mockUsers.json_. You can import that file using a tool like [MongoDB Compass](https://www.mongodb.com/products/compass). You can then login with:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- email: pingu@coldmail.gl
+- password: titanic
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Acknowledgements
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Many Thanks
 
-## Learn More
+- to the awesome team of neuefische!!!
+- to my fellow bootcampers!!!
+- to [Yagya](https://yagya.bandcamp.com/) and Erik Satie (and many others) for making such great music to code to.
+- to [Titanic-Magazin](https://www.titanic-magazin.de/) which I stole the ping ponguin logo from. (Please don't sue me!)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Shout outs to all [depressed penguins](https://www.youtube.com/watch?v=zWH_9VRWn8Y).
