@@ -112,6 +112,7 @@ const EditMessageStyled = styled.span`
 const PropStyled = styled.div`
   display: grid;
   grid-gap: 10px;
+  overflow: hidden;
 `
 
 const KeyStyled = styled.h3`
@@ -120,7 +121,7 @@ const KeyStyled = styled.h3`
 
 const ValueStyled = styled.div`
   overflow-wrap: break-word;
-  width: 75vw;
+  width: 75%;
 `
 
 const ImageStyled = styled.img`

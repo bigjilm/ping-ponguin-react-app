@@ -78,4 +78,5 @@ const PasswordFormStyled = styled.form`
   display: grid;
   grid-auto-rows: min-content;
   grid-gap: 30px;
+  width: 100%;
 `

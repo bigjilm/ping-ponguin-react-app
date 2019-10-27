@@ -42,6 +42,8 @@ The chat was built with [socket.io](https://socket.io/).
 
 To run the app, you need to clone the project. Then run `npm install` in the project directory. And you need to setup a database, see [below](#mongo).
 
+The app is build for mobile screens. Thus it appears in a 375 x 667 px frame on big screens.
+
 ### Main scripts
 
 ```

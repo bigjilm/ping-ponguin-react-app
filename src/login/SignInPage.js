@@ -52,7 +52,7 @@ export default function SignInPage({
         <TextInput name="email" labelName="E-Mail-Adresse" />
         <TextInput name="password" labelName="Passwort" type="password" />
         {alert && <Alert>{alert}</Alert>}
-        <ButtonStyled style={{ marginTop: '10px' }}>Einloggen</ButtonStyled>
+        <ButtonStyled css="margin-top: 15px">Einloggen</ButtonStyled>
       </SignInFormStyled>
       <BackButtonStyled
         onClick={() => {
@@ -102,7 +102,7 @@ const SignInPageStyled = styled.main`
   grid-gap: 20px;
   overflow: auto;
   height: 100%;
-  padding: 80px;
+  padding: 80px 0;
   background-color: var(--skyBlue);
   color: var(--iceBlue);
 `
@@ -124,7 +124,8 @@ const SignUpMessageStyled = styled.span`
 const SignInFormStyled = styled.form`
   display: grid;
   grid-auto-rows: min-content;
-  grid-gap: 30px;
+  grid-gap: 15px;
   overflow: auto;
+  width: 320px;
   padding: 0px 30px;
 `

@@ -6,10 +6,17 @@ export const FormStyled = styled.form`
   grid-gap: 40px;
 `
 
+export const LabelStyled = styled.label`
+  display: grid;
+  grid-auto-rows: auto;
+  grid-gap: 5px;
+  font-weight: bold;
+`
+
 export const InputStyled = styled.input`
   border-style: solid;
   border-color: var(--iceBlue);
-  width: 84vw;
+  width: 100%;
   height: 30px;
   padding: 0 5px;
 

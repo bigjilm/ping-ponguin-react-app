@@ -83,4 +83,16 @@ const AppStyled = styled.div`
   bottom: 0;
   overflow: auto;
   height: 100%;
+
+  /* desktop styles */
+  @media (min-width: 600px) {
+    box-sizing: content-box;
+    width: 375px;
+    height: 667px;
+    border: 30px solid black;
+    border-width: 40px 20px;
+    border-radius: 20px;
+    box-shadow: 30px 40px 30px #2264;
+    margin: 20px auto;
+  }
 `

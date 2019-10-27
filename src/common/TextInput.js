@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components/macro'
+import React, { useState } from 'react'
 import Alert from './Alert'
-import { InputStyled } from './styledElements'
+import { InputStyled, LabelStyled } from './styledElements'
 
 TextInput.propTypes = {
   labelName: PropTypes.string,
@@ -42,9 +41,4 @@ export default function TextInput({
   )
 }
 
-const LabelStyled = styled.label`
-  display: grid;
-  grid-auto-rows: auto;
-  grid-gap: 10px;
-  font-weight: bold;
-`
+

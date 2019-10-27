@@ -62,7 +62,7 @@ const H2Styled = styled.h2`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  max-width: 68vw;
+  max-width: 90%;
   margin: 0;
   font-size: 2rem;
   font-family: 'MetroBlack LT Two', Helvetica, sans-serif;
