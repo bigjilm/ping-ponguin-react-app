@@ -35,14 +35,12 @@ export default function SignUpPage({ setJustSignedUp }) {
           <TextInput
             labelName="Name"
             name="name"
-            placeholder="Gib hier deinen Namen ein"
             maxLength={20}
             missingInputs={missingInputs}
           />
           <TextInput
             labelName="Wohnort"
             name="residence"
-            placeholder="Gib hier deinen Wohnort ein"
             maxLength={50}
             missingInputs={missingInputs}
           />
@@ -64,19 +62,17 @@ export default function SignUpPage({ setJustSignedUp }) {
           <TextInput
             labelName="Bild per URL einfügen (optional)"
             name="imageURL"
-            placeholder="Gib hier die URL deines Bildes ein"
+            placeholder="z.B. https://images.com/yourimage.jpg"
           />
           <TextInput
             labelName="E-Mail"
             name="email"
-            placeholder="Gib hier deine E-Mail-Adresse ein"
             missingInputs={missingInputs}
           />
           <TextInput
             labelName="Passwort"
             name="password"
             type="password"
-            placeholder="Gib hier ein Passwort ein"
             missingInputs={missingInputs}
           />
           {alert && <Alert>{alert}</Alert>}
@@ -111,7 +107,7 @@ export default function SignUpPage({ setJustSignedUp }) {
         }
         form.reset()
         setJustSignedUp(true)
-        history.push('/signin')
+        history.push('/')
       })
       .catch(err => {
         console.log(err.message)
