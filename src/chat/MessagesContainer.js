@@ -40,6 +40,7 @@ const MessagesContainerStyled = styled.div`
 `
 
 const MessageStyled = styled.div`
+  overflow: auto;
   margin: ${props =>
     props.author === props.currentUser._id ? '0 0 0 25px' : '0 25px 0 0'};
   border-radius: ${props =>
@@ -55,7 +56,6 @@ const MessageStyled = styled.div`
 
 const MessageBodyStyled = styled.p`
   overflow-wrap: break-word;
-  width: 75vw;
   margin: 0;
 `
 

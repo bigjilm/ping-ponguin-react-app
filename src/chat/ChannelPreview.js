@@ -98,6 +98,6 @@ const LastMessageStyled = styled.span`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  max-width: 68vw;
+  max-width: 85%;
   font-size: 14px;
 `
