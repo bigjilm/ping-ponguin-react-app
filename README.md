@@ -6,6 +6,10 @@ I developed **ping ponguin** as my final project during the [neuefische](https:/
 
 With ping ponguin you can find people to play ping pong with. You can sign up with your email. If you're signed in, you can see a list of the other registered players. The list can be filtered by residence and ability. If you want to play with someone you can start a chat.
 
+## Preview
+
+<img src="./preview-images/preview-signin.png" width="200px" /> <img src="./preview-images/preview-list.png" width="200px" /> <img src="./preview-images/preview-chat.png" width="200px" />
+
 ## Tech stack
 
 The app was built using [create-react-app](https://create-react-app.dev/) and a MERN Stack:
@@ -40,7 +44,9 @@ The chat was built with [socket.io](https://socket.io/).
 
 ## Usage
 
-To run the app, you need to clone the project. Then run `npm install` in the project directory. And you need to setup a database, see [below](#mongo).
+To run the app, you need to clone the project. Then run `npm install` in the project directory. 
+
+You need to have Node.js installed. And you need to setup a database, see [below](#mongo).
 
 The app is build for mobile screens. Thus it appears in a 375 x 667 px frame on big screens.
 
