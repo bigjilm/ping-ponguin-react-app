@@ -6,6 +6,12 @@ I developed **ping ponguin** as my final project during the [neuefische](https:/
 
 With ping ponguin you can find people to play ping pong with. You can sign up with your email. If you're signed in, you can see a list of the other registered players. The list can be filtered by residence and ability. If you want to play with someone you can start a chat.
 
+## Preview
+
+![](./preview-images/preview-signin.png)
+![](./preview-images/preview-list.png)
+![](./preview-images/preview-chat.png)
+
 ## Tech stack
 
 The app was built using [create-react-app](https://create-react-app.dev/) and a MERN Stack:
