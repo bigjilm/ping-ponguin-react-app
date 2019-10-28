@@ -8,9 +8,7 @@ With ping ponguin you can find people to play ping pong with. You can sign up wi
 
 ## Preview
 
-<img src="./preview-images/preview-signin.png" width="200px" />
-<img src="./preview-images/preview-list.png" width="200px" />
-<img src="./preview-images/preview-chat.png" width="200px" />
+<img src="./preview-images/preview-signin.png" width="200px" /> <img src="./preview-images/preview-list.png" width="200px" /> <img src="./preview-images/preview-chat.png" width="200px" />
 
 ## Tech stack
 
