@@ -6,6 +6,7 @@ import ProfileForm from './ProfileForm'
 import PasswordForm from './PasswordForm'
 import Profile from './Profile'
 import PropTypes from 'prop-types'
+import ConfirmDeleteForm from './ConfirmDeleteForm'
 
 ProfilePage.propTypes = {
   currentUser: PropTypes.object.isRequired,
@@ -41,8 +42,11 @@ export default function ProfilePage({
           setEdited={setEdited}
         />
       </Route>
-      <Route path="/profile/changePassword">
+      <Route path="/profile/changepassword">
         <PasswordForm userId={currentUser._id} setEdited={setEdited} />
+      </Route>
+      <Route path="/profile/confirmdelete">
+        <ConfirmDeleteForm userId={currentUser._id} />
       </Route>
     </Page>
   )
@@ -54,6 +58,6 @@ export default function ProfilePage({
 
   function handleChangePasswordClick() {
     setEdited(false)
-    history.push('/profile/changePassword')
+    history.push('/profile/changepassword')
   }
 }

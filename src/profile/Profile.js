@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React, { useRef, useEffect } from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components/macro'
-import { ButtonStyled, Cushion } from '../common/styledElements'
+import { ButtonStyled, Cushion, BackButtonStyled } from '../common/styledElements'
 import { logout } from '../utils/services'
 import spreadWings from '../utils/spreadWings'
 import { getFromStorage, setToStorage } from '../utils/storage'
@@ -69,6 +69,7 @@ export default function Profile({
         >
           Passwort ändern
         </ButtonStyled>
+        <BackButtonStyled onClick={handleDeleteClick}>Konto löschen</BackButtonStyled>
       </PropStyled>
       <Cushion />
     </ProfileStyled>
@@ -83,6 +84,10 @@ export default function Profile({
         history.push('/')
       })
       .catch(err => console.error(err))
+  }
+
+  function handleDeleteClick(){
+    history.push('/profile/confirmdelete')
   }
 }
 
