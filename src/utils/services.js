@@ -2,8 +2,8 @@ export function getAllUsers() {
   return fetchUsers()
 }
 
-export function getUserById(token) {
-  return fetchUsers({ path: '/getUserById?token=' + token })
+export function getUserById(id) {
+  return fetchUsers({ path: '/getUserById?id=' + id })
 }
 
 export function getUserBySession(token) {
@@ -18,16 +18,20 @@ export function signUp(data) {
   return fetchUsers({ path: '/signup', method: 'POST', data })
 }
 
+export function deleteUser(id) {
+  return fetchUsers({ path: '/deleteUser?id=' + id, method: 'DELETE' })
+}
+
 export function verifyUserSession(token) {
   return fetch('/verifySession?token=' + token, {
     method: 'GET',
-  }).then(res => handleError(res))
+  }).then(handleError)
 }
 
 export function logout(token) {
   return fetch('/logout?token=' + token, {
     method: 'GET',
-  }).then(res => handleError(res))
+  }).then(handleError)
 }
 
 export function editProfile(data) {
@@ -49,13 +53,13 @@ export function editPassword(id, data) {
 export function getChannels(userId) {
   return fetch('getChannels?userId=' + userId, {
     method: 'GET',
-  }).then(res => handleError(res))
+  }).then(handleError)
 }
 
 export function getMessages(channelId) {
   return fetch('getMessages?channelId=' + channelId, {
     method: 'GET',
-  }).then(res => handleError(res))
+  }).then(handleError)
 }
 
 function fetchUsers({ path = '/getAllUsers/', method = 'GET', data } = {}) {
@@ -65,7 +69,7 @@ function fetchUsers({ path = '/getAllUsers/', method = 'GET', data } = {}) {
     headers: {
       'Content-Type': 'application/json',
     },
-  }).then(res => handleError(res))
+  }).then(handleError)
 }
 
 function handleError(res) {

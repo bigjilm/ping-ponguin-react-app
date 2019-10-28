@@ -2,8 +2,8 @@ const router = require('express').Router()
 const User = require('../models/User')
 
 router.delete('/', (req, res) => {
-  const { userId } = req.query
-  User.findByIdAndDelete(userId)
+  const { id } = req.query
+  User.findByIdAndDelete(id)
     .then(user =>
       res.json({
         success: true,
